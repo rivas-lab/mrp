@@ -129,7 +129,6 @@ To study the behavior of MRP using summary statistics we simulate two scenarios:
 \subsubsection{From single variant and single phenotype analysis to multiple variants and multiple phenotypes}
 To validate the flexibility of the approach we conducted a simulation experiment where we assumed an allelic architecture consistent to that discovered for {\it APOC3} in relation to coronary artery disease (CAD), triglycerides (TG), low-density lipoprotein cholesterol (LDL-C), and high-density lipoprotein cholesterol (HDL-C)\cite{apoc3,apoc32,jorgensen2014loss,cohorts2014loss}. We simulated three studies and applied the model comparison unit jointly to summary statistic data obtained for each study (Supplementary Note). Overall, we observed that considering the joint effects across multiple studies in a group of variants and phenotypes may improve ability to detect gene-based signals (Fig.~\ref{Fig2}C), and that considering prior mean of genetic effects should aid in efforts to identify protective modifiers of disease risk (Fig.~\ref{Fig2}D).
 
-  
 \subsection{Applications}
 We demonstrate its use in rare variant analysis in the UK Biobank.
 
@@ -140,8 +139,7 @@ We demonstrate its use in rare variant analysis in the UK Biobank.
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{../figures/manhattan.pdf}
-  \caption{MRP application to summary statistics from (A) 
-  MRP application to summary statistic data from the GLGC and EOMI exome-chip studies. (A-E). Here, we show manhattan plots of meta-analysis results obtained by applying gene-based MRP across PTVs for (A) triglycerides (TG), (B) low-density lipoprotein-cholesterol (LDL-C), (C) high-density lipoprotein cholesterol (HDL-C), and (D) EOMI separately. (E-F) Gene-based MRP results when multiple phenotypes are analyzed and prior mean of genetic effect is included to prioritize protective and risk signals. For each gene the the $\log_{10}\left(\textrm{Bayes Factor}\right)$ is plotted.}
+  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) eosinophil counts (INI30150), (B) forced vital capacity (FVC, INI3062), (C) forced expiratory volume in 1-second (FEV1, INI3063), (D) asthma (HC382), and (E) all four traits jointly. The four genes outside of chromosome 6 with the largest Bayes Factors are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted.}
   \label{Fig3}
 \end{figure}
 
@@ -259,6 +257,12 @@ $I-(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}+\mathbf{U})^{-1}\, \widehat{\m
 The distribution function for a mixture of chi-squares can be numerically evaluated by
 the R-package `CompQuadForm'~\cite{Duchesne2010}.
 
+\subsection{UK Biobank Data}
+\subsubsection{GWAS Summary Statistics}
+We performed genome-wide association analysis using PLINK v2.00a(17 July 2017) as described in ~\cite{DeBoever179762}. For asthma, we used the Firth-fallback in PLINK, a hybrid algorithm which normally uses the logistic regression code described in (Hill 2017), but switches to a port of logistf() (https://cran.r-project.org/web/packages/logistf/index.html) in two cases: (1) one of the cells in the 2x2 allele count by case/control status contingency table is empty (2) logistic regression was attempted since all the contingency table cells were nonzero, but it failed to converge within the usual number of steps. We used the following covariates in our analysis: age, sex, array type, and the first four principal components, where array type is a binary variable that represents whether an individual was genotyped with UK Biobank Axiom Array or UK BiLEVE Axiom Array. For variants that were specific to one array, we did not use array as a covariate. Asthma cases were defined using both Hospital Episode Statistics and verbal questionnaire responses. We used the provided values from the UK Biobank for eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV1). The phenotype codes used throughout (asthma=HC382, eosinophil count=INI30150, Forced Expiratory Volume in 1-second (FEV1)=INI3063, and Forced Vital Capacity (FVC)=INI3062) correspond to the phenotype codes used in on the Global Biobank Engine [\url{https://biobankengine.stanford.edu}].
+
+\subsubsection{Genetic Correlations}
+We calculated the genetic between asthma, eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV1) using the MultiVariate Polygenic Mixture Model (MVPMM) described in ~\cite{DeBoever2017}. Briefly, MVPMM estimates genetic correlation given GWAS summary statistics (effect size and standard error of effect size estimate) by modeling GWAS summary statistics as generated from one of two mixture components. Summary statistics from variants in the null component are modeled as being drawn from a multivariate normal distribution with zero mean and covariance matrix that captures correlation in the summary statistics due to the use of shared subjects or other sources of correlation. Summary statistics from variants in the non-null component are modeled as being drawn from a multivariate normal distribution with zero mean as well. The covariance matrix for the non-null component combines the covariance matrix from the null component with another covariance matrix that captures the genetic correlation between the phenotypes being considered.
 
 %%%
 %
