@@ -133,7 +133,7 @@ To validate the flexibility of the approach we conducted a simulation experiment
 We demonstrate its use in rare variant analysis in the UK Biobank.
 
 \subsubsection{Model comparison applied to asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity summary statistic data}
- First, we applied the model comparison component to summary statistic data from the exome content of the UK Biobank array. The summary statistic data was generated from single variant logistic regression and linear regression analysis applied to asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity phenotype files.
+We applied the model comparison component to summary statistic data from the exome content of the UK Biobank array. The summary statistic data was generated from single variant logistic regression and linear regression analysis applied to asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity phenotypes. We applied the model to missense variants and PTVs for each phenotype separately (\ref{Fig3}A-D) as well as to all phenotypes jointly (\ref{Fig3}E) and obtained $\log_{10}$ BF for each gene. We observed evidence that missense variants and PTVs in \textit{IL33} affect both eosinophil counts and asthma from the single-phenotype analyses, though the evidence was strongest for the joint analysis (\ref{Tab1}). 
 
 %% FIGURE 3
 \begin{figure}
@@ -143,7 +143,25 @@ We demonstrate its use in rare variant analysis in the UK Biobank.
   \label{Fig3}
 \end{figure}
 
-
+%% TABLE 3
+\begin{table}
+\begin{tabular}{llllll}
+\toprule
+{} & Joint & Eosinophil count &   FVC &  FEV1 & Asthma \\
+\midrule
+\textit{IL33}   &  36.6 &             31.5 &  -2.3 &  -1.9 &    9.4 \\
+\textit{GPR20}  &  10.2 &             10.4 &  -0.1 &  -0.2 &        \\
+\textit{ZFAT}   &  10.1 &             -3.1 &   7.8 &   5.9 &   -0.5 \\
+\textit{CSF2RB} &   9.0 &              9.1 &   0.2 &  -0.1 &   -0.2 \\
+\textit{SCMH1}  &   7.1 &             -1.5 &   6.8 &   2.6 &   -0.9 \\
+\textit{PACS2}  &   6.2 &              9.6 &  -1.3 &  -1.6 &   -0.5 \\
+\textit{CCR3}   &   6.0 &             14.0 &  -3.3 &  -3.7 &   -1.0 \\
+\textit{ELN}    &   5.0 &             -1.5 &   4.9 &   2.3 &   -0.6 \\
+\bottomrule
+\end{tabular}
+\caption{$\log_{10}$ Bayes Factors for genes outside of chromosome 6 with $\log_{10}$ Bayes Factors greater than 5 in the joint analysis.}
+\label{Tab1}
+\end{table}
 
 \section{Discussion}
 We developed a Bayesian model comparison approach for rare variant association studies by . 
