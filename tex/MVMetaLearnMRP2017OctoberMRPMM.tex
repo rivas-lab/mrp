@@ -282,6 +282,9 @@ We performed genome-wide association analysis using PLINK v2.00a(17 July 2017) a
 \subsubsection{Genetic Correlations}
 We calculated the genetic between asthma, eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV1) using the MultiVariate Polygenic Mixture Model (MVPMM)~\cite{DeBoever2017}. Briefly, MVPMM estimates genetic correlation given GWAS summary statistics (effect size and standard error of effect size estimate) by modeling GWAS summary statistics as generated from one of two mixture components. Summary statistics from variants in the null component are modeled as being drawn from a multivariate normal distribution with zero mean and covariance matrix that captures correlation in the summary statistics due to the use of shared subjects or other sources of correlation. Summary statistics from variants in the non-null component are modeled as being drawn from a multivariate normal distribution with zero mean, but the covariance matrix for the non-null component combines the covariance matrix from the null component with another covariance matrix that captures the genetic correlation between the phenotypes being considered.
 
+\subsubsection{UK Biobank Asthma Application}
+For the Manhattan plots \ref{Fig3} and table \ref{Tab1}, we removed any genes with non-unique gene symbols. We also removed the sense overlapping gene \textit{CTD-3064M3.3} and and the antisense gene \textit{ZFAT-AS1} since these genes overlap \textit{GPR20} and \textit{ZFAT} respectively and therefore have the same $\log_{10}$ Bayes Factors as those genes.
+
 %%%
 %
 %\subsection{MRP mixture modeling for effect size estimation} 
@@ -477,7 +480,7 @@ Although summary statistics are quicker to read and process than raw data, the n
 %% FIGURE 3
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{/Users/mrivas/Dropbox/MultiplePhenotypesManuscript/hdf5MAMBAMRP.pdf}
+\includegraphics[width=\textwidth]{../figures/hdf5MAMBAMRP.pdf}
   \caption{Our HDF5 implementation contained the following components: first, a group with one table per annotation file. All effect size (beta) values and study-specific annotations were contained here, and the number of tables is limited by $S\ \textrm{(the number of studies)} \times K\ \textrm{(the number of traits)}$. Second, a group with site-site covariance data. While these covariance matrices may have dimension $M\ \textrm{(the number of variants)} \times M$, we store the data as tables, each row specifiying the covariance between two variants. The number of tables should be the same as the previous set, capped by $S\ \textrm{(the number of studies)} \times K\ \textrm{(the number of traits)}$. Third, we store one table with sigma values for each study/phenotype combination. In the event that the traits were rank-normal transformation was performed these sigma values are equal to 1. These are used to compute correlation between two datasets. Finally, we store a matrix/table pair for Vy null and its index. The Vy null matrix has dimensions $ (S \times K) \times (S \times K)$ each entry specifying the estimated correlation of effect sizes between two datasets. The index table encodes row/column position of each dataset.}
   \label{hdf5}
 \end{figure}
