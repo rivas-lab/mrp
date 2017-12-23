@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: MVMetaLearnMRP2017OctoberMRPMM.aux
+The style file: naturemag.bst
+Database file #1: references.bib
+You've used 35 entries,
+            2348 wiz_defined-function locations,
+            1201 strings with 21016 characters,
+and the built_in function-call counts, 13971 in all, are:
+= -- 1013
+> -- 328
+< -- 0
++ -- 164
+- -- 82
+* -- 1748
+:= -- 1588
+add.period$ -- 107
+call.type$ -- 35
+change.case$ -- 35
+chr.to.int$ -- 0
+cite$ -- 35
+duplicate$ -- 1251
+empty$ -- 1295
+format.name$ -- 113
+if$ -- 2770
+int.to.chr$ -- 0
+int.to.str$ -- 35
+missing$ -- 286
+newline$ -- 185
+num.names$ -- 35
+pop$ -- 172
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 186
+stack$ -- 0
+substring$ -- 753
+swap$ -- 1236
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 88
+width$ -- 37
+write$ -- 393

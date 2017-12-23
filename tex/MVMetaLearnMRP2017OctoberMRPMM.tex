@@ -1,6 +1,5 @@
 \documentclass{nature}
 \usepackage[T1]{fontenc}
-\usepackage[dvips]{graphicx}
 \usepackage[usenames]{color}
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -12,6 +11,7 @@
  \usepackage{booktabs}
 \usepackage{rotating}
 \usepackage{graphicx}
+\graphicspath{{../figures/}}
 \usepackage{multirow}
 \usepackage{bbm}
 \usepackage[font=small]{caption}
@@ -27,12 +27,12 @@
 \def\til{\widetilde}
 \def\MM{\mathcal{M}}
 \def\Vy{\widehat{\textrm{V}}_Y}
-
 \bibliographystyle{naturemag}
 \title{Bayesian model comparison for rare variant association studies of multiple phenotypes}
 \author{Christopher DeBoever$^{1}$, Matthew Aguirre$^{1}$, Yosuke Tanigawa$^{1}$, Adam Lavertu$^{1}$, Greg McInnes$^{1}$, Timothy Poterba$^{2}$, Mark J. Daly$^{2,3}$,  Matti Pirinen$^{4}$\thanks{matti.pirinen@helsinki.fi}, and Manuel A. Rivas$^{1}$\thanks{mrivas@stanford.edu}}
 \usepackage{setspace}   
 \linenumbers
+
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -80,7 +80,7 @@ We apply MRP to four phenotypes: asthma (HC382: the corresponding phenotype labe
 %% FIGURE 1 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{../figures/FIG1FINAL.pdf}
+  \includegraphics[width=\textwidth]{FIG1FINAL.pdf}
   \caption{Schematic overview of MRP. A. MRP is suitable for a broad range of rare variant association study designs including (from left to right): i) case-control, ii) multiple diseases with shared controls, iii) single quantitative phenotype, and iv) mixture of case-control and quantitative phenotypes. B. Diagram of factors considered in rare variant association analysis including the correlation matrices: $\mathbf{R_{\textrm{study}}}$  (expected correlation of genetic effects among a group of studies), $\mathbf{R_{\textrm{var}}}$ (expected correlation of genetic effects among a group of variants), and $\mathbf{R_{\textrm{phen}}}$ (expected correlation of genetic effects among a group of phenotypes); the scale parameter for genetic variant annotation; and the location of genetic effects, which may be used to prioritize or identify protective modifiers of disease risk.}
   \label{Fig1}
   \end{figure}
@@ -111,7 +111,7 @@ Although we see advantages in adopting a Bayesian perspective, our approach coul
 %% FIGURE 2
 \begin{figure}
 \centering
-   \includegraphics[width=\textwidth]{../figures/Figure2Nov2017.pdf}
+   \includegraphics[width=\textwidth]{Figure2Nov2017.pdf}
   \caption{Simulation studies. A. Comparison of $-\log_{10}$(p-values) from frequentist $\textrm{BF}_{\textrm{MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B. Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C. From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D. ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles. }
   \label{Fig2}
 \end{figure}
@@ -138,7 +138,7 @@ We applied the MRP model comparison approach to summary statistic data for codin
 %% FIGURE 3
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{../figures/manhattan.pdf}
+\includegraphics[width=\textwidth]{manhattan.pdf}
   \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) eosinophil counts (INI30150), (B) forced vital capacity (FVC, INI3062), (C) forced expiratory volume in 1-second (FEV1, INI3063), (D) asthma (HC382), and (E) all four traits jointly. The four genes outside of chromosome 6 with the largest Bayes Factors are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted.}
   \label{Fig3}
 \end{figure}
@@ -480,7 +480,7 @@ Although summary statistics are quicker to read and process than raw data, the n
 %% FIGURE 3
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{../figures/hdf5MAMBAMRP.pdf}
+\includegraphics[width=\textwidth]{hdf5MAMBAMRP.pdf}
   \caption{Our HDF5 implementation contained the following components: first, a group with one table per annotation file. All effect size (beta) values and study-specific annotations were contained here, and the number of tables is limited by $S\ \textrm{(the number of studies)} \times K\ \textrm{(the number of traits)}$. Second, a group with site-site covariance data. While these covariance matrices may have dimension $M\ \textrm{(the number of variants)} \times M$, we store the data as tables, each row specifiying the covariance between two variants. The number of tables should be the same as the previous set, capped by $S\ \textrm{(the number of studies)} \times K\ \textrm{(the number of traits)}$. Third, we store one table with sigma values for each study/phenotype combination. In the event that the traits were rank-normal transformation was performed these sigma values are equal to 1. These are used to compute correlation between two datasets. Finally, we store a matrix/table pair for Vy null and its index. The Vy null matrix has dimensions $ (S \times K) \times (S \times K)$ each entry specifying the estimated correlation of effect sizes between two datasets. The index table encodes row/column position of each dataset.}
   \label{hdf5}
 \end{figure}

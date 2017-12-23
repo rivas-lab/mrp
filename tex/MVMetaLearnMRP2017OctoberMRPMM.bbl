@@ -1,0 +1,285 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{ifih1}
+\bibinfo{author}{Nejentsev, S.}, \bibinfo{author}{Walker, N.},
+  \bibinfo{author}{Riches, D.}, \bibinfo{author}{Egholm, M.} \&
+  \bibinfo{author}{Todd, J.~A.}
+\newblock \bibinfo{title}{Rare variants of {{\it IFIH1}}, a gene implicated in
+  antiviral responses, protect against type 1 diabetes}.
+\newblock \emph{\bibinfo{journal}{Science}} \textbf{\bibinfo{volume}{324}},
+  \bibinfo{pages}{387--389} (\bibinfo{year}{2009}).
+
+\bibitem{altshuler2010map}
+\bibinfo{author}{{1000 Genomes Project Consortium}}.
+\newblock \bibinfo{title}{A map of human genome variation from population scale
+  sequencing}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{467}},
+  \bibinfo{pages}{1061--1073} (\bibinfo{year}{2010}).
+
+\bibitem{rivas2011deep}
+\bibinfo{author}{Rivas, M.~A.} \emph{et~al.}
+\newblock \bibinfo{title}{Deep resequencing of {GWAS} loci identifies
+  independent rare variants associated with inflammatory bowel disease}.
+\newblock \emph{\bibinfo{journal}{Nature Genetics}}
+  \textbf{\bibinfo{volume}{43}}, \bibinfo{pages}{1066--1073}
+  (\bibinfo{year}{2011}).
+
+\bibitem{10002012integrated}
+\bibinfo{author}{{The 1000 Genomes Consortium}}.
+\newblock \bibinfo{title}{An integrated map of genetic variation from 1,092
+  human genomes}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{491}},
+  \bibinfo{pages}{56--65} (\bibinfo{year}{2012}).
+
+\bibitem{majithia2014rare}
+\bibinfo{author}{Majithia, A.~R.} \emph{et~al.}
+\newblock \bibinfo{title}{Rare variants in {{\it PPARG}} with decreased
+  activity in adipocyte differentiation are associated with increased risk of
+  type 2 diabetes}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of
+  Sciences}} \textbf{\bibinfo{volume}{111}}, \bibinfo{pages}{13127--13132}
+  (\bibinfo{year}{2014}).
+
+\bibitem{lee2014rare}
+\bibinfo{author}{Lee, S.}, \bibinfo{author}{Abecasis, G.~R.},
+  \bibinfo{author}{Boehnke, M.} \& \bibinfo{author}{Lin, X.}
+\newblock \bibinfo{title}{{Rare-variant association analysis:\ study designs
+  and statistical tests}}.
+\newblock \emph{\bibinfo{journal}{The American Journal of Human Genetics}}
+  \textbf{\bibinfo{volume}{95}}, \bibinfo{pages}{5--23} (\bibinfo{year}{2014}).
+
+\bibitem{liu2014meta}
+\bibinfo{author}{Liu, D.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{Meta-analysis of gene-level tests for rare variant
+  association}.
+\newblock \emph{\bibinfo{journal}{Nature Genetics}}
+  \textbf{\bibinfo{volume}{46}}, \bibinfo{pages}{200--204}
+  (\bibinfo{year}{2014}).
+
+\bibitem{cichonska2016metacca}
+\bibinfo{author}{Cichonska, A.} \emph{et~al.}
+\newblock \bibinfo{title}{metacca: summary statistics-based multivariate
+  meta-analysis of genome-wide association studies using canonical correlation
+  analysis}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}}
+  \textbf{\bibinfo{volume}{32}}, \bibinfo{pages}{1981--1989}
+  (\bibinfo{year}{2016}).
+
+\bibitem{rivas2013assessing}
+\bibinfo{author}{Rivas, M.~A.} \emph{et~al.}
+\newblock \bibinfo{title}{Assessing association between protein truncating
+  variants and quantitative traits}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}}
+  \textbf{\bibinfo{volume}{29}}, \bibinfo{pages}{2419--2426}
+  (\bibinfo{year}{2013}).
+
+\bibitem{rivas2015effect}
+\bibinfo{author}{Rivas, M.~A.} \emph{et~al.}
+\newblock \bibinfo{title}{Effect of predicted protein-truncating genetic
+  variants on the human transcriptome}.
+\newblock \emph{\bibinfo{journal}{Science}} \textbf{\bibinfo{volume}{348}},
+  \bibinfo{pages}{666--669} (\bibinfo{year}{2015}).
+
+\bibitem{pcsk9}
+\bibinfo{author}{Cohen, J.} \emph{et~al.}
+\newblock \bibinfo{title}{{Low LDL cholesterol in individuals of African
+  descent resulting from frequent nonsense mutations in {\it PCSK9}}}.
+\newblock \emph{\bibinfo{journal}{Nature Genetics}}
+  \textbf{\bibinfo{volume}{37}}, \bibinfo{pages}{161--5}
+  (\bibinfo{year}{2005}).
+
+\bibitem{cohen2006sequence}
+\bibinfo{author}{Cohen, J.~C.}, \bibinfo{author}{Boerwinkle, E.},
+  \bibinfo{author}{Mosley~Jr, T.~H.} \& \bibinfo{author}{Hobbs, H.~H.}
+\newblock \bibinfo{title}{{Sequence variations in {\it PCSK9}, low LDL, and
+  protection against coronary heart disease}}.
+\newblock \emph{\bibinfo{journal}{New England Journal of Medicine}}
+  \textbf{\bibinfo{volume}{354}}, \bibinfo{pages}{1264--1272}
+  (\bibinfo{year}{2006}).
+
+\bibitem{sullivan2012effect}
+\bibinfo{author}{Sullivan, D.} \emph{et~al.}
+\newblock \bibinfo{title}{Effect of a monoclonal antibody to {PCSK9} on
+  low-density lipoprotein cholesterol levels in statin-intolerant patients{:\
+  the GAUSS} randomized trial}.
+\newblock \emph{\bibinfo{journal}{JAMA}} \textbf{\bibinfo{volume}{308}},
+  \bibinfo{pages}{2497--2506} (\bibinfo{year}{2012}).
+
+\bibitem{skat}
+\bibinfo{author}{Wu, M.~C.} \emph{et~al.}
+\newblock \bibinfo{title}{Rare-variant association testing for sequencing data
+  with the sequence kernel association test}.
+\newblock \emph{\bibinfo{journal}{American Journal of Human Genetics}}
+  \textbf{\bibinfo{volume}{89}}, \bibinfo{pages}{82--93}
+  (\bibinfo{year}{2011}).
+
+\bibitem{band2013imputation}
+\bibinfo{author}{Band, G.} \emph{et~al.}
+\newblock \bibinfo{title}{Imputation-based meta-analysis of severe malaria in
+  three african populations}.
+\newblock \emph{\bibinfo{journal}{PLoS genetics}} \textbf{\bibinfo{volume}{9}},
+  \bibinfo{pages}{e1003509} (\bibinfo{year}{2013}).
+
+\bibitem{macarthur}
+\bibinfo{author}{MacArthur, D.~G.} \emph{et~al.}
+\newblock \bibinfo{title}{A systematic survey of loss-of-function variants in
+  human protein-coding genes}.
+\newblock \emph{\bibinfo{journal}{Science}} \textbf{\bibinfo{volume}{335}},
+  \bibinfo{pages}{823--8} (\bibinfo{year}{2012}).
+
+\bibitem{findlay2014saturation}
+\bibinfo{author}{Findlay, G.~M.}, \bibinfo{author}{Boyle, E.~A.},
+  \bibinfo{author}{Hause, R.~J.}, \bibinfo{author}{Klein, J.~C.} \&
+  \bibinfo{author}{Shendure, J.}
+\newblock \bibinfo{title}{Saturation editing of genomic regions by multiplex
+  homology-directed repair}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{513}},
+  \bibinfo{pages}{120--123} (\bibinfo{year}{2014}).
+
+\bibitem{calpha}
+\bibinfo{author}{Neale, B.~M.} \emph{et~al.}
+\newblock \bibinfo{title}{Testing for an unusual distribution of rare
+  variants}.
+\newblock \emph{\bibinfo{journal}{PLoS Genetics}} \textbf{\bibinfo{volume}{7}},
+  \bibinfo{pages}{e1001322} (\bibinfo{year}{2011}).
+
+\bibitem{clarke2013flexible}
+\bibinfo{author}{Clarke, G.~M.}, \bibinfo{author}{Rivas, M.~A.} \&
+  \bibinfo{author}{Morris, A.~P.}
+\newblock \bibinfo{title}{A flexible approach for the analysis of rare variants
+  allowing for a mixture of effects on binary or quantitative traits}.
+\newblock \emph{\bibinfo{journal}{PLoS Genetics}} \textbf{\bibinfo{volume}{9}},
+  \bibinfo{pages}{e1003694} (\bibinfo{year}{2013}).
+
+\bibitem{cotsapas2011pervasive}
+\bibinfo{author}{Cotsapas, C.} \emph{et~al.}
+\newblock \bibinfo{title}{Pervasive sharing of genetic effects in autoimmune
+  disease}.
+\newblock \emph{\bibinfo{journal}{PLoS genetics}} \textbf{\bibinfo{volume}{7}},
+  \bibinfo{pages}{e1002254} (\bibinfo{year}{2011}).
+
+\bibitem{solovieff2013pleiotropy}
+\bibinfo{author}{Solovieff, N.}, \bibinfo{author}{Cotsapas, C.},
+  \bibinfo{author}{Lee, P.~H.}, \bibinfo{author}{Purcell, S.~M.} \&
+  \bibinfo{author}{Smoller, J.~W.}
+\newblock \bibinfo{title}{Pleiotropy in complex traits: challenges and
+  strategies}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Genetics}}
+  \textbf{\bibinfo{volume}{14}}, \bibinfo{pages}{483--495}
+  (\bibinfo{year}{2013}).
+
+\bibitem{gencorr2015}
+\bibinfo{author}{Bulik-Sullivan, B.} \emph{et~al.}
+\newblock \bibinfo{title}{An atlas of genetic correlations across human
+  diseases and traits}.
+\newblock \emph{\bibinfo{journal}{Nature genetics}}  (\bibinfo{year}{2015}).
+
+\bibitem{do2015exome}
+\bibinfo{author}{Do, R.} \emph{et~al.}
+\newblock \bibinfo{title}{Exome sequencing identifies rare ldlr and apoa5
+  alleles conferring risk for myocardial infarction}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{518}},
+  \bibinfo{pages}{102--106} (\bibinfo{year}{2015}).
+
+\bibitem{cohen2005low}
+\bibinfo{author}{Cohen, J.} \emph{et~al.}
+\newblock \bibinfo{title}{{Low LDL cholesterol in individuals of African
+  descent resulting from frequent nonsense mutations in} {\it pcsk9}}.
+\newblock \emph{\bibinfo{journal}{Nature Genetics}}
+  \textbf{\bibinfo{volume}{37}}, \bibinfo{pages}{161--165}
+  (\bibinfo{year}{2005}).
+
+\bibitem{do2013common}
+\bibinfo{author}{Do, R.} \emph{et~al.}
+\newblock \bibinfo{title}{Common variants associated with plasma triglycerides
+  and risk for coronary artery disease}.
+\newblock \emph{\bibinfo{journal}{Nature Genetics}}
+  \textbf{\bibinfo{volume}{45}}, \bibinfo{pages}{1345--1352}
+  (\bibinfo{year}{2013}).
+
+\bibitem{cohorts2014loss}
+\bibinfo{author}{{The TG and HDL Working Group of the Exome Sequencing Project,
+  National Heart, Lung, and Blood Institute}}.
+\newblock \bibinfo{title}{{Loss-of-function mutations in {\it APOC3},
+  triglycerides, and coronary disease}}.
+\newblock \emph{\bibinfo{journal}{New England Journal of Medicine}}
+  \textbf{\bibinfo{volume}{371}}, \bibinfo{pages}{22--31}
+  (\bibinfo{year}{2014}).
+
+\bibitem{apoc3}
+\bibinfo{author}{Pollin, T.~I.} \emph{et~al.}
+\newblock \bibinfo{title}{A null mutation in human {{\it APOC3}} confers a
+  favorable plasma lipid profile and apparent cardioprotection}.
+\newblock \emph{\bibinfo{journal}{Science}} \textbf{\bibinfo{volume}{322}},
+  \bibinfo{pages}{1702--5} (\bibinfo{year}{2008}).
+
+\bibitem{apoc32}
+\bibinfo{author}{Hofker, M.~H.}
+\newblock \bibinfo{title}{{APOC3 null mutation affects lipoprotein profile
+  APOC3 deficiency:\ from mice to man}}.
+\newblock \emph{\bibinfo{journal}{European Journal of Human Genetics}}
+  \textbf{\bibinfo{volume}{18}}, \bibinfo{pages}{1--2} (\bibinfo{year}{2010}).
+
+\bibitem{jorgensen2014loss}
+\bibinfo{author}{J{\o}rgensen, A.~B.}, \bibinfo{author}{Frikke-Schmidt, R.},
+  \bibinfo{author}{Nordestgaard, B.~G.} \& \bibinfo{author}{Tybj{\ae}rg-Hansen,
+  A.}
+\newblock \bibinfo{title}{{Loss-of-function mutations in {\it APOC3} and risk
+  of ischemic vascular disease}}.
+\newblock \emph{\bibinfo{journal}{New England Journal of Medicine}}
+  \textbf{\bibinfo{volume}{371}}, \bibinfo{pages}{32--41}
+  (\bibinfo{year}{2014}).
+
+\bibitem{DeBoever179762}
+\bibinfo{author}{DeBoever, C.} \emph{et~al.}
+\newblock \bibinfo{title}{Medical relevance of protein-truncating variants
+  across 337,208 individuals in the uk biobank study}.
+\newblock \emph{\bibinfo{journal}{bioRxiv}}  (\bibinfo{year}{2017}).
+\newblock
+  \urlprefix\url{https://www.biorxiv.org/content/early/2017/09/02/179762}.
+
+\bibitem{10.1371/journal.pgen.1006659}
+\bibinfo{author}{Smith, D.} \emph{et~al.}
+\newblock \bibinfo{title}{A rare il33 loss-of-function mutation reduces blood
+  eosinophil counts and protects from asthma}.
+\newblock \emph{\bibinfo{journal}{PLOS Genetics}}
+  \textbf{\bibinfo{volume}{13}}, \bibinfo{pages}{1--24} (\bibinfo{year}{2017}).
+\newblock \urlprefix\url{https://doi.org/10.1371/journal.pgen.1006659}.
+
+\bibitem{Ferreira:2017ba}
+\bibinfo{author}{Ferreira, M.~A.} \emph{et~al.}
+\newblock \bibinfo{title}{{Shared genetic origin of asthma, hay fever and
+  eczema elucidates allergic disease biology.}}
+\newblock \emph{\bibinfo{journal}{Nature genetics}}
+  \textbf{\bibinfo{volume}{49}}, \bibinfo{pages}{1752--1757}
+  (\bibinfo{year}{2017}).
+
+\bibitem{Ober:2011jk}
+\bibinfo{author}{Ober, C.} \& \bibinfo{author}{Yao, T.-C.}
+\newblock \bibinfo{title}{{The genetics of asthma and allergic disease: a 21st
+  century perspective.}}
+\newblock \emph{\bibinfo{journal}{Immunological reviews}}
+  \textbf{\bibinfo{volume}{242}}, \bibinfo{pages}{10--30}
+  (\bibinfo{year}{2011}).
+
+\bibitem{Duchesne2010}
+\bibinfo{author}{Duchesne, P.} \& \bibinfo{author}{de~Micheaux, P.~L.}
+\newblock \bibinfo{title}{Computing the distribution of quadratic forms:
+  Further comparisons between the liu-tang-zhang approximation and exact
+  methods}.
+\newblock \emph{\bibinfo{journal}{Computational Statistics and Data Analysis}}
+  \textbf{\bibinfo{volume}{54}}, \bibinfo{pages}{858--862}
+  (\bibinfo{year}{2010}).
+
+\bibitem{DeBoever2017}
+\bibinfo{author}{DeBoever, C.} \& \bibinfo{author}{Rivas, M.~A.}
+\newblock \bibinfo{title}{Harnessing digital phenotyping to enhance genetic
+  studies of human diseases}.
+\newblock \emph{\bibinfo{journal}{Submitted}}  (\bibinfo{year}{2017}).
+
+\end{thebibliography}
