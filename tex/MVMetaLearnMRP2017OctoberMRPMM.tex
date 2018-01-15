@@ -75,7 +75,7 @@ Given the translational potential of identifying protective modifiers of human d
 To evaluate the performance of MRP and to study its behavior we use simulations and compare it to other commonly used approaches. Some simple alternatives to MRP include univariate approaches for rare variant association studies including the sequence kernel association test (SKAT)\cite{skat}, and the burden test, which we show are special cases of the MRP model comparison when we assign the prior correlation of genetic effects across different variants to be zero or one. Furthermore, we show that MRP is able to detect the presence of heterogeneity of effects, which in some circumstances, such as those where effects are observed to be heterogeneous across studies, may indicate the presence of technical sources of error. 
   
 %%Apply methods to the GLGC data and exome sequencing data sets. 
-We apply MRP to four phenotypes: asthma (HC382: the corresponding phenotype label in Global Biobank Engine [\url{https://biobankengine.stanford.edu}]), eosinophil count (INI30150), Forced Expiratory Volume in 1-second (FEV1, INI3063), and Forced Vital Capacity (FVC, INI3062) in the UK Biobank dataset. We show that we are able to retain useful features from single variant and single phenotype meta-analysis, rare variant analysis, and prioritize protective modifiers of disease risk. 
+We also apply MRP to two groups of related phenotypes. First, we apply MRP to asthma (HC382: the corresponding phenotype label in Global Biobank Engine [\url{https://biobankengine.stanford.edu}]), eosinophil count (INI30150), Forced Expiratory Volume in 1-second (FEV1, INI3063), and Forced Vital Capacity (FVC, INI3062) in the UK Biobank dataset. We next apply MRP to glaucoma (HC276), intra-ocular pressure (INI5263), and corneal resistance factor (INI5265). We show that we are able to retain useful features from single variant and single phenotype meta-analysis, rare variant analysis, and prioritize protective modifiers of disease risk. 
 
 %% FIGURE 1 
 \begin{figure}
@@ -132,39 +132,21 @@ To validate the flexibility of the approach we conducted a simulation experiment
 \subsection{Applications}
 We demonstrate its use in rare variant analysis in the UK Biobank.
 
-\subsubsection{Model comparison applied to asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity summary statistic data}
-We applied the MRP model comparison approach to summary statistic data for coding variants on the UK Biobank array. The summary statistic data was generated from single variant logistic regression and linear regression analysis applied to asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity phenotypes. We applied the model to missense variants and PTVs for each phenotype separately (Fig.~\ref{Fig3}A-D) as well as to all phenotypes jointly (Fig.~\ref{Fig3}E) and obtained $\log_{10}$ BF for each gene. We observed evidence that missense variants and PTVs in \textit{IL33} affect eosinophil counts and offer protection from asthma from the single-phenotype analyses\cite{DeBoever179762, 10.1371/journal.pgen.1006659}, though the evidence of association was strongest for the joint analysis (Table~\ref{Tab1}). We also found evidence for associations between missense variants and PTVs in several other genes and the four phenotypes in the joint model that were not identified when considering asthma alone. For instance, \textit{GPR20}, \textit{CSF2RB}, \textit{PACS2}, and \textit{CCR3} all had $\log_{10}$ BF greater than 9 in the eosinophil count-only analysis but $\log_{10}$ BF less than 0 for the asthma-only analysis. In the joint model, the $\log_{10}$ BFs for these genes were all greater than six indicating possible associations with these traits. Besides \textit{IL33}, none of the genes with $\log_{10}$ BF greater than six in the joint model were reported in a large GWAS for allergic disease including asthma\cite{Ferreira:2017ba} though \textit{CCR3} is near a locus associated with atopy in a previous meta-analysis\cite{Ober:2011jk}. These results illustrate the ability of applying model comparison to multiple traits simultaneously to identify new genes involved in disease. 
+\subsubsection{Model comparison applied to summary statistic from the UK Biobank}
+We applied the MRP model comparison approach to summary statistic data generated from single variant logistic regression and linear regression analysis for coding variants on the UK Biobank array (Methods). We first applied MRP to the asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity phenotypes. We applied the model to missense variants and PTVs for each phenotype separately (Fig.~\ref{asthma}A-D) as well as to all phenotypes jointly (Fig.~\ref{asthma}E) and obtained $\log_{10}$ BF for each gene. As expected from recent studies \cite{DeBoever179762, 10.1371/journal.pgen.1006659}, we observed evidence that missense variants and PTVs in \textit{IL33} affect eosinophil counts and offer protection from asthma from the single-phenotype analyses, though the evidence of association was strongest for the joint analysis (Table~\ref{asthma_table}). We also found evidence for associations between missense variants and PTVs in several other genes and the four phenotypes in the joint model that were not identified when considering asthma alone. For instance, \textit{GPR20}, \textit{CSF2RB}, \textit{PACS2}, and \textit{CCR3} all had $\log_{10}$ BF greater than 9 in the eosinophil count-only analysis but $\log_{10}$ BF less than 0 for the asthma-only analysis. In the joint model, the $\log_{10}$ BFs for these genes were all greater than six indicating possible associations with these traits. Besides \textit{IL33}, none of the genes with $\log_{10}$ BF greater than six in the joint model were reported in a large GWAS for allergic disease including asthma\cite{Ferreira:2017ba} though \textit{CCR3} is near a locus associated with atopy in a previous meta-analysis\cite{Ober:2011jk}. 
+
+We also applied MRP to missense variants and PTVs for glaucoma, intra-ocular pressure, and corneal resistance factor as well as performing a joint analysis and a joint analysis focused on protective associations. While the individual glaucoma analysis did not yield any associations with $\log_{10}$ BF greater than 5, the joint analyses identified missense and PTVs in both \textit{ANGPTL7} and \textit{WNT10A} as associated with protection against glaucoma. These results illustrate the ability of applying model comparison to multiple traits simultaneously to identify protective modifiers of disease. 
 
 %% FIGURE 3
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{asthma_manhattan.pdf}
-  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) eosinophil counts (INI30150), (B) forced vital capacity (FVC, INI3062), (C) forced expiratory volume in 1-second (FEV1, INI3063), (D) asthma (HC382), and (E) all four traits jointly. The four genes outside of chromosome 6 with the largest Bayes Factors are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted.}
-  \label{Fig3}
+\includegraphics[width=\textwidth]{glaucoma_manhattan.pdf}
+  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted.}
+  \label{glaucoma}
 \end{figure}
 
-%% TABLE 3
-\begin{table}
-\begin{tabular}{llllll}
-\toprule
-{} & Joint & Eosinophil count &   FVC &  FEV1 & Asthma \\
-\midrule
-\textit{IL33}   &  36.6 &             31.5 &  -2.3 &  -1.9 &    9.4 \\
-\textit{GPR20}  &  10.2 &             10.4 &  -0.1 &  -0.2 &        \\
-\textit{ZFAT}   &  10.1 &             -3.1 &   7.8 &   5.9 &   -0.5 \\
-\textit{CSF2RB} &   9.0 &              9.1 &   0.2 &  -0.1 &   -0.2 \\
-\textit{SCMH1}  &   7.1 &             -1.5 &   6.8 &   2.6 &   -0.9 \\
-\textit{PACS2}  &   6.2 &              9.6 &  -1.3 &  -1.6 &   -0.5 \\
-\textit{CCR3}   &   6.0 &             14.0 &  -3.3 &  -3.7 &   -1.0 \\
-\textit{ELN}    &   5.0 &             -1.5 &   4.9 &   2.3 &   -0.6 \\
-\bottomrule
-\end{tabular}
-\caption{$\log_{10}$ Bayes Factors for genes outside of chromosome 6 with $\log_{10}$ Bayes Factors greater than 5 in the joint analysis.}
-\label{Tab1}
-\end{table}
-
 \section{Discussion}
-In this study, we developed a Bayesian model comparison approach MRP that shares information across both variants and phenotypes to identify rare variant associations. We used simulations to compare MRP to the widely used burden and SKAT tests for identifying rare variant associations and found that jointly considering both variants and phenotypes can improve the ability to detect associations. We also applied the MRP model comparison framework to summary statistic data from four traits from the UK Biobank: asthma, eosinophil counts, forced expiratory volume in 1-second (FEV1), and forced vital capacity (FVC). We identified strong evidence for the previously described association between \textit{IL33} and asthma\cite{DeBoever179762, 10.1371/journal.pgen.1006659} as well as evidence of association for several additional genes that have not been previously reported (Table~\ref{Tab1}). 
+In this study, we developed a Bayesian model comparison approach MRP that shares information across both variants and phenotypes to identify rare variant associations. We used simulations to compare MRP to the widely used burden and SKAT tests for identifying rare variant associations and found that jointly considering both variants and phenotypes can improve the ability to detect associations. We also applied the MRP model comparison framework to summary statistic data from four traits from the UK Biobank: asthma, eosinophil counts, forced expiratory volume in 1-second (FEV1), and forced vital capacity (FVC). We identified strong evidence for the previously described association between \textit{IL33} and asthma\cite{DeBoever179762, 10.1371/journal.pgen.1006659} as well as evidence of association for several additional genes that have not been previously reported (Table~\ref{asthma_table}). 
 
 As genetic data linked to high-dimensional phenotype data continues to be made available through biobanks, health systems, and research programs, there is a large need for statistical approaches that can leverage information across different genetic variants, phenotypes, and studies to make strong inferences about disease-associated genes. The approach presented here relies only on summary statistics from marginal association analyses which can be shared with less privacy concerns compared to raw genotype and phenotype data. Combining joint analysis of variants and phenotypes with meta-analysis across studies offers new opportunities to identify gene-disease associations.
 
@@ -283,7 +265,7 @@ We performed genome-wide association analysis using PLINK v2.00a(17 July 2017) a
 We calculated the genetic between asthma, eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV1) using the MultiVariate Polygenic Mixture Model (MVPMM)~\cite{DeBoever2017}. Briefly, MVPMM estimates genetic correlation given GWAS summary statistics (effect size and standard error of effect size estimate) by modeling GWAS summary statistics as generated from one of two mixture components. Summary statistics from variants in the null component are modeled as being drawn from a multivariate normal distribution with zero mean and covariance matrix that captures correlation in the summary statistics due to the use of shared subjects or other sources of correlation. Summary statistics from variants in the non-null component are modeled as being drawn from a multivariate normal distribution with zero mean, but the covariance matrix for the non-null component combines the covariance matrix from the null component with another covariance matrix that captures the genetic correlation between the phenotypes being considered.
 
 \subsubsection{UK Biobank Asthma Application}
-For the Manhattan plots \ref{Fig3} and table \ref{Tab1}, we removed any genes with non-unique gene symbols. We also removed the sense overlapping gene \textit{CTD-3064M3.3} and and the antisense gene \textit{ZFAT-AS1} since these genes overlap \textit{GPR20} and \textit{ZFAT} respectively and therefore have the same $\log_{10}$ Bayes Factors as those genes.
+For the Manhattan plots and Table \ref{asthma_table}, we removed any genes with non-unique gene symbols. We also removed the sense overlapping gene \textit{CTD-3064M3.3} and and the antisense gene \textit{ZFAT-AS1} since these genes overlap \textit{GPR20} and \textit{ZFAT} respectively and therefore have the same $\log_{10}$ Bayes Factors as those genes.
 
 %%%
 %
@@ -480,8 +462,35 @@ to estimate the correlation structure of the non-diagonal blocks caused by overl
 
 
 \subsection{Implementation details: HDF5 tables}
-Although summary statistics are quicker to read and process than raw data, the number of studies meta-analyzed in this work is expected to be sufficiently large to require optimizations in data representation and processing. Our solution was the use of the HDF5 (Hierarchical Data Format 5) data representation to enable rapid processing of effect size, uncertainty, and cross-trait estimate data. HDF5 is a fast and lightweight file format designed for scientific data. It has bindings for R, Python, C/C++, Java, and nearly every other population programming language. Reading data from a table within a HDF5 file can be an order of magnitude faster than reading text files from a Unix file, and it makes it easier to organize data within an internal structure.
+Although summary statistics are quicker to read and process than raw data, the number of studies meta-analyzed in this work is expected to be sufficiently large to require optimizations in data representation and processing (Figure \ref{hdf5}). Our solution was the use of the HDF5 (Hierarchical Data Format 5) data representation to enable rapid processing of effect size, uncertainty, and cross-trait estimate data. HDF5 is a fast and lightweight file format designed for scientific data. It has bindings for R, Python, C/C++, Java, and nearly every other population programming language. Reading data from a table within a HDF5 file can be an order of magnitude faster than reading text files from a Unix file, and it makes it easier to organize data within an internal structure.
 
+ %% FIGURE: ASTHMA MANHATTAN
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{asthma_manhattan.pdf}
+  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) eosinophil counts (INI30150), (B) forced vital capacity (FVC, INI3062), (C) forced expiratory volume in 1-second (FEV1, INI3063), (D) asthma (HC382), and (E) all four traits jointly. The four genes outside of chromosome 6 with the largest Bayes Factors are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted.}
+  \label{asthma}
+\end{figure}
+
+%% TABLE 3
+\begin{table}
+\begin{tabular}{llllll}
+\toprule
+{} & Joint & Eosinophil count &   FVC &  FEV1 & Asthma \\
+\midrule
+\textit{IL33}   &  36.6 &             31.5 &  -2.3 &  -1.9 &    9.4 \\
+\textit{GPR20}  &  10.2 &             10.4 &  -0.1 &  -0.2 &        \\
+\textit{ZFAT}   &  10.1 &             -3.1 &   7.8 &   5.9 &   -0.5 \\
+\textit{CSF2RB} &   9.0 &              9.1 &   0.2 &  -0.1 &   -0.2 \\
+\textit{SCMH1}  &   7.1 &             -1.5 &   6.8 &   2.6 &   -0.9 \\
+\textit{PACS2}  &   6.2 &              9.6 &  -1.3 &  -1.6 &   -0.5 \\
+\textit{CCR3}   &   6.0 &             14.0 &  -3.3 &  -3.7 &   -1.0 \\
+\textit{ELN}    &   5.0 &             -1.5 &   4.9 &   2.3 &   -0.6 \\
+\bottomrule
+\end{tabular}
+\caption{$\log_{10}$ Bayes Factors for genes outside of chromosome 6 with $\log_{10}$ Bayes Factors greater than 5 in the joint analysis.}
+\label{asthma_table}
+\end{table}
 
 %% FIGURE 3
 \begin{figure}
@@ -491,7 +500,7 @@ Although summary statistics are quicker to read and process than raw data, the n
   \label{hdf5}
 \end{figure}
 
- 
+
 
 
 \newpage
