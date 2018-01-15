@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  15 JAN 2018 13:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  15 JAN 2018 14:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -666,72 +666,61 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
  [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 78.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 74.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-Overfull \hbox (29.53845pt too wide) in paragraph at lines 78--79
-\T1/ptm/m/n/12 (HC382: the cor-re-spond-ing phe-no-type la-bel in Global Bioban
-k En-gine [$\T1/pcr/m/n/12 https : / / biobankengine .
- []
-
-<../figures/FIG1FINAL.pdf, id=23, 534.99875pt x 357.335pt>
+) [4]
+<../figures/FIG1FINAL.pdf, id=27, 534.99875pt x 357.335pt>
 File: ../figures/FIG1FINAL.pdf Graphic file (type pdf)
 
 <use ../figures/FIG1FINAL.pdf>
-Package pdftex.def Info: ../figures/FIG1FINAL.pdf used on input line 83.
+Package pdftex.def Info: ../figures/FIG1FINAL.pdf used on input line 79.
 (pdftex.def)             Requested size: 469.75502pt x 313.7742pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 84.
- [4] [5 <../figures/FIG1FINAL.pdf>]
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 80.
+ [5 <../figures/FIG1FINAL.pdf>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 91.
- [6] [7]
-[8] <../figures/Figure2Nov2017.pdf, id=938, 523.9575pt x 401.5pt>
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 87.
+ [6] [7] [8]
+<../figures/Figure2Nov2017.pdf, id=938, 523.9575pt x 401.5pt>
 File: ../figures/Figure2Nov2017.pdf Graphic file (type pdf)
 
 <use ../figures/Figure2Nov2017.pdf>
-Package pdftex.def Info: ../figures/Figure2Nov2017.pdf used on input line 114.
+Package pdftex.def Info: ../figures/Figure2Nov2017.pdf used on input line 110.
 (pdftex.def)             Requested size: 469.75502pt x 359.97433pt.
  [9 <../figures/Figure2Nov2017.pdf>]
-[10] [11]
-
-LaTeX Warning: Reference `asthma' on page 12 undefined on input line 136.
-
-
-LaTeX Warning: Reference `asthma' on page 12 undefined on input line 136.
-
-[12] <../figures/glaucoma_manhattan.pdf, id=966, 505.89pt x 361.35pt>
+[10] [11] [12]
+<../figures/glaucoma_manhattan.pdf, id=966, 505.89pt x 361.35pt>
 File: ../figures/glaucoma_manhattan.pdf Graphic file (type pdf)
 
 <use ../figures/glaucoma_manhattan.pdf>
 Package pdftex.def Info: ../figures/glaucoma_manhattan.pdf used on input line 1
-41.
+39.
 (pdftex.def)             Requested size: 469.75502pt x 335.54477pt.
- [13 <../figures/glaucoma_manhattan.pdf>] [14] [15]
-Overfull \hbox (7.9087pt too wide) in paragraph at lines 173--177
+ [13] [14 <../figures/glaucoma_manhattan.pdf>] [15]
+Overfull \hbox (7.9087pt too wide) in paragraph at lines 171--175
 \T1/ptm/m/n/12 where Data can cor-re-spond ei-ther to the ef-fect size es-ti-ma
 tes $[]$ and the es-ti-mated variance-covariance
  []
 
 [16]
-Overfull \hbox (1.78815pt too wide) in paragraph at lines 186--190
+Overfull \hbox (1.78815pt too wide) in paragraph at lines 184--188
 \T1/ptm/m/n/12 that in vec-tor-ized form is de-noted by $[] \OT1/cmr/m/n/12 = [
 ][] \OML/cmm/m/it/12 :$ \T1/ptm/m/n/12 An es-ti-ma-tor of the variance-covarian
 ce
  []
 
 [17]
-LaTeX Font Info:    Try loading font information for U+eus on input line 211.
+LaTeX Font Info:    Try loading font information for U+eus on input line 209.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 ) [18]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 228.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 226.
 
 [19] [20] [21] [22]
-Overfull \hbox (5.98099pt too wide) in paragraph at lines 320--321
+Overfull \hbox (5.98099pt too wide) in paragraph at lines 318--319
 \T1/ptm/m/n/12 age data? (http://www.ukbiobank.ac.uk/wp-content/uploads/2017/06
 /24983-Dr-Manuel-Rivas.pdf),
  []
@@ -740,7 +729,7 @@ Overfull \hbox (5.98099pt too wide) in paragraph at lines 320--321
 File: ../figures/asthma_manhattan.pdf Graphic file (type pdf)
 
 <use ../figures/asthma_manhattan.pdf>
-Package pdftex.def Info: ../figures/asthma_manhattan.pdf used on input line 468
+Package pdftex.def Info: ../figures/asthma_manhattan.pdf used on input line 466
 .
 (pdftex.def)             Requested size: 469.75502pt x 335.54477pt.
  [26]
@@ -748,49 +737,43 @@ Package pdftex.def Info: ../figures/asthma_manhattan.pdf used on input line 468
 File: ../figures/hdf5MAMBAMRP.pdf Graphic file (type pdf)
 
 <use ../figures/hdf5MAMBAMRP.pdf>
-Package pdftex.def Info: ../figures/hdf5MAMBAMRP.pdf used on input line 496.
+Package pdftex.def Info: ../figures/hdf5MAMBAMRP.pdf used on input line 494.
 (pdftex.def)             Requested size: 469.75502pt x 333.41016pt.
  [27 <../figures/asthma_manhattan.pdf>]
 [28 <../figures/hdf5MAMBAMRP.pdf>] [29] (./MVMetaLearnMRP2017OctoberMRPMM.bbl
-[30] [31] [32] [33]) [34] (./MVMetaLearnMRP2017OctoberMRPMM.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[30] [31] [32] [33]) [34] (./MVMetaLearnMRP2017OctoberMRPMM.aux) ) 
 Here is how much of TeX's memory you used:
- 13653 strings out of 493014
- 234879 string characters out of 6133351
- 260685 words of memory out of 5000000
- 16991 multiletter control sequences out of 15000+600000
+ 13652 strings out of 493014
+ 234881 string characters out of 6133351
+ 260693 words of memory out of 5000000
+ 16990 multiletter control sequences out of 15000+600000
  64379 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,12n,40p,10402b,360s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/te
-xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/tex
-live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texl
-ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texliv
-e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texliv
-e/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/te
-xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
-ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texliv
-e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2
-016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texm
-f-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/local/texlive/2016/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
-6/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-
-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2016/texmf-dist/fo
-nts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/tim
-es/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.
-pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on MVMetaLearnMRP2017OctoberMRPMM.pdf (34 pages, 2715977 bytes).
+{/usr/local/t
+exlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2016/texmf-di
+st/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/texlive/2016/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
+pe1/public/amsfonts/euler/eusm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fo
+nts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type
+1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/h
+elvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/ut
+mb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local
+/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on MVMetaLearnMRP2017OctoberMRPMM.pdf (34 pages, 2716573 bytes).
 
 PDF statistics:
  1450 PDF objects out of 1728 (max. 8388607)
