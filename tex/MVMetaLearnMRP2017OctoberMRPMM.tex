@@ -29,7 +29,7 @@
 \def\Vy{\widehat{\textrm{V}}_Y}
 \bibliographystyle{naturemag}
 \title{Bayesian model comparison for rare variant association studies of multiple phenotypes}
-\author{Christopher DeBoever$^{1}$, Matthew Aguirre$^{1}$, Yosuke Tanigawa$^{1}$, Timothy Poterba$^{2}$, Mark J. Daly$^{2,3}$,  Matti Pirinen$^{4}$\thanks{matti.pirinen@helsinki.fi}, and Manuel A. Rivas$^{1}$\thanks{mrivas@stanford.edu}}
+\author{Christopher DeBoever$^{1}$, Matthew Aguirre$^{1}$, Yosuke Tanigawa$^{1}$, Chris C. A. Spencer$^{2}$, Timothy Poterba$^{3}$, Mark J. Daly$^{3,4}$,  Matti Pirinen$^{5}$\thanks{matti.pirinen@helsinki.fi}, and Manuel A. Rivas$^{1}$\thanks{mrivas@stanford.edu}}
 \usepackage{setspace}   
 \linenumbers
 
@@ -42,6 +42,7 @@ Whole genome sequencing studies applied to large populations or biobanks with ex
 
 \begin{affiliations}
 \item Department of Biomedical Data Science, Stanford University, Stanford, CA, USA
+\item Genomics plc, Oxford, UK.
 \item Broad Institute of MIT and Harvard, Cambridge, MA, USA
 \item Wellcome Trust Centre for Human Genetics, University of Oxford, Oxford, UK
 \item Analytic and Translational Genetics Unit, Massachusetts General Hospital, Boston, MA, USA
@@ -129,24 +130,16 @@ To validate the flexibility of the approach we conducted a simulation experiment
 We demonstrate its use in rare variant analysis in the UK Biobank.
 
 \subsubsection{Model comparison applied to summary statistic from the UK Biobank}
-We applied the MRP model comparison approach to summary statistic data generated from single variant logistic regression and linear regression analysis for coding variants on the UK Biobank array (Methods). We first applied MRP to the asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity phenotypes. We applied the model to missense variants and PTVs for each phenotype separately (Fig.~\ref{asthma_manhattan}A-D) as well as to all phenotypes jointly (Fig.~\ref{asthma_manhattan}E) and obtained $\log_{10}$ BF for each gene. As expected from recent studies \cite{DeBoever179762, 10.1371/journal.pgen.1006659}, we observed evidence that missense variants and PTVs in \textit{IL33} affect eosinophil counts and offer protection from asthma from the single-phenotype analyses, though the evidence of association was strongest for the joint analysis (Table~\ref{asthma_table}). We also found evidence for associations between missense variants and PTVs in several other genes and the four phenotypes in the joint model that were not identified when considering asthma alone. For instance, \textit{GPR20}, \textit{CSF2RB}, \textit{PACS2}, and \textit{CCR3} all had $\log_{10}$ BF greater than 9 in the eosinophil count-only analysis but $\log_{10}$ BF less than 0 for the asthma-only analysis. In the joint model, the $\log_{10}$ BFs for these genes were all greater than six indicating possible associations with these traits. Besides \textit{IL33}, none of the genes with $\log_{10}$ BF greater than six in the joint model were reported in a large GWAS for allergic disease including asthma\cite{Ferreira:2017ba} though \textit{CCR3} is near a locus associated with atopy in a previous meta-analysis\cite{Ober:2011jk}. 
+We applied the MRP model comparison approach to summary statistic data generated from single variant logistic regression and linear regression analysis for coding variants on the UK Biobank array (Methods). We first applied MRP to the asthma, eosinophil count, forced expiratory volume in 1-second, and forced vital capacity phenotypes. We applied the model to missense variants and PTVs for each phenotype separately (Fig.~\ref{asthma_combined}A-D) as well as to all phenotypes jointly (Fig.~\ref{asthma_combined}E) and obtained $\log_{10}$ BF for each gene. As expected from recent studies \cite{DeBoever179762, 10.1371/journal.pgen.1006659}, we observed evidence that missense variants and PTVs in \textit{IL33} affect eosinophil counts and offer protection from asthma from the single-phenotype analyses, though the evidence of association was strongest for the joint analysis (Table~\ref{asthma_table}). We also found evidence for associations between missense variants and PTVs in several other genes and the four phenotypes in the joint model that were not identified when considering asthma alone. For instance, \textit{GPR20}, \textit{CSF2RB}, \textit{PACS2}, and \textit{CCR3} all had $\log_{10}$ BF greater than 9 in the eosinophil count-only analysis but $\log_{10}$ BF less than 0 for the asthma-only analysis. In the joint model, the $\log_{10}$ BFs for these genes were all greater than six indicating possible associations with these traits. Besides \textit{IL33}, none of the genes with $\log_{10}$ BF greater than six in the joint model were reported in a large GWAS for allergic disease including asthma\cite{Ferreira:2017ba} though \textit{CCR3} is near a locus associated with atopy in a previous meta-analysis\cite{Ober:2011jk}. 
 
 We also applied MRP to missense variants and PTVs for glaucoma, intra-ocular pressure, and corneal resistance factor as well as performing a joint analysis and a joint analysis focused on protective associations. While the individual glaucoma analysis did not yield any associations with $\log_{10}$ BF greater than 5, the joint analyses identified missense and PTVs in both \textit{ANGPTL7} and \textit{WNT10A} as associated with protection against glaucoma. These results illustrate the ability of applying model comparison to multiple traits simultaneously to identify protective modifiers of disease. 
 
 %% FIGURE 3
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{glaucoma_manhattan.pdf}
-  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted.}
-  \label{glaucoma_manhattan}
-\end{figure}
-
-%% FIGURE 4
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{glaucoma_forest.pdf}
-  \caption{$-\log_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit{ANGPTL7} for glaucoma, intra-ocular pressure, and corneal resistance factor.}
-  \label{glaucoma}
+\includegraphics[width=\textwidth]{glaucoma_combined.pdf}
+  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted. (F) $-\log_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit{ANGPTL7} for all three phenotypes.}
+  \label{glaucoma_combined}
 \end{figure}
 
 %% TABLE: GLAUCOMA GENES OF INTEREST
@@ -163,7 +156,7 @@ We also applied MRP to missense variants and PTVs for glaucoma, intra-ocular pre
 \textit{FUK}     &              -6.5 &  -2.3 &      2.5 &                                       -2.1 &                      -2.1 \\
 \bottomrule
 \end{tabular}
-\caption{$\log_{10}$ Bayes Factors for genes highlighted in Figure \ref{glaucoma_manhattan}.}
+\caption{$\log_{10}$ Bayes Factors for genes highlighted in Figure \ref{glaucoma_combined}.}
 \label{glaucoma_table}
 \end{table}
 
@@ -494,20 +487,12 @@ Although summary statistics are quicker to read and process than raw data, the n
   \label{hdf5}
 \end{figure}
 
- %% FIGURE: ASTHMA MANHATTAN
+ %% FIGURE: ASTHMA MANHATTAN AND FOREST
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{asthma_manhattan.pdf}
-  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) eosinophil counts (INI30150), (B) forced vital capacity (FVC, INI3062), (C) forced expiratory volume in 1-second (FEV1, INI3063), (D) asthma (HC382), and (E) all four traits jointly. The four genes outside of chromosome 6 with the largest Bayes Factors are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted.}
-  \label{asthma_manhattan}
-\end{figure}
-
-%% FIGURE: ASTHMA FOREST PLOT
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{asthma_forest.pdf}
-  \caption{$-\log_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit{IL33} for eosinophil counts, forced vital capacity (FVC), forced expiratory volume in 1-second (FEV1), and asthma.}
-  \label{asthma_forest}
+\includegraphics[width=\textwidth]{asthma_combined.pdf}
+  \caption{$\log_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) asthma (HC382), (B) eosinophil counts (INI30150), (C) forced vital capacity (FVC, INI3062), (D) forced expiratory volume in 1-second (FEV1, INI3063), (E) all four traits jointly, and (F) all four traits jointly with focus on protective effects. The four genes outside of chromosome 6 with the largest Bayes Factors are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted. (F) $-\log_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit{IL33} for each phenotype}
+  \label{asthma_combined}
 \end{figure}
 
 %% TABLE: ASTHMA GENES OF INTEREST
@@ -533,7 +518,7 @@ Although summary statistics are quicker to read and process than raw data, the n
 \textit{CHI3L1}       &              -4.4 &  -2.0 &             -2.0 &  -1.9 &  -2.0 &    3.0 \\
 \bottomrule
 \end{tabular}
-\caption{$\log_{10}$ Bayes Factors for genes highlighted in Figure \ref{asthma_manhattan}.}
+\caption{$\log_{10}$ Bayes Factors for genes highlighted in Figure \ref{asthma_combined}.}
 \label{asthma_table}
 \end{table}
 
