@@ -72,6 +72,30 @@
 %
 % % % % % % % % % % % % % % % % % % % % % % % %
 
+% % % % % % % % % % % % % % % % % % % % % % % %
+% Notes from Chris
+%
+% Example of a PLOS methods paper: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005896
+%
+% Here are some examples I removed from the body of the document:
+%
+% Equation example
+% \begin{eqnarray}
+% \label{eq:schemeP}
+% 	\mathrm{P_Y} = \underbrace{H(Y_n) - H(Y_n|\mathbf{V}^{Y}_{n})}_{S_Y} + \underbrace{H(Y_n|\mathbf{V}^{Y}_{n})- H(Y_n|\mathbf{V}^{X,Y}_{n})}_{T_{X\rightarrow Y}},
+% \end{eqnarray}
+
+% For figure citations, please use "Fig" instead of "Figure".
+
+% % Place figure captions after the first paragraph in which they are cited.
+% \begin{figure}[!h]
+% \caption{{\bf Bold the figure title.}
+% Figure caption text here, please use this space for the figure panel descriptions instead of using subfigure commands. A: Lorem ipsum dolor sit amet. B: Consectetur adipiscing elit.}
+% \label{fig1}
+% \end{figure}
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+
 \documentclass[10pt,letterpaper]{article}
 \usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
 
@@ -170,9 +194,9 @@
 \newcommand{\ipsum}{{\bf IPSUM}}
 
 \def\bs{\boldsymbol}
+\def\Vy{\widehat{\textrm{V}}_Y}
 
 %% END MACROS SECTION
-
 
 \begin{document}
 \vspace*{0.2in}
@@ -216,28 +240,6 @@ Manuel A. Rivas\textsuperscript{1*},
 % \\
 \bigskip
 
-% Insert additional author notes using the symbols described below. Insert symbol callouts after author names as necessary.
-% 
-% Remove or comment out the author notes below if they aren't used.
-%
-% Primary Equal Contribution Note
-% \Yinyang These authors contributed equally to this work.
-
-% Additional Equal Contribution Note
-% Also use this double-dagger symbol for special authorship notes, such as senior authorship.
-% \ddag These authors also contributed equally to this work.
-
-% Current address notes
-% \textcurrency Current Address: Dept/Program/Center, Institution Name, City, State, Country % change symbol to "\textcurrency a" if more than one current address note
-% \textcurrency b Insert second current address 
-% \textcurrency c Insert third current address
-
-% Deceased author note
-% \dag Deceased
-
-% Group/Consortium Author Note
-% \textpilcrow Membership list can be found in the Acknowledgments section.
-
 % Use the asterisk to denote corresponding authorship and provide email address in note below.
 * mrivas@stanford.edu
 
@@ -267,7 +269,6 @@ In this paper, we present a Bayesian multiple rare variants and phenotypes (MRP)
 
 % Place figure captions after the first paragraph in which they are cited.
 \begin{figure}[!h]
-% \includegraphics[width=\textwidth]{FIG1FINAL.pdf}
 \caption{{\bf Schematic overview of MRP.}
 A: MRP is suitable for a broad range of rare variant association study designs including (from left to right): i) case-control, ii) multiple diseases with shared controls, iii) single quantitative phenotype, and iv) mixture of case-control and quantitative phenotypes. B: Diagram of factors considered in rare variant association analysis including the correlation matrices: $\mathbf{R_{\textrm{study}}}$  (expected correlation of genetic effects among a group of studies), $\mathbf{R_{\textrm{var}}}$ (expected correlation of genetic effects among a group of variants), and $\mathbf{R_{\textrm{phen}}}$ (expected correlation of genetic effects among a group of phenotypes); the scale parameter for genetic variant annotation; and the location of genetic effects, which may be used to prioritize or identify protective modifiers of disease risk.}
 \label{fig1}
@@ -282,17 +283,174 @@ Aggregation techniques rely on variant annotations to assign variants to groups 
 %%Comparing to other methods 
 To evaluate the performance of MRP and to study its behavior we use simulations and compare it to other commonly used approaches. Some simple alternatives to MRP include univariate approaches for rare variant association studies including the sequence kernel association test (SKAT)\cite{skat}, and the burden test, which we show are special cases of the MRP model comparison when we assign the prior correlation of genetic effects across different variants to be zero or one. Furthermore, we show that MRP is able to detect the presence of heterogeneity of effects, which in some circumstances, such as those where effects are observed to be heterogeneous across studies, may indicate the presence of technical sources of error. 
   
-%%Apply methods to the GLGC data and exome sequencing data sets. 
+%%Apply methods to the UK Biobank
 We also apply MRP to summary statistics for two groups of related phenotypes from the UK Biobank. First, we apply MRP to asthma (HC382: the corresponding phenotype label in Global Biobank Engine [\url{https://biobankengine.stanford.edu}]), eosinophil count (INI30150), Forced Expiratory Volume in 1-second (FEV1, INI3063), and Forced Vital Capacity (FVC, INI3062). We find that XXX. We next apply MRP to glaucoma (HC276), intra-ocular pressure (INI5263), and corneal resistance factor (INI5265) and find strong evidence that rare PTVs in \textit{ANGPTL7} protect against glaucoma. These analyses show that MRP recovers results from typical single variant-single phenotype analyses while identifying new rare variant associations that include protective modifiers of disease risk.
 
-% Equation example
-% \begin{eqnarray}
-% \label{eq:schemeP}
-% 	\mathrm{P_Y} = \underbrace{H(Y_n) - H(Y_n|\mathbf{V}^{Y}_{n})}_{S_Y} + \underbrace{H(Y_n|\mathbf{V}^{Y}_{n})- H(Y_n|\mathbf{V}^{X,Y}_{n})}_{T_{X\rightarrow Y}},
-% \end{eqnarray}
-
 \section*{Materials and methods}
-A complete description of MRP, along with an analytical derivation, is given in the Online Methods and Appendix. Briefly, we describe the approach.
+\subsection*{MRP model comparison for association testing}
+We consider the multivariate linear regression model 
+$$\underset{\left(N\times K\right)}{\mathbf{\textrm{Y}}} 
+= \underset{\left(N\times K\right)}{\mathbf{\Psi}}  + \underset{\left(N\times M\right)}{\mathbf{\textrm{X}}}\underset{\left(M \times K\right)}{\mathbf{\textrm{B}}} 
++ \underset{\left(N\times K\right)}{\mathbf{\textrm{E}}},$$
+where the matrices $\mathbf{\textrm{Y}} = \left[{y}_{i k}\right]$, $\mathbf{\textrm{X}} = \left[ x_{i m}\right]$, 
+$\mathbf{\textrm{B}} = \left[ \beta_{m k} \right]$ and $\mathbf{\textrm{E}} = \left[e_{i k}\right]$  describe the phenotype values ($y_{i k}$),
+copies of minor allele ($x_{i m}$), variant-phenotype effects ($\beta_{m k}$), and residual errors ($e_{i k}$), 
+for individual $i$, phenotype $k$, and variant $m$. 
+We assume that each phenotype has been transformed to a standard normal
+distribution and that the columns of ${\mathbf{{\textrm{X}}}}$ 
+have been centered, which means that the estimate for the intercept term ${\mathbf{\Psi}}$ is 0 and independent of the estimate of ${\mathbf{\textrm{B}}}$.
+We use vectorized notation where the rows of ${\mathbf{\textrm{B}}}$ form vector 
+$\bs {{ \beta}} = \left(\bs {{ \beta}}_{1},\dots,\bs {{\beta}}_{M}\right)^{\intercal}$
+of length $MK$.
+
+We define the MRP model comparison as a Bayes factor (BF) between the alternative model, where at least one variant
+affects at least one phenotype, and the null model, where all variant-phenotype effects are zero.  
+BF is the ratio of the marginal likelihoods for these two models: 
+$$ \textrm{BF} = \frac{\int_{{\bs {\beta}}}p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right)p\left({\bs {\beta}}|\textrm{ALT}\right)d{\bs {\beta}}}{\int_{{\bs {\beta}}}p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right)p\left({\bs {\beta}}|\textrm{NULL}\right)d{\bs {\beta}}},$$ 
+where Data can correspond either to the effect size estimates $\bs {\widehat{ \beta}}$ and the estimated variance-covariance matrix of  $\bs {\widehat{ \beta}}$, $\widehat{\mathbf{\textrm{V}}}_{\bs{\beta}}$, or to the original phenotypes and genotypes, 
+$\underset{\left(N\times K\right)}{\mathbf{\textrm{\textrm{Y}}}}$ and $ \underset{\left(N\times M\right)}{\mathbf{\textrm{\textrm{X}}}}$, and any other covariates that we
+want to regress out from the phenotypes. 
+
+The prior distribution for the null model, $p\left({\bs {\beta}}|\textrm{NULL}\right)$, is simply the point mass at $\bs \beta = 0$.
+In subsection~\ref{approxlikelihood} we show how we approximate the likelihood function for $\bs \beta$, $p\left(\mathbf{\textrm{Data}} | {\bs {\beta}}\right)$,
+in subsection~\ref{prioralt} we define the prior distribution $p\left({\bs {\beta}}|\textrm{ALT}\right)$ for the alternative model, 
+and finally, in subsection~\ref{bfmodel}, we compute the BF.
+
+\subsubsection*{Likelihood function} 
+\label{approxlikelihood}
+A maximum likelihood estimator of $\mathbf{\textrm{B}}$ is given by the ordinary least-squares method
+$$\widehat{\mathbf{\textrm{B}}} = \left(\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}\right)^{-1}\mathbf{\textrm{X}}^{\intercal}\mathbf{\textrm{Y}},$$
+that in vectorized form is denoted by   
+$\bs {\widehat{ \beta}} = \left(\bs {\widehat{ \beta}}_{1},\dots,\bs {\widehat{\beta}}_{M}\right)^{\intercal}.$
+An estimator of the variance-covariance of $\widehat{\bs \beta}$  is given by 
+$$\widehat{\textrm{V}}_{\mathbf{\bs \beta}} =  \left(\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}\right)^{-1}\otimes \widehat{\textrm{V}}_{\mathbf{\textrm{Y}}},$$
+where $\widehat{\textrm{V}}_{\mathbf{\textrm{Y}}}$ is the estimated residual variance-covariance matrix of $\mathbf{\textrm{Y}}$ given $\mathbf{\textrm{X}}$. 
+
+%Let $\bs {\widehat{ \beta}} = \left(\bs {\widehat{ \beta}}^{\intercal}_{1},\dots,\bs {\widehat{\beta}}^{\intercal}_{m}\right)^{\intercal}$ be a vector of point estimates of all $MK$ effects. 
+Following Band et al.\cite{band2013imputation}, we approximate the likelihood function of $\bs {\beta}$ by a multivariate normal distribution with mean $\bs {\widehat{\beta}}$ and variance-covariance matrix $\widehat{\textrm{V}}_{\bs {\beta}}$. Note that by approximating $\Vy$ by the trait correlation matrix, this likelihood approximation does not require access to the individual level data $\mathbf{\textrm{X}}$ and $\mathbf{\textrm{Y}}$ but only to the 
+summary data of effect sizes $\bs {\widehat{\beta}}$, LD-matrix $\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}$ and a trait correlation estimate.
+
+
+\subsubsection*{Prior of $\bs{\beta}$ in the alternative model} 
+\label{prioralt}
+We construct the prior distribution $p\left({\bs {\beta}} | \textrm{ALT} \right)$ for the alternative model in three steps allowing 
+user to specify correlations between effects of different variants on different traits across different studies.
+
+In a single study, the prior density for ${\bs {\beta}}$ incorporates the expected correlation of genetic effects among 
+a group of variants ($\mathbf{R}_{\textrm{var}}$) and among a group of phenotypes ($\mathbf{R}_{\textrm{phen}}$). 
+In addition, we  incorporate an expected spread of the effect size of each variant by scaling $\mathbf{R}_{\textrm{var}}$ as 
+$$\mathbf{S}_{\textrm{var}} = \Delta\left(\sigma_m\right) \mathbf{R}_{\textrm{var}} \Delta\left(\sigma_m\right),$$
+where $\Delta\left(\sigma_m\right)$ is a diagonal matrix with entries $\sigma_m$ determining the spread of the effect size distribution for each variant $m \leq M$. Thus, we can model settings where, e.g., protein-truncating variants have larger effect sizes ($\sigma = 1$) than missense variants ($\sigma = 0.1$). 
+Note that when $\sigma_m = 1$ for all $m$ then $\mathbf{S}_{\textrm{var}} = \mathbf{R}_{\textrm{var}}$. 
+
+All in all, our prior density for ${\bs \beta}$ under alternative model is 
+$${\bs {\beta}}|\textrm{ALT} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{U}\right), \textrm{ where } \mathbf{U} = \mathbf{S}_{\textrm{var}} \otimes \mathbf{R}_{\textrm{phen}}.$$
+
+When we have data from multiple studies 
+we allow for possible differences in genetic effects across ethnicities or populations 
+extending the Approximate Bayes Factors of Band et al.~\cite{band2013imputation}
+and the summary statistics approach of RAREMETAL~\cite{liu2014meta} from univariate to multivariate phenotypes.
+Let $\bs {\widehat{ \beta}} = \left(\widehat{ \beta}_{s,m,k}\right)=\left(\widehat{\beta}_{1,1,1}, \widehat{\beta}_{1,1,2}, \dots, \widehat{\beta}_{1,1,K}, \widehat{\beta}_{1,2,1}, \dots, \widehat{\beta}_{1,2,K}, \dots, \widehat{\beta}_{1,M,K}, \widehat{\beta}_{2,1,1}, \dots, \widehat{\beta}_{S,M,K}\right),$ where $S$ is the number of studies, $M$ is the number of variants, and $K$ is the number of phenotypes. 
+As with a single study, we incorporate the expected correlation of genetic effects between a pair of variants and a single phenotype using the matrix $\mathbf{S_{\textrm{var}}}$, between a variant and a pair of phenotypes using the matrix $\mathbf{R_{\textrm{phen}}}$, and we introduce the matrix $\mathbf{R_{\textrm{study}}}$ to specify prior on the similarity in effect sizes across the studies.
+Thus, the prior is
+$${\bs {\beta}} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{U}\right), \textrm{ where } 
+\mathbf{U} = \mathbf{R}_{\textrm{study}}\otimes\left(\mathbf{S}_{\textrm{var}} \otimes \mathbf{R}_{\textrm{phen}}\right).$$
+
+It is straightforward to include a non-zero vector ${\bs\mu}$ as a prior mean of genetic effects, in which case the prior is
+$${\bs {\beta}} \sim \mathcal{N}\left({\bs \mu},\mathbf{U}\right).$$
+We use this, for example, when screening for protective rare variants that have a pre-specified beneficial profile on a set of risk factors.
+
+
+\subsubsection*{$\textrm{BF}_{\textrm{MRP}}$} 
+\label{bfmodel}
+The Bayes Factor is the ratio of the marginal likelihoods between the alternative and the null model. 
+The marginal likelihood for the alternative model is 
+$$ \int_{{\bs {\beta}}} p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right) p\left({\bs {\beta}}|\textrm{ALT}\right)d{\bs {\beta}} = c \times \mathcal{N}\left({ {\widehat{\bs \beta}}}; {\bs \mu},  \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)$$
+and the marginal likelihood for the null model is 
+$$\int_{{\bs {\beta}}} p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right) p\left({\bs {\beta}}|\textrm{NULL}\right)d{\bs {\beta}} = c \times \mathcal{N}\left({ {\widehat{\bs \beta}}}; 0,  \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}\right).$$
+
+The Bayes Factor (derived is below) is given by
+$$\textrm{BF}_{\textrm{MRP}} = \frac{\det\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right)^{-\frac{1}{2}}
+\exp\left[-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right)\right]}
+{\det \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}\right)^{-\frac{1}{2}}\exp \left[-\frac{1}{2}{\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
+\,{\bs {\widehat{\beta}}}\right]}.$$
+
+
+When $\bs \mu=0$, $\textrm{BF}_{\textrm{MRP}}$ is an increasing function of the following quadratic form
+\begin{equation}\label{quadratic_form}
+Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U})=
+\bs{\widehat{\beta}^\intercal} \left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} - (\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}+\mathbf{U})^{-1}\right) \bs{\widehat{\beta}}.
+\end{equation}
+Furthermore, this quadratic form is the only part of the $\textrm{BF}_{\textrm{MRP}}$ that depends on $\bs {\widehat{\beta}}$.
+Thus, by deriving a distribution of $Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U})$
+under the null model we can compute a p-value when $\textrm{BF}_{\textrm{MRP}}$ is used as a test statistic.
+According to basic properties of quadratic forms of Gaussian variables,
+$Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U}) \sim \sum_{i=1}^n d_i \chi^2_i$, where $\chi_i^2$
+are an independent sample from $\chi_1^2$ distribution (chi-square with one degree of freedom),
+and $d_i$ are the eigenvalues of matrix
+$I-(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}+\mathbf{U})^{-1}\, \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}$.
+The distribution function for a mixture of chi-squares can be numerically evaluated by
+the R-package `CompQuadForm'~\cite{Duchesne2010}.
+
+\subsubsection*{MRP Bayes Factor derivation} \label{app1}
+To compute the Bayes Factor 
+$$\textrm{BF}_{\textrm{MRP}} = \frac{\det\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right)^{-\frac{1}{2}}
+\exp\left[-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right)\right]}
+{\det \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}\right)^{-\frac{1}{2}}\exp \left[-\frac{1}{2}{\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
+\,{\bs {\widehat{\beta}}}\right]},$$
+we first consider the term inside the exponential function:
+$$ \mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right) = 
+\frac{1}{2}\, {\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \,{\bs {\widehat{\beta}}}
+-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right).
+$$
+Since $\widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}$ and $\mathbf{U}$ are typically defined through Kronecker products of smaller matrices, their inverses
+are easier to compute than the inverse of their sum. Hence we use Woodbury matrix identity to write
+$$ 
+\mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right) = 
+\frac{1}{2}\, {\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \,{\bs {\widehat{\beta}}}
+-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal} \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} - \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
+\left(\mathbf{U}^{-1} + \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \right)^{-1} \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \right ) 
+\left({\bs {\widehat{\beta}} - {\bs \mu}}\right).
+$$
+
+To simplify the determinant calculation we write 
+$$\det\left( \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right) = \det\left( \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}\right) \det\left( \mathbf{I} + \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} \mathbf{U}\right).$$
+The logarithm of the Bayes Factor is then
+$$\log \left( \textrm{BF}_{\textrm{MRP}} \right) = 
+-\frac{1}{2} \log \left( \det\left( \mathbf{I} + \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} \mathbf{U} \right) \right)  + \mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right).$$
+
+
+If studies do not share individuals, $\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}$ is a block-diagonal matrix 
+$$\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}=
+ \left[\begin{array}{c|c|c|c}
+ \widehat{\mathbf{\textrm{V}}}^{1}_{{\bs \beta}} & 0 & \cdots &0\\ \hline
+0 & \widehat{\mathbf{\textrm{V}}}^{2}_{{\bs \beta}}&\cdots &0 \\ \hline
+\vdots & &\ddots &\vdots \\ \hline
+0 & 0 &\cdots & \widehat{\mathbf{\textrm{V}}}^{S}_{{\bs {\beta}}}\\
+\end{array}\right].$$
+If studies share individuals, e.g., controls, 
+we take the approach of Cichonska et al.~\cite{cichonska2016metacca} to use summary level data
+to estimate the correlation structure of the non-diagonal blocks caused by overlapping individuals. 
+
+\subsection*{HDF5 Tables}
+Although summary statistics are quicker to read and process than raw data, the number of studies meta-analyzed in this work is expected to be sufficiently large to require optimizations in data representation and processing (Figure \ref{S1_Fig}). Our solution was the use of the HDF5 (Hierarchical Data Format 5) data representation to enable rapid processing of effect size, uncertainty, and cross-trait estimate data. HDF5 is a fast and lightweight file format designed for scientific data. It has bindings for R, Python, C/C++, Java, and nearly every other population programming language. Reading data from a table within a HDF5 file can be an order of magnitude faster than reading text files from a Unix file, and it makes it easier to organize data within an internal structure.
+
+\subsection*{UK Biobank Data}
+\subsubsection*{GWAS Summary Statistics}
+We performed genome-wide association analysis using PLINK v2.00a(17 July 2017) as previously described~\cite{DeBoever179762}. For asthma, we used the Firth-fallback in PLINK, a hybrid algorithm which normally uses the logistic regression code described in (Hill 2017), but switches to a port of logistf() (https://cran.r-project.org/web/packages/logistf/index.html) in two cases: (1) one of the cells in the 2x2 allele count by case/control status contingency table is empty (2) logistic regression was attempted since all the contingency table cells were nonzero, but it failed to converge within the usual number of steps. We used the following covariates in our analysis: age, sex, array type, and the first four principal components, where array type is a binary variable that represents whether an individual was genotyped with UK Biobank Axiom Array or UK BiLEVE Axiom Array. For variants that were specific to one array, we did not use array as a covariate. Asthma cases were defined using both Hospital Episode Statistics and verbal questionnaire responses. We used the provided values from the UK Biobank for eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV1). The phenotype codes used throughout (asthma=HC382, eosinophil count=INI30150, Forced Expiratory Volume in 1-second (FEV1)=INI3063, and Forced Vital Capacity (FVC)=INI3062) correspond to the phenotype codes used in on the Global Biobank Engine [\url{https://biobankengine.stanford.edu}].
+
+\subsubsection*{Genetic Correlations}
+We calculated the genetic between asthma, eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV1) using the MultiVariate Polygenic Mixture Model (MVPMM)~\cite{DeBoever2017}. Briefly, MVPMM estimates genetic correlation given GWAS summary statistics (effect size and standard error of effect size estimate) by modeling GWAS summary statistics as generated from one of two mixture components. Summary statistics from variants in the null component are modeled as being drawn from a multivariate normal distribution with zero mean and covariance matrix that captures correlation in the summary statistics due to the use of shared subjects or other sources of correlation. Summary statistics from variants in the non-null component are modeled as being drawn from a multivariate normal distribution with zero mean, but the covariance matrix for the non-null component combines the covariance matrix from the null component with another covariance matrix that captures the genetic correlation between the phenotypes being considered.
+
+\subsubsection*{UK Biobank Asthma Application}
+For the Manhattan plots and Table \ref{asthma_table}, we removed any genes with non-unique gene symbols. We also removed the sense overlapping gene \textit{CTD-3064M3.3} and and the antisense gene \textit{ZFAT-AS1} since these genes overlap \textit{GPR20} and \textit{ZFAT} respectively and therefore have the same $\log_{10}$ Bayes Factors as those genes.
+
+
+% Results and Discussion can be combined.
+\section*{Results}
+
+\subsection*{Method overview}
+A complete description of MRP, along with an analytical derivation, is given in the Materials and Methods. Briefly, we describe the approach.
 
 In Bayesian model comparison, we compare the null and alternative models via the Bayes Factor (BF) defined as the ratio of the marginal likelihoods of the observed data under two models. Here, the null model is that the effect sizes obtained across all studies for a group of variants and a group of phenotypes is zero. To complete the specification of the alternative model we consider the correlation structure, the scale, and the location of the effect sizes (which we find to be informative for alternative models where we seek to identify variants with protective effects). 
 
@@ -305,18 +463,6 @@ For gene discovery, the scale may be used to denote the prior spread of effect s
 Thus far we have assumed that the prior mean, or location, of genetic effects is zero. This makes it feasible to analyze a large number of phenotypes without enumerating the prior mean across all phenotypes. However, in practice, we may want to proactively identify genetic variants that have effects that are consistent with a protective profile for a disease, which may exploit information from mendelian randomization studies of common variants, such as recent rare variant findings in {\it PCSK9} where truncating loss-of-function variants are found to decrease LDL and triglyceride levels, and decrease CAD risk\cite{cohen2005low,pcsk9,do2013common,cohorts2014loss}. This is straightforward to consider by including a non-zero vector as a prior mean of genetic effect (Online Methods).
 
 Although we see advantages in adopting a Bayesian perspective, our approach could be used in a frequentist context by calculating a Bayes factor and using it as a test statistic to compute p-values (Methods, Fig \ref{fig2}).
-
-% For figure citations, please use "Fig" instead of "Figure".
-
-% % Place figure captions after the first paragraph in which they are cited.
-% \begin{figure}[!h]
-% \caption{{\bf Bold the figure title.}
-% Figure caption text here, please use this space for the figure panel descriptions instead of using subfigure commands. A: Lorem ipsum dolor sit amet. B: Consectetur adipiscing elit.}
-% \label{fig1}
-% \end{figure}
-
-% Results and Discussion can be combined.
-\section*{Results}
  
 \begin{figure}[!h]
 \caption{{\bf Simulation studies.}
@@ -329,7 +475,7 @@ We first verified the analytical derivations and examined the properties of the 
 
 %% Comparison to other widely used methods
 \subsubsection*{Comparison to frequentist gene tests}
-For the analysis of multiple rare variants and a single phenotype we compared it to the burden test and the SKAT test, commonly used statistical tests in rare variant association studies of a single phenotype. We observe concordance between the frequentist methods and the Bayesian models. To compare the Bayesian models we compute p-values by using the Bayes Factor as the test statistic and approximating it using distribution properties of quadratic forms (Appendix). As expected, an independent effects model has high correlation with the gene-based test SKAT ($r^2 = 0.99$), whereas the similar effects model has high correlation with the burden test ($r^2 = 0.93$, Fig \ref{fig2}A). 
+For the analysis of multiple rare variants and a single phenotype we compared it to the burden test and the SKAT test, commonly used statistical tests in rare variant association studies of a single phenotype. We observe concordance between the frequentist methods and the Bayesian models. To compare the Bayesian models we compute p-values by using the Bayes Factor as the test statistic and approximating it using distribution properties of quadratic forms (Materials and Methods). As expected, an independent effects model has high correlation with the gene-based test SKAT ($r^2 = 0.99$), whereas the similar effects model has high correlation with the burden test ($r^2 = 0.93$, Fig \ref{fig2}A). 
 
 \subsubsection*{Summary statistic data}
 To study the behavior of MRP using summary statistics we simulate two scenarios: first, the scenario where analysts have access to all the raw genotype and phenotype data; and second, the scenario where analysts only have access to summary statistics data\cite{liu2014meta}. We conducted $1000$ simulation experiments where we let $K$ (the number of phenotypes) $=3$, $M$ (the number of variants) $=10$, $S$ (the number of studies) $=2$, $N_0$ (number of individuals in study with access to all the data) $= 10000$, $N_1$ (meta-analysis study 1) $= 5000$, $N_2$ (meta-analysis study 2) $= 5000$. We find that, under the scenario where similar effects are assumed across studies, the Bayes Factors obtained using summary statistics alone are strongly correlated ($r^2 = 1$) to Bayes Factors obtained by the full genotype and phenotype data (Fig \ref{fig2}B).
@@ -481,31 +627,31 @@ As genetic data linked to high-dimensional phenotype data continues to be made a
 % Include only the SI item label in the paragraph heading. Use the \nameref{label} command to cite SI items in the text.
 \paragraph*{S1 Fig.}
 \label{S1_Fig}
-{\bf Bold the title sentence.} Add descriptive text after the title of the item (optional).
+{\bf HDF5 Implementation.} Our HDF5 implementation contained the following components: first, a group with one table per annotation file. All effect size (beta) values and study-specific annotations were contained here, and the number of tables is limited by $S\ \textrm{(the number of studies)} \times K\ \textrm{(the number of traits)}$. Second, a group with site-site covariance data. While these covariance matrices may have dimension $M\ \textrm{(the number of variants)} \times M$, we store the data as tables, each row specifiying the covariance between two variants. The number of tables should be the same as the previous set, capped by $S\ \textrm{(the number of studies)} \times K\ \textrm{(the number of traits)}$. Third, we store one table with sigma values for each study/phenotype combination. In the event that the traits were rank-normal transformation was performed these sigma values are equal to 1. These are used to compute correlation between two datasets. Finally, we store a matrix/table pair for Vy null and its index. The Vy null matrix has dimensions $ (S \times K) \times (S \times K)$ each entry specifying the estimated correlation of effect sizes between two datasets. The index table encodes row/column position of each dataset.
 
-\paragraph*{S2 Fig.}
-\label{S2_Fig}
-{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 File.}
-\label{S1_File}
-{\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 Video.}
-\label{S1_Video}
-{\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 Appendix.}
-\label{S1_Appendix}
-{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 Table.}
-\label{S1_Table}
-{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% \paragraph*{S2 Fig.}
+% \label{S2_Fig}
+% {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 File.}
+% \label{S1_File}
+% {\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 Video.}
+% \label{S1_Video}
+% {\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 Appendix.}
+% \label{S1_Appendix}
+% {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 Table.}
+% \label{S1_Table}
+% {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
 
 % I added in the Author Contributions section
 \section*{Author Contributions}
-M.A.R. and M.P. designed the method and derived all analytical calculations. M.A.R., M.P., and C.D. wrote the manuscript. Y.T., M.A., and C.D. provided analysis and designed figures. T.P. designed hDF5 tables and implementation of loaders. M.J.D. provided critical feedback on methodology.
+M.A.R. and M.P. designed the method and derived all analytical calculations. M.A.R., M.P., and C.D. wrote the manuscript. Y.T., M.A., and C.D. provided analysis and designed figures. T.P. designed hDF5 tables and implementation of loaders. M.J.D. provided critical feedback on methodology. TODO: Add C. Spencer contributions.
 
 \section*{Acknowledgments}
 This research has been conducted using the UK Biobank Resource under Application Number 24983. We thank all the participants in the UK Biobank study. M.A.R. and C.D. are supported by Stanford University and a National Institute of Health center for Multi- and Trans-ethnic Mapping of Mendelian and Complex Diseases grant (5U01 HG009080). C.D. is supported by a postdoctoral fellowship from the Stanford Center for Computational, Evolutionary, and Human Genomics and the Stanford ChEM-H Institute. Y .T. is supported by Funai Overseas Scholarship from Funai Foundation for Information Technology and the Stanford University Biomedical Informatics Training Program. The primary and processed data used to generate the analyses presented here are available in the UK Biobank access management system (https://amsportal.ukbiobank.ac.uk/) for application 24983, ``Generating effective therapeutic hypotheses from genomic and hospital linkage data'' (http://www.ukbiobank.ac.uk/wp-content/uploads/2017/06/24983-Dr-Manuel-Rivas.pdf), and the results are displayed in the Global Biobank Engine (https://biobankengine.stanford.edu). We would like to thank the Customer Solutions Team from Paradigm4 who helped us implement efficient databases for queries and application of inference methods to the data, and also implemented optimized versions of truncated singular value decomposition. M.A.R. is a paid consultant in Genomics PLC.
