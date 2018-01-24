@@ -29,6 +29,18 @@
 \newlabel{fig1}{{1}{2}{{\bf Schematic overview of MRP.} A: MRP is suitable for a broad range of rare variant association study designs including (from left to right): i) case-control, ii) multiple diseases with shared controls, iii) single quantitative phenotype, and iv) mixture of case-control and quantitative phenotypes. B: Diagram of factors considered in rare variant association analysis including the correlation matrices: $\mathbf {R_{\textrm {study}}}$ (expected correlation of genetic effects among a group of studies), $\mathbf {R_{\textrm {var}}}$ (expected correlation of genetic effects among a group of variants), and $\mathbf {R_{\textrm {phen}}}$ (expected correlation of genetic effects among a group of phenotypes); the scale parameter for genetic variant annotation; and the location of genetic effects, which may be used to prioritize or identify protective modifiers of disease risk.\relax }{figure.caption.4}{}}
 \citation{skat}
 \citation{band2013imputation}
+\citation{band2013imputation}
+\citation{liu2014meta}
+\newlabel{approxlikelihood}{{}{4}{Likelihood function}{section*.7}{}}
+\newlabel{prioralt}{{}{4}{Prior of $\bs {\beta }$ in the alternative model}{section*.8}{}}
+\citation{Duchesne2010}
+\newlabel{bfmodel}{{}{5}{$\textrm {BF}_{\textrm {MRP}}$}{section*.9}{}}
+\newlabel{quadratic_form}{{1}{5}{$\textrm {BF}_{\textrm {MRP}}$}{equation.0.1}{}}
+\newlabel{app1}{{}{5}{MRP Bayes Factor derivation}{section*.10}{}}
+\citation{cichonska2016metacca}
+\citation{DeBoever179762}
+\citation{DeBoever2017}
+\citation{band2013imputation}
 \citation{macarthur,rivas2013assessing,rivas2015effect}
 \citation{majithia2014rare,findlay2014saturation}
 \citation{calpha,clarke2013flexible}
@@ -36,27 +48,57 @@
 \citation{cotsapas2011pervasive,solovieff2013pleiotropy,gencorr2015}
 \citation{do2015exome}
 \citation{cohen2005low,pcsk9,do2013common,cohorts2014loss}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces {\bf  Simulation studies.} A: Comparison of $-\qopname  \relax o{log}_{10}$(p-values) from frequentist $\textrm  {BF}_{\textrm  {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }}{4}{figure.caption.7}}
-\newlabel{fig2}{{2}{4}{{\bf Simulation studies.} A: Comparison of $-\log _{10}$(p-values) from frequentist $\textrm {BF}_{\textrm {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces {\bf  Simulation studies.} A: Comparison of $-\qopname  \relax o{log}_{10}$(p-values) from frequentist $\textrm  {BF}_{\textrm  {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }}{8}{figure.caption.18}}
+\newlabel{fig2}{{2}{8}{{\bf Simulation studies.} A: Comparison of $-\log _{10}$(p-values) from frequentist $\textrm {BF}_{\textrm {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }{figure.caption.18}{}}
 \citation{liu2014meta}
 \citation{apoc3,apoc32,jorgensen2014loss,cohorts2014loss}
 \citation{DeBoever179762,10.1371/journal.pgen.1006659}
 \citation{Ferreira:2017ba}
 \citation{Ober:2011jk}
 \citation{DeBoever179762,10.1371/journal.pgen.1006659}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\bf  Results for glaucoma application.} $\qopname  \relax o{log}_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\qopname  \relax o{log}_{10}$ Bayes Factors greater than zero are plotted. F: $-\qopname  \relax o{log}_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit  {ANGPTL7} for all three phenotypes.\relax }}{6}{figure.caption.14}}
-\newlabel{fig3}{{3}{6}{{\bf Results for glaucoma application.} $\log _{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log _{10}$ Bayes Factors greater than zero are plotted. F: $-\log _{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit {ANGPTL7} for all three phenotypes.\relax }{figure.caption.14}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure \ref  {fig3}.}\relax }}{6}{table.caption.15}}
-\newlabel{table1}{{1}{6}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure \ref {fig3}.}\relax }{table.caption.15}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure \ref  {fig4}.}\relax }}{7}{table.caption.16}}
-\newlabel{table2}{{2}{7}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure \ref {fig4}.}\relax }{table.caption.16}{}}
-\newlabel{S1_Fig}{{}{7}{S1 Fig}{section*.19}{}}
-\newlabel{S2_Fig}{{}{7}{S2 Fig}{section*.20}{}}
-\newlabel{S1_File}{{}{7}{S1 File}{section*.21}{}}
-\newlabel{S1_Video}{{}{7}{S1 Video}{section*.22}{}}
-\newlabel{S1_Appendix}{{}{7}{S1 Appendix}{section*.23}{}}
-\newlabel{S1_Table}{{}{7}{S1 Table}{section*.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\bf  Results for glaucoma application.} $\qopname  \relax o{log}_{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\qopname  \relax o{log}_{10}$ Bayes Factors greater than zero are plotted. F: $-\qopname  \relax o{log}_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit  {ANGPTL7} for all three phenotypes.\relax }}{10}{figure.caption.25}}
+\newlabel{fig3}{{3}{10}{{\bf Results for glaucoma application.} $\log _{10}$ Bayes Factors from applying MRP to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log _{10}$ Bayes Factors greater than zero are plotted. F: $-\log _{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit {ANGPTL7} for all three phenotypes.\relax }{figure.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure \ref  {fig3}.}\relax }}{10}{table.caption.26}}
+\newlabel{table1}{{1}{10}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure \ref {fig3}.}\relax }{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure \ref  {fig4}.}\relax }}{11}{table.caption.27}}
+\newlabel{table2}{{2}{11}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure \ref {fig4}.}\relax }{table.caption.27}{}}
+\newlabel{S1_Fig}{{}{11}{S1 Fig}{section*.30}{}}
 \bibdata{references}
-\newlabel{LastPage}{{}{8}{}{page.8}{}}
-\xdef\lastpage@lastpage{8}
-\xdef\lastpage@lastpageHy{8}
+\bibcite{ifih1}{1}
+\bibcite{altshuler2010map}{2}
+\bibcite{rivas2011deep}{3}
+\bibcite{10002012integrated}{4}
+\bibcite{majithia2014rare}{5}
+\bibcite{lee2014rare}{6}
+\bibcite{liu2014meta}{7}
+\bibcite{cichonska2016metacca}{8}
+\bibcite{rivas2013assessing}{9}
+\bibcite{rivas2015effect}{10}
+\bibcite{pcsk9}{11}
+\bibcite{cohen2006sequence}{12}
+\bibcite{sullivan2012effect}{13}
+\bibcite{skat}{14}
+\bibcite{band2013imputation}{15}
+\bibcite{Duchesne2010}{16}
+\bibcite{DeBoever179762}{17}
+\bibcite{DeBoever2017}{18}
+\bibcite{macarthur}{19}
+\bibcite{findlay2014saturation}{20}
+\bibcite{calpha}{21}
+\bibcite{clarke2013flexible}{22}
+\bibcite{cotsapas2011pervasive}{23}
+\bibcite{solovieff2013pleiotropy}{24}
+\bibcite{gencorr2015}{25}
+\bibcite{do2015exome}{26}
+\bibcite{cohen2005low}{27}
+\bibcite{do2013common}{28}
+\bibcite{cohorts2014loss}{29}
+\bibcite{apoc3}{30}
+\bibcite{apoc32}{31}
+\bibcite{jorgensen2014loss}{32}
+\bibcite{10.1371/journal.pgen.1006659}{33}
+\bibcite{Ferreira:2017ba}{34}
+\bibcite{Ober:2011jk}{35}
+\newlabel{LastPage}{{}{14}{}{page.14}{}}
+\xdef\lastpage@lastpage{14}
+\xdef\lastpage@lastpageHy{14}
