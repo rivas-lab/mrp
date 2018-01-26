@@ -204,6 +204,11 @@ Swanney MP, Ruppel G, Enright PL, Pedersen OF, Crapo RO, Miller MR, et~al.
 \newblock Thorax. 2008;63(12):1046--1051.
 \newblock doi:{10.1136/thx.2008.098483}.
 
+\bibitem{10.2307/2676803}
+Hoeting JA, Madigan D, Raftery AE, Volinsky CT.
+\newblock Bayesian Model Averaging: A Tutorial.
+\newblock Statistical Science. 1999;14(4):382--401.
+
 \bibitem{Ferreira:2017ba}
 Ferreira MA, Vonk JM, Baurecht H, Marenholz I, Tian C, Hoffman JD, et~al.
 \newblock {Shared genetic origin of asthma, hay fever and eczema elucidates
@@ -215,5 +220,33 @@ Ober C, Yao TC.
 \newblock {The genetics of asthma and allergic disease: a 21st century
   perspective.}
 \newblock Immunological reviews. 2011;242(1):10--30.
+
+\bibitem{doi:10.1001/jama.2014.3192}
+RN W, T A, FA M.
+\newblock The pathophysiology and treatment of glaucoma: A review.
+\newblock JAMA. 2014;311(18):1901--1911.
+\newblock doi:{10.1001/jama.2014.3192}.
+
+\bibitem{CXO:CXO414}
+Franco S, Lira M.
+\newblock Biomechanical properties of the cornea measured by the Ocular
+  Response Analyzer and their association with intraocular pressure and the
+  central corneal curvature.
+\newblock Clinical and Experimental Optometry. 2009;92(6):469--475.
+\newblock doi:{10.1111/j.1444-0938.2009.00414.x}.
+
+\bibitem{MANSOURI2012419}
+Mansouri K, Leite MT, Weinreb RN, Tafreshi A, Zangwill LM, Medeiros FA.
+\newblock Association Between Corneal Biomechanical Properties and Glaucoma
+  Severity.
+\newblock American Journal of Ophthalmology. 2012;153(3):419 -- 427.e1.
+\newblock doi:{https://doi.org/10.1016/j.ajo.2011.08.022}.
+
+\bibitem{GriseDulac:2012bo}
+Grise-Dulac A, Saad A, Abitbol O, Febbraro JL, Azan E, Moulin-Tyrode C, et~al.
+\newblock {Assessment of corneal biomechanical properties in normal tension
+  glaucoma and comparison with open-angle glaucoma, ocular hypertension, and
+  normal eyes.}
+\newblock Journal of glaucoma. 2012;21(7):486--489.
 
 \end{thebibliography}

@@ -1,5 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2017)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: manuscript.aux
 The style file: plos2015.bst
 Database file #1: references.bib
@@ -7,44 +7,44 @@ Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 36 entries,
+You've used 41 entries,
             3058 wiz_defined-function locations,
-            864 strings with 17070 characters,
-and the built_in function-call counts, 118832 in all, are:
-= -- 14471
-> -- 764
+            906 strings with 18639 characters,
+and the built_in function-call counts, 129014 in all, are:
+= -- 15770
+> -- 852
 < -- 0
-+ -- 529
-- -- 191
-* -- 11172
-:= -- 12912
-add.period$ -- 146
-call.type$ -- 36
++ -- 580
+- -- 213
+* -- 12041
+:= -- 14013
+add.period$ -- 169
+call.type$ -- 41
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 36
-duplicate$ -- 6727
-empty$ -- 11857
-format.name$ -- 223
-if$ -- 27229
+cite$ -- 41
+duplicate$ -- 7574
+empty$ -- 12818
+format.name$ -- 250
+if$ -- 29601
 int.to.chr$ -- 0
-int.to.str$ -- 36
-missing$ -- 401
-newline$ -- 185
-num.names$ -- 36
-pop$ -- 556
+int.to.str$ -- 41
+missing$ -- 453
+newline$ -- 213
+num.names$ -- 41
+pop$ -- 631
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 651
+skip$ -- 731
 stack$ -- 0
-substring$ -- 28813
-swap$ -- 996
+substring$ -- 30826
+swap$ -- 1130
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 426
-width$ -- 38
-write$ -- 400
+while$ -- 480
+width$ -- 43
+write$ -- 461
