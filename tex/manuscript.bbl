@@ -84,6 +84,19 @@ Wu MC, Lee S, Cai T, Li Y, Boehnke M, Lin X.
   sequence kernel association test.
 \newblock American Journal of Human Genetics. 2011;89(1):82--93.
 
+\bibitem{DeBoever179762}
+DeBoever C, Tanigawa Y, McInnes G, Lavertu A, Chang C, Bustamante CD, et~al.
+\newblock Medical relevance of protein-truncating variants across 337,208
+  individuals in the UK Biobank study.
+\newblock bioRxiv. 2017;doi:{10.1101/179762}.
+
+\bibitem{10.1371/journal.pgen.1006659}
+Smith D, Helgason H, Sulem P, Bjornsdottir US, Lim AC, Sveinbjornsson G, et~al.
+\newblock A rare IL33 loss-of-function mutation reduces blood eosinophil counts
+  and protects from asthma.
+\newblock PLOS Genetics. 2017;13(3):1--24.
+\newblock doi:{10.1371/journal.pgen.1006659}.
+
 \bibitem{band2013imputation}
 Band G, Le QS, Jostins L, Pirinen M, Kivinen K, Jallow M, et~al.
 \newblock Imputation-based meta-analysis of severe malaria in three African
@@ -95,12 +108,6 @@ Duchesne P, de~Micheaux PL.
 \newblock Computing the distribution of quadratic forms: Further comparisons
   between the Liu-Tang-Zhang approximation and exact methods.
 \newblock Computational Statistics and Data Analysis. 2010;54:858--862.
-
-\bibitem{DeBoever179762}
-DeBoever C, Tanigawa Y, McInnes G, Lavertu A, Chang C, Bustamante CD, et~al.
-\newblock Medical relevance of protein-truncating variants across 337,208
-  individuals in the UK Biobank study.
-\newblock bioRxiv. 2017;doi:{10.1101/179762}.
 
 \bibitem{DeBoever2017}
 DeBoever C, Rivas MA.
@@ -190,13 +197,6 @@ J{\o}rgensen AB, Frikke-Schmidt R, Nordestgaard BG, Tybj{\ae}rg-Hansen A.
   vascular disease}.
 \newblock New England Journal of Medicine. 2014;371(1):32--41.
 
-\bibitem{10.1371/journal.pgen.1006659}
-Smith D, Helgason H, Sulem P, Bjornsdottir US, Lim AC, Sveinbjornsson G, et~al.
-\newblock A rare IL33 loss-of-function mutation reduces blood eosinophil counts
-  and protects from asthma.
-\newblock PLOS Genetics. 2017;13(3):1--24.
-\newblock doi:{10.1371/journal.pgen.1006659}.
-
 \bibitem{Swanney1046}
 Swanney MP, Ruppel G, Enright PL, Pedersen OF, Crapo RO, Miller MR, et~al.
 \newblock Using the lower limit of normal for the FEV1/FVC ratio reduces the
@@ -248,5 +248,27 @@ Grise-Dulac A, Saad A, Abitbol O, Febbraro JL, Azan E, Moulin-Tyrode C, et~al.
   glaucoma and comparison with open-angle glaucoma, ocular hypertension, and
   normal eyes.}
 \newblock Journal of glaucoma. 2012;21(7):486--489.
+
+\bibitem{Comes:2011ex}
+Comes N, Buie LK, Borr{\'a}s T.
+\newblock {Evidence for a role of angiopoietin-like 7 (ANGPTL7) in
+  extracellular matrix formation of the human trabecular meshwork: implications
+  for glaucoma.}
+\newblock Genes to cells : devoted to molecular {\&} cellular mechanisms.
+  2011;16(2):243--259.
+
+\bibitem{Kuchtey:2008ek}
+Kuchtey J, K{\"a}llberg ME, Gelatt KN, Rinkoski T, Kom{\`a}romy AM, Kuchtey RW.
+\newblock {Angiopoietin-like 7 secretion is induced by glaucoma stimuli and its
+  concentration is elevated in glaucomatous aqueous humor.}
+\newblock Investigative ophthalmology {\&} visual science.
+  2008;49(8):3438--3448.
+
+\bibitem{10.1371/journal.pone.0054232}
+Jensen RA, Sim X, Li X, Cotch MF, Ikram MK, Holliday EG, et~al.
+\newblock Genome-Wide Association Study of Retinopathy in Individuals without
+  Diabetes.
+\newblock PLOS ONE. 2013;8(2):1--11.
+\newblock doi:{10.1371/journal.pone.0054232}.
 
 \end{thebibliography}
