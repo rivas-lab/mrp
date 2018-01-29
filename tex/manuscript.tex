@@ -290,183 +290,24 @@ To evaluate the performance of MRP and to study its behavior we use simulations 
 %%Apply methods to the UK Biobank
 We applied MRP to summary statistics for two groups of related phenotypes from the UK Biobank. First, we apply MRP to asthma (HC382: the corresponding phenotype label in Global Biobank Engine [\url{https://biobankengine.stanford.edu}]), eosinophil count (INI30150), forced expiratory volume in 1-second (FEV$_1$, INI3063), and forced vital capacity (FVC, INI3062). We recover the reported association between a rare PTV in \textit{IL33} and asthma as well as a new association between \textit{CCR3} and asthma \cite{DeBoever179762, 10.1371/journal.pgen.1006659}. We also applied MRP to glaucoma (HC276), intra-ocular pressure (INI5263), and corneal resistance factor (INI5265) and find evidence that rare coding variants in \textit{ANGPTL7} and \textit{KLHL22} may protect against glaucoma. These analyses show that MRP recovers results from typical single variant-single phenotype analyses while identifying new rare variant associations that include protective modifiers of disease risk.
 
-\section*{Materials and methods}
-\subsection*{MRP model comparison for association testing}
-We consider the multivariate linear regression model 
-$$\underset{\left(N\times K\right)}{\mathbf{\textrm{Y}}} 
-= \underset{\left(N\times K\right)}{\mathbf{\Psi}}  + \underset{\left(N\times M\right)}{\mathbf{\textrm{X}}}\underset{\left(M \times K\right)}{\mathbf{\textrm{B}}} 
-+ \underset{\left(N\times K\right)}{\mathbf{\textrm{E}}},$$
-where the matrices $\mathbf{\textrm{Y}} = \left[{y}_{i k}\right]$, $\mathbf{\textrm{X}} = \left[ x_{i m}\right]$, 
-$\mathbf{\textrm{B}} = \left[ \beta_{m k} \right]$ and $\mathbf{\textrm{E}} = \left[e_{i k}\right]$  describe the phenotype values ($y_{i k}$),
-copies of minor allele ($x_{i m}$), variant-phenotype effects ($\beta_{m k}$), and residual errors ($e_{i k}$), 
-for individual $i$, phenotype $k$, and variant $m$. 
-We assume that each phenotype has been transformed to a standard normal
-distribution and that the columns of ${\mathbf{{\textrm{X}}}}$ 
-have been centered, which means that the estimate for the intercept term ${\mathbf{\Psi}}$ is 0 and independent of the estimate of ${\mathbf{\textrm{B}}}$.
-We use vectorized notation where the rows of ${\mathbf{\textrm{B}}}$ form vector 
-$\bs {{ \beta}} = \left(\bs {{ \beta}}_{1},\dots,\bs {{\beta}}_{M}\right)^{\intercal}$
-of length $MK$.
+\section*{Methods}
 
-We define the MRP model comparison as a Bayes factor (BF) between the alternative model, where at least one variant
-affects at least one phenotype, and the null model, where all variant-phenotype effects are zero.  
-BF is the ratio of the marginal likelihoods for these two models: 
-$$ \textrm{BF} = \frac{\int_{{\bs {\beta}}}p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right)p\left({\bs {\beta}}|\textrm{ALT}\right)d{\bs {\beta}}}{\int_{{\bs {\beta}}}p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right)p\left({\bs {\beta}}|\textrm{NULL}\right)d{\bs {\beta}}},$$ 
-where Data can correspond either to the effect size estimates $\bs {\widehat{ \beta}}$ and the estimated variance-covariance matrix of  $\bs {\widehat{ \beta}}$, $\widehat{\mathbf{\textrm{V}}}_{\bs{\beta}}$, or to the original phenotypes and genotypes, 
-$\underset{\left(N\times K\right)}{\mathbf{\textrm{\textrm{Y}}}}$ and $ \underset{\left(N\times M\right)}{\mathbf{\textrm{\textrm{X}}}}$, and any other covariates that we
-want to regress out from the phenotypes. 
+\subsection*{Description of MRP}
+In this section, we provide an overview of the MRP model comparison approach. Refer to \nameref{S1_Appendix} for detailed derivations. MRP models GWAS summary statistics as being distributed according to one of two models. The null model is that the regression effect sizes obtained across all studies for a group of variants and a group of phenotypes is zero. The alternative model is that summary statistics are distributed according to a multivariate normal distribution with mean zero and covariance matrix described below. MRP compares the evidence for the null and alternative model using a Bayes Factor (BF) that quantifies the amount of evidence for each model as the ratio of the marginal likelihoods of the observed data under two models. 
 
-The prior distribution for the null model, $p\left({\bs {\beta}}|\textrm{NULL}\right)$, is simply the point mass at $\bs \beta = 0$.
-In subsection~\ref{approxlikelihood} we show how we approximate the likelihood function for $\bs \beta$, $p\left(\mathbf{\textrm{Data}} | {\bs {\beta}}\right)$,
-in subsection~\ref{prioralt} we define the prior distribution $p\left({\bs {\beta}}|\textrm{ALT}\right)$ for the alternative model, 
-and finally, in subsection~\ref{bfmodel}, we compute the BF.
+ To define the alternative model, we must specify the prior correlation structure, scale, and location (direction) of the effect sizes. Let $N$ be the number of individuals and $K$ the number of phenotype measurements on each individual. Let $M$ be the number of variants in a testing unit ${\bs G}$, where ${\bs G}$ can be, for example, a gene, pathway, or a network. Let $S$ be the number of studies where data is obtained from - this data may be in the form of raw genotypes and phenotypes or summary statistics including linkage-disequilibrium, effect sizes (or odds ratio), and standard error of the effect size. When considering multiple phenotypes ($K > 1$), we define the prior correlation structure of the effect sizes as an $SMK\times SMK$ matrix $\mathbf{U}$. In practice, we define $\mathbf{U}$ as a Kronecker product, an operation of matrices of arbitrary size, of three sub-matrices
+\begin{itemize}
+\item an $S\times S$ matrix $\mathbf{R_{\textrm{study}}}$ containing the correlations of genetic effects among studies where different values can be used to compare different models of association, such as for identifying heterogeneity of effect sizes between populations~\cite{band2013imputation}
+\item an $M\times M$ matrix $\mathbf{R_{\textrm{var}}}$ containing the correlations of genetic effects among genetic variants, which may reflect the assumption that all the PTVs in a gene may have the same biological consequence\cite{macarthur,rivas2013assessing,rivas2015effect} or prior information obtained through integration of additional data sources, such as functional assay data\cite{majithia2014rare,findlay2014saturation}, otherwise zero correlation of genetic effects may be assumed, which is used in dispersion tests like C-alpha\cite{calpha,clarke2013flexible} and SKAT\cite{skat}
+\item a $K\times K$ matrix $\mathbf{R_{\textrm{phen}}}$ containing the correlations of genetic effects among phenotypes, which may be obtained from common variant data\cite{cotsapas2011pervasive,solovieff2013pleiotropy,gencorr2015}
+\end{itemize}
+The variance-covariance matrix of the effect sizes may be obtained from readily available summary statistic data such as in-study LD matrices, effect size estimates (or log odds ratios), and the standard errors of the effect size estimates (Online Methods).
 
-\subsubsection*{Likelihood function} 
-\label{approxlikelihood}
-A maximum likelihood estimator of $\mathbf{\textrm{B}}$ is given by the ordinary least-squares method
-$$\widehat{\mathbf{\textrm{B}}} = \left(\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}\right)^{-1}\mathbf{\textrm{X}}^{\intercal}\mathbf{\textrm{Y}},$$
-that in vectorized form is denoted by   
-$\bs {\widehat{ \beta}} = \left(\bs {\widehat{ \beta}}_{1},\dots,\bs {\widehat{\beta}}_{M}\right)^{\intercal}.$
-An estimator of the variance-covariance of $\widehat{\bs \beta}$  is given by 
-$$\widehat{\textrm{V}}_{\mathbf{\bs \beta}} =  \left(\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}\right)^{-1}\otimes \widehat{\textrm{V}}_{\mathbf{\textrm{Y}}},$$
-where $\widehat{\textrm{V}}_{\mathbf{\textrm{Y}}}$ is the estimated residual variance-covariance matrix of $\mathbf{\textrm{Y}}$ given $\mathbf{\textrm{X}}$. 
+MRP allows users to specify priors that reflect knowledge of the variants and phenotypes under study. The prior on the scale of effect sizes can be used to denote which variants may have larger effect sizes. For instance, emerging empirical genetic studies have shown that within a gene, PTVs may have stronger effects than missense variants\cite{do2015exome}. This can be reflected by providing larger priors for PTVs.
 
-%Let $\bs {\widehat{ \beta}} = \left(\bs {\widehat{ \beta}}^{\intercal}_{1},\dots,\bs {\widehat{\beta}}^{\intercal}_{m}\right)^{\intercal}$ be a vector of point estimates of all $MK$ effects. 
-Following Band et al.\cite{band2013imputation}, we approximate the likelihood function of $\bs {\beta}$ by a multivariate normal distribution with mean $\bs {\widehat{\beta}}$ and variance-covariance matrix $\widehat{\textrm{V}}_{\bs {\beta}}$. Note that by approximating $\Vy$ by the trait correlation matrix, this likelihood approximation does not require access to the individual level data $\mathbf{\textrm{X}}$ and $\mathbf{\textrm{Y}}$ but only to the 
-summary data of effect sizes $\bs {\widehat{\beta}}$, LD-matrix $\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}$ and a trait correlation estimate.
+Similarly, we can utilize a prior on the location (direction) of effects to specify alternative models where we seek to identify variants with protective effects against disease. Thus far we have assumed that the prior mean, or location, of genetic effects is zero which makes it feasible to analyze a large number of phenotypes without enumerating the prior mean across all phenotypes. To proactively identify genetic variants that have effects that are consistent with a protective profile for a disease, we can include a non-zero vector as a prior mean of genetic effect \nameref{S1_Appendix}. We can exploit information from Mendelian randomization studies of common variants, such as recent findings where rare truncating loss-of-function variants in {\it PCSK9} were found to decrease LDL and triglyceride levels and decrease CAD risk\cite{cohen2005low,pcsk9,do2013common,cohorts2014loss} to identify situations where such a prior is warranted.
 
-
-\subsubsection*{Prior of $\bs{\beta}$ in the alternative model} 
-\label{prioralt}
-We construct the prior distribution $p\left({\bs {\beta}} | \textrm{ALT} \right)$ for the alternative model in three steps allowing 
-user to specify correlations between effects of different variants on different traits across different studies.
-
-In a single study, the prior density for ${\bs {\beta}}$ incorporates the expected correlation of genetic effects among 
-a group of variants ($\mathbf{R}_{\textrm{var}}$) and among a group of phenotypes ($\mathbf{R}_{\textrm{phen}}$). 
-In addition, we  incorporate an expected spread of the effect size of each variant by scaling $\mathbf{R}_{\textrm{var}}$ as 
-$$\mathbf{S}_{\textrm{var}} = \Delta\left(\sigma_m\right) \mathbf{R}_{\textrm{var}} \Delta\left(\sigma_m\right),$$
-where $\Delta\left(\sigma_m\right)$ is a diagonal matrix with entries $\sigma_m$ determining the spread of the effect size distribution for each variant $m \leq M$. Thus, we can model settings where, e.g., protein-truncating variants have larger effect sizes ($\sigma = 1$) than missense variants ($\sigma = 0.1$). 
-Note that when $\sigma_m = 1$ for all $m$ then $\mathbf{S}_{\textrm{var}} = \mathbf{R}_{\textrm{var}}$. 
-
-All in all, our prior density for ${\bs \beta}$ under alternative model is 
-$${\bs {\beta}}|\textrm{ALT} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{U}\right), \textrm{ where } \mathbf{U} = \mathbf{S}_{\textrm{var}} \otimes \mathbf{R}_{\textrm{phen}}.$$
-
-When we have data from multiple studies 
-we allow for possible differences in genetic effects across ethnicities or populations 
-extending the Approximate Bayes Factors of Band et al.~\cite{band2013imputation}
-and the summary statistics approach of RAREMETAL~\cite{liu2014meta} from univariate to multivariate phenotypes.
-Let $\bs {\widehat{ \beta}} = \left(\widehat{ \beta}_{s,m,k}\right)=\left(\widehat{\beta}_{1,1,1}, \widehat{\beta}_{1,1,2}, \dots, \widehat{\beta}_{1,1,K}, \widehat{\beta}_{1,2,1}, \dots, \widehat{\beta}_{1,2,K}, \dots, \widehat{\beta}_{1,M,K}, \widehat{\beta}_{2,1,1}, \dots, \widehat{\beta}_{S,M,K}\right),$ where $S$ is the number of studies, $M$ is the number of variants, and $K$ is the number of phenotypes. 
-As with a single study, we incorporate the expected correlation of genetic effects between a pair of variants and a single phenotype using the matrix $\mathbf{S_{\textrm{var}}}$, between a variant and a pair of phenotypes using the matrix $\mathbf{R_{\textrm{phen}}}$, and we introduce the matrix $\mathbf{R_{\textrm{study}}}$ to specify prior on the similarity in effect sizes across the studies.
-Thus, the prior is
-$${\bs {\beta}} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{U}\right), \textrm{ where } 
-\mathbf{U} = \mathbf{R}_{\textrm{study}}\otimes\left(\mathbf{S}_{\textrm{var}} \otimes \mathbf{R}_{\textrm{phen}}\right).$$
-
-It is straightforward to include a non-zero vector ${\bs\mu}$ as a prior mean of genetic effects, in which case the prior is
-$${\bs {\beta}} \sim \mathcal{N}\left({\bs \mu},\mathbf{U}\right).$$
-We use this, for example, when screening for protective rare variants that have a pre-specified beneficial profile on a set of risk factors.
-
-
-\subsubsection*{$\textrm{BF}_{\textrm{MRP}}$} 
-\label{bfmodel}
-The Bayes Factor is the ratio of the marginal likelihoods between the alternative and the null model. 
-The marginal likelihood for the alternative model is 
-$$ \int_{{\bs {\beta}}} p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right) p\left({\bs {\beta}}|\textrm{ALT}\right)d{\bs {\beta}} = c \times \mathcal{N}\left({ {\widehat{\bs \beta}}}; {\bs \mu},  \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)$$
-and the marginal likelihood for the null model is 
-$$\int_{{\bs {\beta}}} p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right) p\left({\bs {\beta}}|\textrm{NULL}\right)d{\bs {\beta}} = c \times \mathcal{N}\left({ {\widehat{\bs \beta}}}; 0,  \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}\right).$$
-
-The Bayes Factor (derived is below) is given by
-$$\textrm{BF}_{\textrm{MRP}} = \frac{\det\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right)^{-\frac{1}{2}}
-\exp\left[-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right)\right]}
-{\det \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}\right)^{-\frac{1}{2}}\exp \left[-\frac{1}{2}{\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
-\,{\bs {\widehat{\beta}}}\right]}.$$
-
-
-When $\bs \mu=0$, $\textrm{BF}_{\textrm{MRP}}$ is an increasing function of the following quadratic form
-\begin{equation}\label{quadratic_form}
-Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U})=
-\bs{\widehat{\beta}^\intercal} \left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} - (\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}+\mathbf{U})^{-1}\right) \bs{\widehat{\beta}}.
-\end{equation}
-Furthermore, this quadratic form is the only part of the $\textrm{BF}_{\textrm{MRP}}$ that depends on $\bs {\widehat{\beta}}$.
-Thus, by deriving a distribution of $Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U})$
-under the null model we can compute a p-value when $\textrm{BF}_{\textrm{MRP}}$ is used as a test statistic.
-According to basic properties of quadratic forms of Gaussian variables,
-$Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U}) \sim \sum_{i=1}^n d_i \chi^2_i$, where $\chi_i^2$
-are an independent sample from $\chi_1^2$ distribution (chi-square with one degree of freedom),
-and $d_i$ are the eigenvalues of matrix
-$I-(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}+\mathbf{U})^{-1}\, \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}$.
-The distribution function for a mixture of chi-squares can be numerically evaluated by
-the R-package `CompQuadForm'~\cite{Duchesne2010}.
-
-\subsubsection*{MRP Bayes Factor derivation} \label{app1}
-To compute the Bayes Factor 
-$$\textrm{BF}_{\textrm{MRP}} = \frac{\det\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right)^{-\frac{1}{2}}
-\exp\left[-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right)\right]}
-{\det \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}\right)^{-\frac{1}{2}}\exp \left[-\frac{1}{2}{\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
-\,{\bs {\widehat{\beta}}}\right]},$$
-we first consider the term inside the exponential function:
-$$ \mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right) = 
-\frac{1}{2}\, {\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \,{\bs {\widehat{\beta}}}
--\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right).
-$$
-Since $\widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}$ and $\mathbf{U}$ are typically defined through Kronecker products of smaller matrices, their inverses
-are easier to compute than the inverse of their sum. Hence we use Woodbury matrix identity to write
-$$ 
-\mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right) = 
-\frac{1}{2}\, {\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \,{\bs {\widehat{\beta}}}
--\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal} \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} - \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
-\left(\mathbf{U}^{-1} + \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \right)^{-1} \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \right ) 
-\left({\bs {\widehat{\beta}} - {\bs \mu}}\right).
-$$
-
-To simplify the determinant calculation we write 
-$$\det\left( \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right) = \det\left( \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}\right) \det\left( \mathbf{I} + \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} \mathbf{U}\right).$$
-The logarithm of the Bayes Factor is then
-$$\log \left( \textrm{BF}_{\textrm{MRP}} \right) = 
--\frac{1}{2} \log \left( \det\left( \mathbf{I} + \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} \mathbf{U} \right) \right)  + \mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right).$$
-
-
-If studies do not share individuals, $\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}$ is a block-diagonal matrix 
-$$\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}=
- \left[\begin{array}{c|c|c|c}
- \widehat{\mathbf{\textrm{V}}}^{1}_{{\bs \beta}} & 0 & \cdots &0\\ \hline
-0 & \widehat{\mathbf{\textrm{V}}}^{2}_{{\bs \beta}}&\cdots &0 \\ \hline
-\vdots & &\ddots &\vdots \\ \hline
-0 & 0 &\cdots & \widehat{\mathbf{\textrm{V}}}^{S}_{{\bs {\beta}}}\\
-\end{array}\right].$$
-If studies share individuals, e.g., controls, 
-we take the approach of Cichonska et al.~\cite{cichonska2016metacca} to use summary level data
-to estimate the correlation structure of the non-diagonal blocks caused by overlapping individuals. 
-
-\subsection*{HDF5 Tables}
-Although summary statistics are quicker to read and process than raw data, the number of studies meta-analyzed in this work is expected to be sufficiently large to require optimizations in data representation and processing (\nameref{hdf5_fig}). Our solution was the use of the HDF5 (Hierarchical Data Format 5) data representation to enable rapid processing of effect size, uncertainty, and cross-trait estimate data. HDF5 is a fast and lightweight file format designed for scientific data. It has bindings for R, Python, C/C++, Java, and nearly every other population programming language. Reading data from a table within a HDF5 file can be an order of magnitude faster than reading text files from a Unix file, and it makes it easier to organize data within an internal structure.
-
-\subsection*{UK Biobank Data}
-\subsubsection*{GWAS Summary Statistics}
-We performed genome-wide association analysis using PLINK v2.00a(17 July 2017) as previously described \cite{DeBoever179762}. For asthma, we used the Firth fallback in PLINK, a hybrid algorithm which normally uses the logistic regression code described in (Hill 2017), but switches to a port of logistf() (https://cran.r-project.org/web/packages/logistf/index.html) in two cases: (1) one of the cells in the 2x2 allele count by case/control status contingency table is empty (2) logistic regression was attempted since all the contingency table cells were nonzero, but it failed to converge within the usual number of steps. We used the following covariates in our analysis: age, sex, array type, and the first four principal components, where array type is a binary variable that represents whether an individual was genotyped with UK Biobank Axiom Array or UK BiLEVE Axiom Array. For variants that were specific to one array, we did not use array as a covariate. Asthma cases were defined using both Hospital Episode Statistics and verbal questionnaire responses. We used the provided values from the UK Biobank for eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV$_1$). The phenotype codes used throughout (asthma=HC382, eosinophil count=INI30150, Forced Expiratory Volume in 1-second (FEV$_1$)=INI3063, and Forced Vital Capacity (FVC)=INI3062) correspond to the phenotype codes used in on the Global Biobank Engine [\url{https://biobankengine.stanford.edu}].
-
-\subsubsection*{Genetic Correlations}
-We calculated the genetic between asthma, eosinophil counts, forced vital capacity (FVC), and forced expiratory volume in 1-second (FEV$_1$) using the MultiVariate Polygenic Mixture Model (MVPMM)~\cite{DeBoever2017}. Briefly, MVPMM estimates genetic correlation given GWAS summary statistics (effect size and standard error of effect size estimate) by modeling GWAS summary statistics as generated from one of two mixture components. Summary statistics from variants in the null component are modeled as being drawn from a multivariate normal distribution with zero mean and covariance matrix that captures correlation in the summary statistics due to the use of shared subjects or other sources of correlation. Summary statistics from variants in the non-null component are modeled as being drawn from a multivariate normal distribution with zero mean, but the covariance matrix for the non-null component combines the covariance matrix from the null component with another covariance matrix that captures the genetic correlation between the phenotypes being considered.
-
-\subsubsection*{UK Biobank Asthma Application}
-For the Manhattan plots and Table~\ref{asthma_table}, we removed any genes with non-unique gene symbols. We also removed the sense overlapping gene \textit{CTD-3064M3.3} and and the antisense gene \textit{ZFAT-AS1} since these genes overlap \textit{GPR20} and \textit{ZFAT} respectively and therefore have the same $\log_{10}$ Bayes Factors as those genes.
-
-
-% Results and Discussion can be combined.
-\section*{Results}
-
-\subsection*{Method overview}
-A complete description of MRP, along with an analytical derivation, is given in the Materials and Methods. Briefly, we describe the approach.
-
-In Bayesian model comparison, we compare the null and alternative models via the Bayes Factor (BF) defined as the ratio of the marginal likelihoods of the observed data under two models. Here, the null model is that the effect sizes obtained across all studies for a group of variants and a group of phenotypes is zero. To complete the specification of the alternative model we consider the correlation structure, the scale, and the location of the effect sizes (which we find to be informative for alternative models where we seek to identify variants with protective effects). 
-
-Let $N$ be the number of individuals and $K$ the number of quantitative phenotype measurements on each individual, for example, here in the applications we focus on asthma, eosinophil count, Forced Expiratory Volume in 1-second, and Forced Vital Capacity, in which case $K=4$. Let $M$ be the number of variants in a testing unit ${\bs G}$, where ${\bs G}$ can be, for example, a gene, pathway, or a network. Let $S$ be the number of studies where data is obtained from - this data may be in the form of raw genotypes and phenotypes or summary statistics including linkage-disequilibrium, effect sizes (or odds ratio), and standard error of the effect size.
-
-In the multivariate setting we define the prior correlation structure of the effect sizes, denoted by a SMK-by-SMK matrix $\mathbf{U}$. In practice, we define $\mathbf{U}$ as a Kronecker product, an operation of matrices of arbitrary size, of three sub-matrices: an S-by-S matrix $\mathbf{R_{\textrm{study}}}$ being the correlations of genetic effects among studies where different values can be used to compare different models of association, such as for identifying heterogeneity of effect sizes between populations~\cite{band2013imputation}; an M-by-M matrix $\mathbf{R_{\textrm{var}}}$ being the correlations of genetic effects among genetic variants, which may reflect the assumption that all the PTVs in a gene may have the same biological consequence\cite{macarthur,rivas2013assessing,rivas2015effect} or prior information obtained through integration of additional data sources, such as functional assay data\cite{majithia2014rare,findlay2014saturation}, otherwise zero correlation of genetic effects may be assumed, which is used in dispersion tests like C-alpha\cite{calpha,clarke2013flexible} and SKAT\cite{skat}; and a K-by-K matrix $\mathbf{R_{\textrm{phen}}}$ being the correlations of genetic effects among phenotypes, which may be obtained from common variant data\cite{cotsapas2011pervasive,solovieff2013pleiotropy,gencorr2015}. The variance-covariance matrix of the effect sizes may be obtained from readily available summary statistic data such as in-study LD matrices, effect size estimate (or log odds ratio), and the standard error of the effect size estimate (Online Methods).
-
-For gene discovery, the scale may be used to denote the prior spread of effect sizes. For instance, emerging empirical genetic studies have shown that within a gene protein truncating variants may have stronger effects than missense variants\cite{do2015exome}.
-
-Thus far we have assumed that the prior mean, or location, of genetic effects is zero. This makes it feasible to analyze a large number of phenotypes without enumerating the prior mean across all phenotypes. However, in practice, we may want to proactively identify genetic variants that have effects that are consistent with a protective profile for a disease, which may exploit information from mendelian randomization studies of common variants, such as recent rare variant findings in {\it PCSK9} where truncating loss-of-function variants are found to decrease LDL and triglyceride levels, and decrease CAD risk\cite{cohen2005low,pcsk9,do2013common,cohorts2014loss}. This is straightforward to consider by including a non-zero vector as a prior mean of genetic effect (Online Methods).
-
-Although we see advantages in adopting a Bayesian perspective, our approach could be used in a frequentist context by calculating a Bayes factor and using it as a test statistic to compute p-values (Methods, Fig~\ref{simresults}).
+Applying MRP to variants from a testing unit ${\bs G}$ yields a BF for that testing unit that describes the evidence that rare variants in that testing unit have a nonzero effect on the traits used in the model. For instance, consider genes as testing units. By running MRP, we obtain a BF for each gene that represents the evidence that rare variants in that gene affect the traits of interest. These BF can be used to identify specific genes that may be linked to disease. Although we see advantages in adopting a Bayesian perspective for MRP, our approach could be used in a frequentist context by calculating a BF and using it as a test statistic to compute p-values (\nameref{S1_Appendix}, Fig~\ref{simresults}).
  
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{../figures/Figure_02.pdf}
@@ -475,12 +316,30 @@ A: Comparison of $-\log_{10}$(p-values) from frequentist $\textrm{BF}_{\textrm{M
 \label{simresults}
 \end{figure}
 
+\subsection*{HDF5 Tables}
+Although summary statistics are quicker to read and process than raw data, the number of studies meta-analyzed in this work is expected to be sufficiently large to require optimizations in data representation and processing (\nameref{hdf5_fig}). Our solution was the use of the HDF5 (Hierarchical Data Format 5) data representation to enable rapid processing of effect size, uncertainty, and cross-trait estimate data. HDF5 is a fast and lightweight file format designed for scientific data. It has bindings for R, Python, C/C++, Java, and nearly every other population programming language. Reading data from a table within a HDF5 file can be an order of magnitude faster than reading text files from a Unix file, and it makes it easier to organize data within an internal structure.
+
+\subsection*{UK Biobank Data}
+\subsubsection*{GWAS Summary Statistics}
+We performed genome-wide association analysis using PLINK v2.00a(17 July 2017) as previously described \cite{DeBoever179762}. For asthma, we used the Firth fallback in PLINK, a hybrid algorithm which normally uses the logistic regression code described in (Hill 2017), but switches to a port of logistf() (https://cran.r-project.org/web/packages/logistf/index.html) in two cases: (1) one of the cells in the 2x2 allele count by case/control status contingency table is empty (2) logistic regression was attempted since all the contingency table cells were nonzero, but it failed to converge within the usual number of steps. We used the following covariates in our analysis: age, sex, array type, and the first four principal components, where array type is a binary variable that represents whether an individual was genotyped with UK Biobank Axiom Array or UK BiLEVE Axiom Array. For variants that were specific to one array, we did not use array as a covariate. 
+
+Asthma and glaucoma cases were defined using both Hospital Episode Statistics and verbal questionnaire responses. We used the provided values from the UK Biobank for eosinophil counts, forced vital capacity (FVC), forced expiratory volume in 1-second (FEV$_1$), intra-ocular pressure, and corneal resistance factor. The phenotype codes used throughout (asthma=HC382, eosinophil count=INI30150, FEV$_1$=INI3063, FVC=INI3062, glaucoma=HC276, intra-ocular pressure=INI5263, and corneal resistance factor=INI5265) correspond to the phenotype codes used in on the Global Biobank Engine [\url{https://biobankengine.stanford.edu}].
+
+\subsubsection*{Genetic Correlations}
+We calculated the genetic between the two groups of traits (asthma, eosinophil counts, FVC, FEV$_1$ and glaucoma, intra-ocular pressure, corneal resistance factor) using the MultiVariate Polygenic Mixture Model (MVPMM)~\cite{DeBoever2017}. Briefly, MVPMM estimates genetic correlation given GWAS summary statistics (effect size and standard error of effect size estimate) by modeling GWAS summary statistics as generated from one of two mixture components. Summary statistics from variants in the null component are modeled as being drawn from a multivariate normal distribution with zero mean and covariance matrix that captures correlation in the summary statistics due to the use of shared subjects or other sources of correlation. Summary statistics from variants in the non-null component are modeled as being drawn from a multivariate normal distribution with zero mean, but the covariance matrix for the non-null component combines the covariance matrix from the null component with another covariance matrix that captures the genetic correlation between the phenotypes being considered.
+
+\subsubsection*{UK Biobank Asthma and Glaucoma Applications}
+We applied MRP for both sets of traits assuming both an independent effects model and a similar effects model. We applied Bayesian model averaging to these results by averaging the BF from each model for each gene; these results are reported in the main text. The results for each individual model are included in the Supporting Information. For the Manhattan plots and tables, we removed any genes with non-unique gene symbols. In cases where genes overlapped such that they shared rare variants and therefore the same BF, we removed one gene.
+
+% Results and Discussion can be combined.
+\section*{Results}
+
 \subsection*{Simulation studies}
 We first verified the analytical derivations and examined the properties of the approach under a simulation framework. 
 
 %% Comparison to other widely used methods
 \subsubsection*{Comparison to frequentist gene tests}
-For the analysis of multiple rare variants and a single phenotype we compared it to the burden test and the SKAT test, commonly used statistical tests in rare variant association studies of a single phenotype. We observe concordance between the frequentist methods and the Bayesian models. To compare the Bayesian models we compute p-values by using the Bayes Factor as the test statistic and approximating it using distribution properties of quadratic forms (Materials and Methods). As expected, an independent effects model has high correlation with the gene-based test SKAT ($r^2 = 0.99$), whereas the similar effects model has high correlation with the burden test ($r^2 = 0.93$, Fig~\ref{simresults}A). 
+For the analysis of multiple rare variants and a single phenotype we compared it to the burden test and the SKAT test, commonly used statistical tests in rare variant association studies of a single phenotype. We observe concordance between the frequentist methods and the Bayesian models. To compare the Bayesian models we compute p-values by using the BF as the test statistic and approximating it using distribution properties of quadratic forms (\nameref{S1_Appendix}). As expected, an independent effects model has high correlation with the gene-based test SKAT ($r^2 = 0.99$), whereas the similar effects model has high correlation with the burden test ($r^2 = 0.93$, Fig~\ref{simresults}A). 
 
 \subsubsection*{Summary statistic data}
 To study the behavior of MRP using summary statistics we simulate two scenarios: first, the scenario where analysts have access to all the raw genotype and phenotype data; and second, the scenario where analysts only have access to summary statistics data\cite{liu2014meta}. We conducted $1000$ simulation experiments where we let $K$ (the number of phenotypes) $=3$, $M$ (the number of variants) $=10$, $S$ (the number of studies) $=2$, $N_0$ (number of individuals in study with access to all the data) $= 10000$, $N_1$ (meta-analysis study 1) $= 5000$, $N_2$ (meta-analysis study 2) $= 5000$. We find that, under the scenario where similar effects are assumed across studies, the Bayes Factors obtained using summary statistics alone are strongly correlated ($r^2 = 1$) to Bayes Factors obtained by the full genotype and phenotype data (Fig~\ref{simresults}B).
@@ -491,7 +350,7 @@ To validate the flexibility of the approach we conducted a simulation experiment
 \subsection*{Applications}
 We applied the MRP model comparison approach to summary statistic data generated from single variant logistic regression and linear regression analysis for coding variants on the UK Biobank array (Methods). We applied MRP to asthma and three related traits and glaucoma and two related traits.
 
-\subsubsection*{Model comparison applied to asthma and related phenotypes}
+\subsubsection*{Asthma, eosinophil counts, forced expiratory volume, and forced vital capacity}
 We first applied MRP to GWAS summary statistics for asthma, eosinophil count, forced expiratory volume in 1-second (FEV$_1$), and forced vital capacity (FVC) phenotypes. Recent work has identified associations between the PTV rs146597587 in \textit{IL33} and asthma and eosinophil counts \cite{DeBoever179762, 10.1371/journal.pgen.1006659}. FEV$_1$ and FVC are measures of pulmonary function that are used to diagnosis and classify pulmonary disease \cite{Swanney1046}. To demonstrate the advantage of considering the phenotypes jointly, we applied MRP to rare missense variants and PTVs (MAF $< 1\%$) for each phenotype separately (Fig~\ref{asthma_bma}A-D) as well as to all phenotypes jointly (Fig~\ref{asthma_bma}E,F) and obtained $\log_{10}$ BF for each gene. We applied both independent and similar effects models and used Bayesian model averaging to compute a single BF per gene \cite{10.2307/2676803}. In agreement with previous studies, we observed evidence that rare missense variants and/or PTVs in \textit{IL33} affect eosinophil counts and offer protection from asthma from the single-phenotype analyses, though the evidence of association was strongest for the joint analysis (Table~\ref{asthma_table}) \cite{DeBoever179762, 10.1371/journal.pgen.1006659}. We also performed an analysis focused on identifying protective variants which also identified the \textit{IL33} association (Fig~\ref{asthma_bma}). The results were similar using only either the independent effects (\nameref{asthma_independent}) or similar effects models (\nameref{asthma_similar}). We can inspect the effect sizes from the marginal GWAS regressions for the rare variants included in the analysis and see that the association identified by MRP is likely driven by the PTV rs146597587 (Fig~\ref{asthma_bma}G). 
 
 We also found moderate evidence for associations between rare coding variants in \textit{CCR3} and asthma. The $\log_{10}$ BFs for \textit{CCR3} were 3.3 and 3.1 in the joint and joint protective analyses respectively compared to only -0.5 in the asthma-only analysis  (Fig~\ref{asthma_bma}, Table~\ref{asthma_table}). \textit{CCR3} was not reported in a large GWAS for allergic disease including asthma\cite{Ferreira:2017ba} though \textit{CCR3} is near a locus associated with atopy in a previous meta-analysis\cite{Ober:2011jk}. Other genes like \textit{IL18RAP}, \textit{ATP2A3}, and \textit{FLG} had $\log_{10}$ BFs greater than 4 in the asthma-only analysis but much smaller BFs in the joint analyses indicating that rare variants in these genes are less likely to affect this group of traits. Similarly, there were other genes like \textit{RP11-39K24.9} and \textit{IL17RA} that had relatively larger BFs in the eosinophil count-only analysis but small BFs for the joint analyses demonstrating MRP's ability to integrate information across all phenotypes considered.
@@ -544,7 +403,7 @@ $\log_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summ
 \end{adjustwidth}
 \end{table}
 
-\subsubsection*{Model comparison applied to glaucoma and related phenotypes}
+\subsubsection*{Glaucoma, intra-ocular pressure, and corneal resistance factor}
 We also applied MRP to missense variants and PTVs for glaucoma, intra-ocular pressure, and corneal resistance factor as well as performing joint analyses. Elevated intra-ocular pressure is a measure of the fluid pressure in the eye. Elevated intra-ocular pressure is associated with glaucoma risk and has been linked to genetic variants associated with glaucoma \cite{doi:10.1001/jama.2014.3192}. Corneal resistance factor is a measure of the cornea's ability to resist mechanical stress and has been associated with glaucoma presence and severity \cite{CXO:CXO414, MANSOURI2012419, GriseDulac:2012bo}. While the individual glaucoma analysis did not yield any associations with $\log_{10}$ BF greater than three, the joint analysis identified rare coding variants in both \textit{ANGPTL7}, \textit{WNT10A}, and \textit{KLHL22} as associated with glaucoma (Fig~\ref{glaucoma_bma}A-D). Applying the MRP model to identify protective effects also identified \textit{ANGPTL7} and \textit{WNT10A} but not \textit{KLHL22} (Fig~\ref{glaucoma_bma}E). Expression of \textit{ANGPTL7} is upregulated in glaucome and has been proposed to regulate intra-ocular pressure and glaucoma risk \cite{Comes:2011ex, Kuchtey:2008ek}. \textit{KLHL22} has not been previously associated with glaucoma though a suggestive association was reported for retinopathy in individuals without diabetes \cite{10.1371/journal.pone.0054232}. The GWAS summary statistics for the rare variants in \textit{ANGPTL7} suggest that two missense variants, rs28991002 and rs28991009, appear to drive the association with glaucoma (Fig~\ref{glaucoma_bma}F). These results illustrate that applying model comparison to multiple traits simultaneously can prioritize the discovery of protective modifiers of disease. 
 
 \begin{figure}[!h]
@@ -630,6 +489,11 @@ As genetic data linked to high-dimensional phenotype data continues to be made a
 \section*{Supporting information}
 
 % Include only the SI item label in the paragraph heading. Use the \nameref{label} command to cite SI items in the text.
+
+\paragraph*{S1 Appendix.}
+\label{S1_Appendix}
+{\bf MRP model details.} Specification of the MRP model including the likelihood function, priors, and Bayes factor calculation.
+
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{../figures/Figure_S01.pdf}
 \end{figure}

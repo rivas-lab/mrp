@@ -1,0 +1,216 @@
+\documentclass[10pt,letterpaper]{article}
+%\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+\setcounter{secnumdepth}{3} 
+
+% amsmath and amssymb packages, useful for mathematical formulas and symbols
+\usepackage{amsmath,amssymb}
+
+% Use adjustwidth environment to exceed column width (see example table in text)
+\usepackage{changepage}
+
+% Use Unicode characters when possible
+\usepackage[utf8x]{inputenc}
+
+% textcomp package and marvosym package for additional characters
+\usepackage{textcomp,marvosym}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+% Use nameref to cite supporting information files (see Supporting Information section for more info)
+\usepackage{nameref,hyperref}
+
+% line numbers
+\usepackage[right]{lineno}
+
+% ligatures disabled
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% color can be used to apply background shading to table cells only
+\usepackage[table]{xcolor}
+
+% array package and thick rules for tables
+\usepackage{array}
+
+% Text layout
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+% Leave date blank
+\date{}
+
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2015}
+
+%% Include all macros below
+
+% This package only necessary if including Supporting Information figures in file.
+\usepackage{float}
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+
+\def\bs{\boldsymbol}
+\def\Vy{\widehat{\textrm{V}}_Y}
+
+%% END MACROS SECTION
+
+\begin{document}
+\vspace*{0.2in}
+
+%\section*{Appendix S1}
+{\Huge
+\textbf\newline{Appendix S1} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
+}
+\newline
+
+\section{MRP model comparison for association testing}
+We consider the multivariate linear regression model 
+$$\underset{\left(N\times K\right)}{\mathbf{\textrm{Y}}} 
+= \underset{\left(N\times K\right)}{\mathbf{\Psi}}  + \underset{\left(N\times M\right)}{\mathbf{\textrm{X}}}\underset{\left(M \times K\right)}{\mathbf{\textrm{B}}} 
++ \underset{\left(N\times K\right)}{\mathbf{\textrm{E}}},$$
+where the matrices $\mathbf{\textrm{Y}} = \left[{y}_{i k}\right]$, $\mathbf{\textrm{X}} = \left[ x_{i m}\right]$, 
+$\mathbf{\textrm{B}} = \left[ \beta_{m k} \right]$ and $\mathbf{\textrm{E}} = \left[e_{i k}\right]$  describe the phenotype values ($y_{i k}$),
+copies of minor allele ($x_{i m}$), variant-phenotype effects ($\beta_{m k}$), and residual errors ($e_{i k}$), 
+for individual $i$, phenotype $k$, and variant $m$. 
+We assume that each phenotype has been transformed to a standard normal
+distribution and that the columns of ${\mathbf{{\textrm{X}}}}$ 
+have been centered, which means that the estimate for the intercept term ${\mathbf{\Psi}}$ is 0 and independent of the estimate of ${\mathbf{\textrm{B}}}$.
+We use vectorized notation where the rows of ${\mathbf{\textrm{B}}}$ form vector 
+$\bs {{ \beta}} = \left(\bs {{ \beta}}_{1},\dots,\bs {{\beta}}_{M}\right)^{\intercal}$
+of length $MK$.
+
+We define the MRP model comparison as a Bayes factor (BF) between the alternative model, where at least one variant
+affects at least one phenotype, and the null model, where all variant-phenotype effects are zero.  
+BF is the ratio of the marginal likelihoods for these two models: 
+$$ \textrm{BF} = \frac{\int_{{\bs {\beta}}}p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right)p\left({\bs {\beta}}|\textrm{ALT}\right)d{\bs {\beta}}}{\int_{{\bs {\beta}}}p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right)p\left({\bs {\beta}}|\textrm{NULL}\right)d{\bs {\beta}}},$$ 
+where Data can correspond either to the effect size estimates $\bs {\widehat{ \beta}}$ and the estimated variance-covariance matrix of  $\bs {\widehat{ \beta}}$, $\widehat{\mathbf{\textrm{V}}}_{\bs{\beta}}$, or to the original phenotypes and genotypes, 
+$\underset{\left(N\times K\right)}{\mathbf{\textrm{\textrm{Y}}}}$ and $ \underset{\left(N\times M\right)}{\mathbf{\textrm{\textrm{X}}}}$, and any other covariates that we
+want to regress out from the phenotypes. 
+
+The prior distribution for the null model, $p\left({\bs {\beta}}|\textrm{NULL}\right)$, is simply the point mass at $\bs \beta = 0$.
+In section~\ref{approxlikelihood} we show how we approximate the likelihood function for $\bs \beta$, $p\left(\mathbf{\textrm{Data}} | {\bs {\beta}}\right)$,
+in section~\ref{prioralt} we define the prior distribution $p\left({\bs {\beta}}|\textrm{ALT}\right)$ for the alternative model, 
+and finally, in section~\ref{bfmodel}, we compute the BF.
+
+\section{Likelihood function} \label{approxlikelihood}
+A maximum likelihood estimator of $\mathbf{\textrm{B}}$ is given by the ordinary least-squares method
+$$\widehat{\mathbf{\textrm{B}}} = \left(\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}\right)^{-1}\mathbf{\textrm{X}}^{\intercal}\mathbf{\textrm{Y}},$$
+that in vectorized form is denoted by   
+$\bs {\widehat{ \beta}} = \left(\bs {\widehat{ \beta}}_{1},\dots,\bs {\widehat{\beta}}_{M}\right)^{\intercal}.$
+An estimator of the variance-covariance of $\widehat{\bs \beta}$  is given by 
+$$\widehat{\textrm{V}}_{\mathbf{\bs \beta}} =  \left(\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}\right)^{-1}\otimes \widehat{\textrm{V}}_{\mathbf{\textrm{Y}}},$$
+where $\widehat{\textrm{V}}_{\mathbf{\textrm{Y}}}$ is the estimated residual variance-covariance matrix of $\mathbf{\textrm{Y}}$ given $\mathbf{\textrm{X}}$. 
+
+%Let $\bs {\widehat{ \beta}} = \left(\bs {\widehat{ \beta}}^{\intercal}_{1},\dots,\bs {\widehat{\beta}}^{\intercal}_{m}\right)^{\intercal}$ be a vector of point estimates of all $MK$ effects. 
+Following Band et al.\cite{band2013imputation}, we approximate the likelihood function of $\bs {\beta}$ by a multivariate normal distribution with mean $\bs {\widehat{\beta}}$ and variance-covariance matrix $\widehat{\textrm{V}}_{\bs {\beta}}$. Note that by approximating $\Vy$ by the trait correlation matrix, this likelihood approximation does not require access to the individual level data $\mathbf{\textrm{X}}$ and $\mathbf{\textrm{Y}}$ but only to the 
+summary data of effect sizes $\bs {\widehat{\beta}}$, LD-matrix $\mathbf{\textrm{X}}^\intercal\mathbf{\textrm{X}}$ and a trait correlation estimate.
+
+
+\section{Prior of $\bs{\beta}$ in the alternative model} 
+\label{prioralt}
+We construct the prior distribution $p\left({\bs {\beta}} | \textrm{ALT} \right)$ for the alternative model in three steps allowing 
+user to specify correlations between effects of different variants on different traits across different studies.
+
+In a single study, the prior density for ${\bs {\beta}}$ incorporates the expected correlation of genetic effects among 
+a group of variants ($\mathbf{R}_{\textrm{var}}$) and among a group of phenotypes ($\mathbf{R}_{\textrm{phen}}$). 
+In addition, we  incorporate an expected spread of the effect size of each variant by scaling $\mathbf{R}_{\textrm{var}}$ as 
+$$\mathbf{S}_{\textrm{var}} = \Delta\left(\sigma_m\right) \mathbf{R}_{\textrm{var}} \Delta\left(\sigma_m\right),$$
+where $\Delta\left(\sigma_m\right)$ is a diagonal matrix with entries $\sigma_m$ determining the spread of the effect size distribution for each variant $m \leq M$. Thus, we can model settings where, e.g., protein-truncating variants have larger effect sizes ($\sigma = 1$) than missense variants ($\sigma = 0.1$). 
+Note that when $\sigma_m = 1$ for all $m$ then $\mathbf{S}_{\textrm{var}} = \mathbf{R}_{\textrm{var}}$. 
+
+All in all, our prior density for ${\bs \beta}$ under alternative model is 
+$${\bs {\beta}}|\textrm{ALT} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{U}\right), \textrm{ where } \mathbf{U} = \mathbf{S}_{\textrm{var}} \otimes \mathbf{R}_{\textrm{phen}}.$$
+
+When we have data from multiple studies 
+we allow for possible differences in genetic effects across ethnicities or populations 
+extending the Approximate Bayes Factors of Band et al.~\cite{band2013imputation}
+and the summary statistics approach of RAREMETAL~\cite{liu2014meta} from univariate to multivariate phenotypes.
+Let $\bs {\widehat{ \beta}} = \left(\widehat{ \beta}_{s,m,k}\right)=\left(\widehat{\beta}_{1,1,1}, \widehat{\beta}_{1,1,2}, \dots, \widehat{\beta}_{1,1,K}, \widehat{\beta}_{1,2,1}, \dots, \widehat{\beta}_{1,2,K}, \dots, \widehat{\beta}_{1,M,K}, \widehat{\beta}_{2,1,1}, \dots, \widehat{\beta}_{S,M,K}\right),$ where $S$ is the number of studies, $M$ is the number of variants, and $K$ is the number of phenotypes. 
+As with a single study, we incorporate the expected correlation of genetic effects between a pair of variants and a single phenotype using the matrix $\mathbf{S_{\textrm{var}}}$, between a variant and a pair of phenotypes using the matrix $\mathbf{R_{\textrm{phen}}}$, and we introduce the matrix $\mathbf{R_{\textrm{study}}}$ to specify prior on the similarity in effect sizes across the studies.
+Thus, the prior is
+$${\bs {\beta}} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{U}\right), \textrm{ where } 
+\mathbf{U} = \mathbf{R}_{\textrm{study}}\otimes\left(\mathbf{S}_{\textrm{var}} \otimes \mathbf{R}_{\textrm{phen}}\right).$$
+
+It is straightforward to include a non-zero vector ${\bs\mu}$ as a prior mean of genetic effects, in which case the prior is
+$${\bs {\beta}} \sim \mathcal{N}\left({\bs \mu},\mathbf{U}\right).$$
+We use this, for example, when screening for protective rare variants that have a pre-specified beneficial profile on a set of risk factors.
+
+
+\section{$\textrm{BF}_{\textrm{MRP}}$} 
+\label{bfmodel}
+The Bayes Factor is the ratio of the marginal likelihoods between the alternative and the null model. 
+The marginal likelihood for the alternative model is 
+$$ \int_{{\bs {\beta}}} p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right) p\left({\bs {\beta}}|\textrm{ALT}\right)d{\bs {\beta}} = c \times \mathcal{N}\left({ {\widehat{\bs \beta}}}; {\bs \mu},  \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)$$
+and the marginal likelihood for the null model is 
+$$\int_{{\bs {\beta}}} p\left(\mathbf{\textrm{Data}}|{\bs {\beta}}\right) p\left({\bs {\beta}}|\textrm{NULL}\right)d{\bs {\beta}} = c \times \mathcal{N}\left({ {\widehat{\bs \beta}}}; 0,  \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}\right).$$
+
+The Bayes Factor (derived below in section~\ref{app1}) is given by
+$$\textrm{BF}_{\textrm{MRP}} = \frac{\det\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right)^{-\frac{1}{2}}
+\exp\left[-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right)\right]}
+{\det \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}\right)^{-\frac{1}{2}}\exp \left[-\frac{1}{2}{\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
+\,{\bs {\widehat{\beta}}}\right]}.$$
+
+
+When $\bs \mu=0$, $\textrm{BF}_{\textrm{MRP}}$ is an increasing function of the following quadratic form
+\begin{equation}\label{quadratic_form}
+Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U})=
+\bs{\widehat{\beta}^\intercal} \left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} - (\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}+\mathbf{U})^{-1}\right) \bs{\widehat{\beta}}.
+\end{equation}
+Furthermore, this quadratic form is the only part of the $\textrm{BF}_{\textrm{MRP}}$ that depends on $\bs {\widehat{\beta}}$.
+Thus, by deriving a distribution of $Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U})$
+under the null model we can compute a p-value when $\textrm{BF}_{\textrm{MRP}}$ is used as a test statistic.
+According to basic properties of quadratic forms of Gaussian variables,
+$Q(\bs{\widehat{\beta}};\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}},\mathbf{U}) \sim \sum_{i=1}^n d_i \chi^2_i$, where $\chi_i^2$
+are an independent sample from $\chi_1^2$ distribution (chi-square with one degree of freedom),
+and $d_i$ are the eigenvalues of matrix
+$I-(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}+\mathbf{U})^{-1}\, \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}$.
+The distribution function for a mixture of chi-squares can be numerically evaluated by
+the R-package `CompQuadForm'~\cite{Duchesne2010}.
+
+\subsection{MRP Bayes Factor derivation} \label{app1}
+To compute the Bayes Factor 
+$$\textrm{BF}_{\textrm{MRP}} = \frac{\det\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right)^{-\frac{1}{2}}
+\exp\left[-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right)\right]}
+{\det \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}\right)^{-\frac{1}{2}}\exp \left[-\frac{1}{2}{\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
+\,{\bs {\widehat{\beta}}}\right]},$$
+we first consider the term inside the exponential function:
+$$ \mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right) = 
+\frac{1}{2}\, {\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \,{\bs {\widehat{\beta}}}
+-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal}\left(\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U}\right)^{-1}\left({\bs {\widehat{\beta}}} - {\bs \mu}\right).
+$$
+Since $\widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}$ and $\mathbf{U}$ are typically defined through Kronecker products of smaller matrices, their inverses
+are easier to compute than the inverse of their sum. Hence we use Woodbury matrix identity to write
+$$ 
+\mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right) = 
+\frac{1}{2}\, {\bs {\widehat{\beta}}}^{\intercal}\, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \,{\bs {\widehat{\beta}}}
+-\frac{1}{2}\left({\bs {\widehat{\beta}} - {\bs \mu}}\right)^{\intercal} \left( \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} - \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} 
+\left(\mathbf{U}^{-1} + \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \right)^{-1} \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}^{-1} \right ) 
+\left({\bs {\widehat{\beta}} - {\bs \mu}}\right).
+$$
+
+To simplify the determinant calculation we write 
+$$\det\left( \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}} + \mathbf{U} \right) = \det\left( \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}\right) \det\left( \mathbf{I} + \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} \mathbf{U}\right).$$
+The logarithm of the Bayes Factor is then
+$$\log \left( \textrm{BF}_{\textrm{MRP}} \right) = 
+-\frac{1}{2} \log \left( \det\left( \mathbf{I} + \widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}^{-1} \mathbf{U} \right) \right)  + \mathcal{E} \left(\widehat{\bs \beta}, \bs \mu, \widehat{\mathbf{\textrm{V}}}_{\bs {\beta}}, \mathbf{U}\right).$$
+
+
+If studies do not share individuals, $\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}$ is a block-diagonal matrix 
+$$\widehat{\mathbf{\textrm{V}}}_{{\bs {\beta}}}=
+ \left[\begin{array}{c|c|c|c}
+ \widehat{\mathbf{\textrm{V}}}^{1}_{{\bs \beta}} & 0 & \cdots &0\\ \hline
+0 & \widehat{\mathbf{\textrm{V}}}^{2}_{{\bs \beta}}&\cdots &0 \\ \hline
+\vdots & &\ddots &\vdots \\ \hline
+0 & 0 &\cdots & \widehat{\mathbf{\textrm{V}}}^{S}_{{\bs {\beta}}}\\
+\end{array}\right].$$
+If studies share individuals, e.g., controls, 
+we take the approach of Cichonska et al.~\cite{cichonska2016metacca} to use summary level data
+to estimate the correlation structure of the non-diagonal blocks caused by overlapping individuals. 
+
+\bibliography{appendix_references}
+
+\end{document}

@@ -29,18 +29,6 @@
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{overview}{{1}{3}{{\bf Schematic overview of MRP.} A: MRP is suitable for a broad range of rare variant association study designs including (from left to right): i) case-control, ii) multiple diseases with shared controls, iii) single quantitative phenotype, and iv) mixture of case-control and quantitative phenotypes. B: Diagram of factors considered in rare variant association analysis including the correlation matrices: $\mathbf {R_{\textrm {study}}}$ (expected correlation of genetic effects among a group of studies), $\mathbf {R_{\textrm {var}}}$ (expected correlation of genetic effects among a group of variants), and $\mathbf {R_{\textrm {phen}}}$ (expected correlation of genetic effects among a group of phenotypes); the scale parameter for genetic variant annotation; and the location of genetic effects, which may be used to prioritize or identify protective modifiers of disease risk.\relax }{figure.caption.4}{}}
 \citation{DeBoever179762,10.1371/journal.pgen.1006659}
-\newlabel{approxlikelihood}{{}{4}{Likelihood function}{section*.7}{}}
-\citation{band2013imputation}
-\citation{band2013imputation}
-\citation{liu2014meta}
-\newlabel{prioralt}{{}{5}{Prior of $\bs {\beta }$ in the alternative model}{section*.8}{}}
-\citation{Duchesne2010}
-\newlabel{bfmodel}{{}{6}{$\textrm {BF}_{\textrm {MRP}}$}{section*.9}{}}
-\newlabel{quadratic_form}{{1}{6}{$\textrm {BF}_{\textrm {MRP}}$}{equation.0.1}{}}
-\newlabel{app1}{{}{6}{MRP Bayes Factor derivation}{section*.10}{}}
-\citation{cichonska2016metacca}
-\citation{DeBoever179762}
-\citation{DeBoever2017}
 \citation{band2013imputation}
 \citation{macarthur,rivas2013assessing,rivas2015effect}
 \citation{majithia2014rare,findlay2014saturation}
@@ -49,10 +37,12 @@
 \citation{cotsapas2011pervasive,solovieff2013pleiotropy,gencorr2015}
 \citation{do2015exome}
 \citation{cohen2005low,pcsk9,do2013common,cohorts2014loss}
+\citation{DeBoever179762}
+\citation{DeBoever2017}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces {\bf  Simulation studies.} A: Comparison of $-\qopname  \relax o{log}_{10}$(p-values) from frequentist $\textrm  {BF}_{\textrm  {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }}{6}{figure.caption.7}}
+\newlabel{simresults}{{2}{6}{{\bf Simulation studies.} A: Comparison of $-\log _{10}$(p-values) from frequentist $\textrm {BF}_{\textrm {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }{figure.caption.7}{}}
 \citation{liu2014meta}
 \citation{apoc3,apoc32,jorgensen2014loss,cohorts2014loss}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces {\bf  Simulation studies.} A: Comparison of $-\qopname  \relax o{log}_{10}$(p-values) from frequentist $\textrm  {BF}_{\textrm  {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }}{10}{figure.caption.18}}
-\newlabel{simresults}{{2}{10}{{\bf Simulation studies.} A: Comparison of $-\log _{10}$(p-values) from frequentist $\textrm {BF}_{\textrm {MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.\relax }{figure.caption.18}{}}
 \citation{DeBoever179762,10.1371/journal.pgen.1006659}
 \citation{Swanney1046}
 \citation{10.2307/2676803}
@@ -63,21 +53,22 @@
 \citation{CXO:CXO414,MANSOURI2012419,GriseDulac:2012bo}
 \citation{Comes:2011ex,Kuchtey:2008ek}
 \citation{10.1371/journal.pone.0054232}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\bf  Results for asthma application.} $\qopname  \relax o{log}_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) asthma (HC382), (B) eosinophil counts (INI30150), (C) forced vital capacity (FVC, INI3062), (D) forced expiratory volume in 1-second (FEV$_1$, INI3063), (E) all four traits jointly, and (F) all four traits jointly with focus on protective effects. The four genes outside of chromosome 6 with the largest Bayes Factors greater than three are labeled in each plot. Only $\qopname  \relax o{log}_{10}$ Bayes Factors greater than -5 are plotted. (F) $-\qopname  \relax o{log}_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit  {IL33} for each phenotype\relax }}{9}{figure.caption.20}}
+\newlabel{asthma_bma}{{3}{9}{{\bf Results for asthma application.} $\log _{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) asthma (HC382), (B) eosinophil counts (INI30150), (C) forced vital capacity (FVC, INI3062), (D) forced expiratory volume in 1-second (FEV$_1$, INI3063), (E) all four traits jointly, and (F) all four traits jointly with focus on protective effects. The four genes outside of chromosome 6 with the largest Bayes Factors greater than three are labeled in each plot. Only $\log _{10}$ Bayes Factors greater than -5 are plotted. (F) $-\log _{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit {IL33} for each phenotype\relax }{figure.caption.20}{}}
 \citation{DeBoever179762,10.1371/journal.pgen.1006659}
 \citation{Comes:2011ex,Kuchtey:2008ek}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\bf  Results for asthma application.} $\qopname  \relax o{log}_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) asthma (HC382), (B) eosinophil counts (INI30150), (C) forced vital capacity (FVC, INI3062), (D) forced expiratory volume in 1-second (FEV$_1$, INI3063), (E) all four traits jointly, and (F) all four traits jointly with focus on protective effects. The four genes outside of chromosome 6 with the largest Bayes Factors greater than three are labeled in each plot. Only $\qopname  \relax o{log}_{10}$ Bayes Factors greater than -5 are plotted. (F) $-\qopname  \relax o{log}_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit  {IL33} for each phenotype\relax }}{12}{figure.caption.25}}
-\newlabel{asthma_bma}{{3}{12}{{\bf Results for asthma application.} $\log _{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) asthma (HC382), (B) eosinophil counts (INI30150), (C) forced vital capacity (FVC, INI3062), (D) forced expiratory volume in 1-second (FEV$_1$, INI3063), (E) all four traits jointly, and (F) all four traits jointly with focus on protective effects. The four genes outside of chromosome 6 with the largest Bayes Factors greater than three are labeled in each plot. Only $\log _{10}$ Bayes Factors greater than -5 are plotted. (F) $-\log _{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit {IL33} for each phenotype\relax }{figure.caption.25}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure\nobreakspace  {}\ref  {asthma_bma}.}\relax }}{13}{table.caption.26}}
-\newlabel{asthma_table}{{1}{13}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure~\ref {asthma_bma}.}\relax }{table.caption.26}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure\nobreakspace  {}\ref  {glaucoma_bma}.}\relax }}{13}{table.caption.29}}
-\newlabel{table2}{{2}{13}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure~\ref {glaucoma_bma}.}\relax }{table.caption.29}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces {\bf  Results for glaucoma application.} $\qopname  \relax o{log}_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\qopname  \relax o{log}_{10}$ Bayes Factors greater than zero are plotted. F: $-\qopname  \relax o{log}_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit  {ANGPTL7} for all three phenotypes.\relax }}{14}{figure.caption.28}}
-\newlabel{glaucoma_bma}{{4}{14}{{\bf Results for glaucoma application.} $\log _{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log _{10}$ Bayes Factors greater than zero are plotted. F: $-\log _{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit {ANGPTL7} for all three phenotypes.\relax }{figure.caption.28}{}}
-\newlabel{hdf5_fig}{{}{15}{S1 Fig}{section*.33}{}}
-\newlabel{asthma_independent}{{}{16}{S2 Fig}{section*.35}{}}
-\newlabel{asthma_similar}{{}{17}{S3 Fig}{section*.37}{}}
-\newlabel{glaucoma_similar}{{}{18}{S4 Fig}{section*.39}{}}
-\newlabel{glaucoma_independent}{{}{19}{S5 Fig}{section*.41}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure\nobreakspace  {}\ref  {asthma_bma}.}\relax }}{10}{table.caption.21}}
+\newlabel{asthma_table}{{1}{10}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure~\ref {asthma_bma}.}\relax }{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  {\bf  $\qopname  \relax o{log}_{10}$ Bayes Factors for genes highlighted in Figure\nobreakspace  {}\ref  {glaucoma_bma}.}\relax }}{10}{table.caption.24}}
+\newlabel{table2}{{2}{10}{{\bf $\log _{10}$ Bayes Factors for genes highlighted in Figure~\ref {glaucoma_bma}.}\relax }{table.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces {\bf  Results for glaucoma application.} $\qopname  \relax o{log}_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\qopname  \relax o{log}_{10}$ Bayes Factors greater than zero are plotted. F: $-\qopname  \relax o{log}_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit  {ANGPTL7} for all three phenotypes.\relax }}{11}{figure.caption.23}}
+\newlabel{glaucoma_bma}{{4}{11}{{\bf Results for glaucoma application.} $\log _{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log _{10}$ Bayes Factors greater than zero are plotted. F: $-\log _{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit {ANGPTL7} for all three phenotypes.\relax }{figure.caption.23}{}}
+\newlabel{S1_Appendix}{{}{12}{S1 Appendix}{section*.27}{}}
+\newlabel{hdf5_fig}{{}{12}{S1 Fig}{section*.29}{}}
+\newlabel{asthma_independent}{{}{13}{S2 Fig}{section*.31}{}}
+\newlabel{asthma_similar}{{}{14}{S3 Fig}{section*.33}{}}
+\newlabel{glaucoma_similar}{{}{15}{S4 Fig}{section*.35}{}}
+\newlabel{glaucoma_independent}{{}{16}{S5 Fig}{section*.37}{}}
 \bibdata{references}
 \bibcite{ifih1}{1}
 \bibcite{altshuler2010map}{2}
@@ -96,33 +87,32 @@
 \bibcite{DeBoever179762}{15}
 \bibcite{10.1371/journal.pgen.1006659}{16}
 \bibcite{band2013imputation}{17}
-\bibcite{Duchesne2010}{18}
-\bibcite{DeBoever2017}{19}
-\bibcite{macarthur}{20}
-\bibcite{findlay2014saturation}{21}
-\bibcite{calpha}{22}
-\bibcite{clarke2013flexible}{23}
-\bibcite{cotsapas2011pervasive}{24}
-\bibcite{solovieff2013pleiotropy}{25}
-\bibcite{gencorr2015}{26}
-\bibcite{do2015exome}{27}
-\bibcite{cohen2005low}{28}
-\bibcite{do2013common}{29}
-\bibcite{cohorts2014loss}{30}
-\bibcite{apoc3}{31}
-\bibcite{apoc32}{32}
-\bibcite{jorgensen2014loss}{33}
-\bibcite{Swanney1046}{34}
-\bibcite{10.2307/2676803}{35}
-\bibcite{Ferreira:2017ba}{36}
-\bibcite{Ober:2011jk}{37}
-\bibcite{doi:10.1001/jama.2014.3192}{38}
-\bibcite{CXO:CXO414}{39}
-\bibcite{MANSOURI2012419}{40}
-\bibcite{GriseDulac:2012bo}{41}
-\bibcite{Comes:2011ex}{42}
-\bibcite{Kuchtey:2008ek}{43}
-\bibcite{10.1371/journal.pone.0054232}{44}
-\newlabel{LastPage}{{}{23}{}{page.23}{}}
-\xdef\lastpage@lastpage{23}
-\xdef\lastpage@lastpageHy{23}
+\bibcite{macarthur}{18}
+\bibcite{findlay2014saturation}{19}
+\bibcite{calpha}{20}
+\bibcite{clarke2013flexible}{21}
+\bibcite{cotsapas2011pervasive}{22}
+\bibcite{solovieff2013pleiotropy}{23}
+\bibcite{gencorr2015}{24}
+\bibcite{do2015exome}{25}
+\bibcite{cohen2005low}{26}
+\bibcite{do2013common}{27}
+\bibcite{cohorts2014loss}{28}
+\bibcite{DeBoever2017}{29}
+\bibcite{apoc3}{30}
+\bibcite{apoc32}{31}
+\bibcite{jorgensen2014loss}{32}
+\bibcite{Swanney1046}{33}
+\bibcite{10.2307/2676803}{34}
+\bibcite{Ferreira:2017ba}{35}
+\bibcite{Ober:2011jk}{36}
+\bibcite{doi:10.1001/jama.2014.3192}{37}
+\bibcite{CXO:CXO414}{38}
+\bibcite{MANSOURI2012419}{39}
+\bibcite{GriseDulac:2012bo}{40}
+\bibcite{Comes:2011ex}{41}
+\bibcite{Kuchtey:2008ek}{42}
+\bibcite{10.1371/journal.pone.0054232}{43}
+\newlabel{LastPage}{{}{20}{}{page.20}{}}
+\xdef\lastpage@lastpage{20}
+\xdef\lastpage@lastpageHy{20}

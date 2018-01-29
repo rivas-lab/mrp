@@ -103,18 +103,6 @@ Band G, Le QS, Jostins L, Pirinen M, Kivinen K, Jallow M, et~al.
   populations.
 \newblock PLoS genetics. 2013;9(5):e1003509.
 
-\bibitem{Duchesne2010}
-Duchesne P, de~Micheaux PL.
-\newblock Computing the distribution of quadratic forms: Further comparisons
-  between the Liu-Tang-Zhang approximation and exact methods.
-\newblock Computational Statistics and Data Analysis. 2010;54:858--862.
-
-\bibitem{DeBoever2017}
-DeBoever C, Rivas MA.
-\newblock Harnessing digital phenotyping to enhance genetic studies of human
-  diseases.
-\newblock Submitted. 2017;.
-
 \bibitem{macarthur}
 MacArthur DG, Balasubramanian S, Frankish A, Huang N, Morris J, Walter K,
   et~al.
@@ -178,6 +166,12 @@ Do R, Willer CJ, Schmidt EM, Sengupta S, Gao C, Peloso GM, et~al.
 \newblock {Loss-of-function mutations in {\it APOC3}, triglycerides, and
   coronary disease}.
 \newblock New England Journal of Medicine. 2014;371(1):22--31.
+
+\bibitem{DeBoever2017}
+DeBoever C, Rivas MA.
+\newblock Harnessing digital phenotyping to enhance genetic studies of human
+  diseases.
+\newblock Submitted. 2017;.
 
 \bibitem{apoc3}
 Pollin TI, Damcott CM, Shen H, Ott SH, Shelton J, Horenstein RB, et~al.

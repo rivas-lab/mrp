@@ -1,0 +1,27 @@
+\begin{thebibliography}{1}
+
+\bibitem{band2013imputation}
+Band G, Le QS, Jostins L, Pirinen M, Kivinen K, Jallow M, et~al.
+\newblock Imputation-based meta-analysis of severe malaria in three African
+  populations.
+\newblock PLoS genetics. 2013;9(5):e1003509.
+
+\bibitem{liu2014meta}
+Liu DJ, Peloso GM, Zhan X, Holmen OL, Zawistowski M, Feng S, et~al.
+\newblock Meta-analysis of gene-level tests for rare variant association.
+\newblock Nature Genetics. 2014;46(2):200--204.
+
+\bibitem{Duchesne2010}
+Duchesne P, de~Micheaux PL.
+\newblock Computing the distribution of quadratic forms: Further comparisons
+  between the Liu-Tang-Zhang approximation and exact methods.
+\newblock Computational Statistics and Data Analysis. 2010;54:858--862.
+
+\bibitem{cichonska2016metacca}
+Cichonska A, Rousu J, Marttinen P, Kangas AJ, Soininen P, Lehtim{\"a}ki T,
+  et~al.
+\newblock metaCCA: summary statistics-based multivariate meta-analysis of
+  genome-wide association studies using canonical correlation analysis.
+\newblock Bioinformatics. 2016;32(13):1981--1989.
+
+\end{thebibliography}

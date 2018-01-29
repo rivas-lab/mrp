@@ -1,50 +1,50 @@
 This is BibTeX, Version 0.99d (TeX Live 2017)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
-The top-level auxiliary file: manuscript.aux
+The top-level auxiliary file: appendix.aux
 The style file: plos2015.bst
 Database file #1: appendix_references.bib
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 43 entries,
+You've used 4 entries,
             3058 wiz_defined-function locations,
-            919 strings with 20308 characters,
-and the built_in function-call counts, 143867 in all, are:
-= -- 17520
-> -- 908
+            657 strings with 5661 characters,
+and the built_in function-call counts, 11838 in all, are:
+= -- 1461
+> -- 92
 < -- 0
-+ -- 630
-- -- 227
-* -- 13557
-:= -- 15631
-add.period$ -- 178
-call.type$ -- 43
++ -- 48
+- -- 23
+* -- 1078
+:= -- 1292
+add.period$ -- 16
+call.type$ -- 4
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 43
-duplicate$ -- 8075
-empty$ -- 14365
-format.name$ -- 266
-if$ -- 32960
+cite$ -- 4
+duplicate$ -- 793
+empty$ -- 1154
+format.name$ -- 27
+if$ -- 2724
 int.to.chr$ -- 0
-int.to.str$ -- 43
-missing$ -- 479
-newline$ -- 224
-num.names$ -- 43
-pop$ -- 667
+int.to.str$ -- 4
+missing$ -- 47
+newline$ -- 23
+num.names$ -- 4
+pop$ -- 61
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 771
+skip$ -- 78
 stack$ -- 0
-substring$ -- 35000
-swap$ -- 1198
+substring$ -- 2690
+swap$ -- 114
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 508
-width$ -- 45
-write$ -- 485
+while$ -- 49
+width$ -- 5
+write$ -- 46
