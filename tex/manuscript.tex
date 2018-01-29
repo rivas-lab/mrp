@@ -268,7 +268,7 @@ In this paper, we present a Bayesian multiple rare variants and phenotypes (MRP)
 
 % Place figure captions after the first paragraph in which they are cited.
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{../figures/Figure_01.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_01.pdf}
 \caption{{\bf Schematic overview of MRP.}
 A: MRP is suitable for a broad range of rare variant association study designs including (from left to right): i) case-control, ii) multiple diseases with shared controls, iii) single quantitative phenotype, and iv) mixture of case-control and quantitative phenotypes. B: Diagram of factors considered in rare variant association analysis including the correlation matrices: $\mathbf{R_{\textrm{study}}}$  (expected correlation of genetic effects among a group of studies), $\mathbf{R_{\textrm{var}}}$ (expected correlation of genetic effects among a group of variants), and $\mathbf{R_{\textrm{phen}}}$ (expected correlation of genetic effects among a group of phenotypes); the scale parameter for genetic variant annotation; and the location of genetic effects, which may be used to prioritize or identify protective modifiers of disease risk.}
 \label{overview}
@@ -306,7 +306,7 @@ Similarly, we can utilize a prior on the location (direction) of effects to spec
 Applying MRP to variants from a testing unit ${\bs G}$ yields a BF for that testing unit that describes the evidence that rare variants in that testing unit have a nonzero effect on the traits used in the model. For instance, consider genes as testing units. By running MRP, we obtain a BF for each gene that represents the evidence that rare variants in that gene affect the traits of interest. These BF can be used to identify specific genes that may be linked to disease. Although we see advantages in adopting a Bayesian perspective for MRP, our approach could be used in a frequentist context by calculating a BF and using it as a test statistic to compute p-values (\nameref{S1_Appendix}, Fig~\ref{simresults}).
  
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{../figures/Figure_02.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_02.pdf}
 \caption{{\bf Simulation studies.}
 A: Comparison of $-\log_{10}$(p-values) from frequentist $\textrm{BF}_{\textrm{MRP}}$ approximation for an independent effects and a similar effects model to commonly used gene-based statistical tests (skat and burden). B: Comparison of log10(Bayes Factors) obtained when raw genotype and phenotype data is available to a scenario where summary statistics only was available and similar effects across studies is assumed. C: From single variant and single phenotype to multiple variants and multiple phenotypes gene discovery: ROC curves for detecting gene association to any of the phenotypes using single variant/single phenotype association (blue) to multiple variants and multiple phenotypes association (purple). D: ROC curves for detecting gene association when incorporating prior mean of genetic effects (orange) to identify protective alleles.}
 \label{simresults}
@@ -324,8 +324,12 @@ Asthma and glaucoma cases were defined using both Hospital Episode Statistics an
 \subsubsection*{Genetic Correlations}
 We calculated the genetic between the two groups of traits (asthma, eosinophil counts, FVC, FEV$_1$ and glaucoma, intra-ocular pressure, corneal resistance factor) using the MultiVariate Polygenic Mixture Model (MVPMM)~\cite{DeBoever2017}. Briefly, MVPMM estimates genetic correlation given GWAS summary statistics (effect size and standard error of effect size estimate) by modeling GWAS summary statistics as generated from one of two mixture components. Summary statistics from variants in the null component are modeled as being drawn from a multivariate normal distribution with zero mean and covariance matrix that captures correlation in the summary statistics due to the use of shared subjects or other sources of correlation. Summary statistics from variants in the non-null component are modeled as being drawn from a multivariate normal distribution with zero mean, but the covariance matrix for the non-null component combines the covariance matrix from the null component with another covariance matrix that captures the genetic correlation between the phenotypes being considered.
 
-\subsubsection*{UK Biobank Asthma and Glaucoma Applications}
+\subsection*{UK Biobank Asthma and Glaucoma Applications}
 We applied MRP for both sets of traits assuming both an independent effects model and a similar effects model. We applied Bayesian model averaging to these results by averaging the BF from each model for each gene; these results are reported in the main text. The results for each individual model are included in the Supporting Information. For the Manhattan plots and tables, we removed any genes with non-unique gene symbols. In cases where genes overlapped such that they shared rare variants and therefore the same BF, we removed one gene.
+
+\subsubsection*{Variant Filtering}
+We used the $\texttt{variant\_filter\_table.tsv}$ file available at https://github.com/rivas-lab/public-resources (6f9f726) to filter variants on the UK Biobank array for use with MRP. We first chose variants with minor allele frequency less than $1\%$. We then filtered out all variants with $\texttt{all\_filters}$ less than one. This removes variants with missingness greater than $1\%$ (calculated on an array-specific basis for array-specific variants) or Hardy-Weinberg equilibrium $p < 10^{-7}$. This also removes some PTVs for which manual inspection revealed irregular cluster plots \cite{DeBoever179762}. We LD pruned the variants by only using variants with $\texttt{ld}$ equal to one. We included missense variants and PTVs indicated by the following annotations: $\texttt{missense\_variant}$, 
+$\texttt{stop\_gained}$, $\texttt{frameshift\_variant}$, $\texttt{splice\_acceptor\_variant}$, $\texttt{splice\_donor\_variant}$, $\texttt{splice\_region\_variant}$, $\texttt{start\_lost}$, $\texttt{stop\_lost}$.
 
 % Results and Discussion can be combined.
 \section*{Results}
@@ -353,7 +357,7 @@ We also found moderate evidence for associations between rare coding variants in
 
 %% FIGURE: ASTHMA MANHATTAN AND FOREST FOR BMA
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{../figures/Figure_03.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_03.pdf}
 \caption{{\bf Results for asthma application.}
 $\log_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) asthma (HC382), (B) eosinophil counts (INI30150), (C) forced vital capacity (FVC, INI3062), (D) forced expiratory volume in 1-second (FEV$_1$, INI3063), (E) all four traits jointly, and (F) all four traits jointly with focus on protective effects. The four genes outside of chromosome 6 with the largest Bayes Factors greater than three are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted. (F) $-\log_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit{IL33} for each phenotype}
 \label{asthma_bma}
@@ -400,10 +404,12 @@ $\log_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summ
 \end{table}
 
 \subsubsection*{Glaucoma, intra-ocular pressure, and corneal resistance factor}
-We also applied MRP to missense variants and PTVs for glaucoma, intra-ocular pressure, and corneal resistance factor as well as performing joint analyses. Elevated intra-ocular pressure is a measure of the fluid pressure in the eye. Elevated intra-ocular pressure is associated with glaucoma risk and has been linked to genetic variants associated with glaucoma \cite{doi:10.1001/jama.2014.3192}. Corneal resistance factor is a measure of the cornea's ability to resist mechanical stress and has been associated with glaucoma presence and severity \cite{CXO:CXO414, MANSOURI2012419, GriseDulac:2012bo}. While the individual glaucoma analysis did not yield any associations with $\log_{10}$ BF greater than three, the joint analysis identified rare coding variants in both \textit{ANGPTL7}, \textit{WNT10A}, and \textit{KLHL22} as associated with glaucoma (Fig~\ref{glaucoma_bma}A-D). Applying the MRP model to identify protective effects also identified \textit{ANGPTL7} and \textit{WNT10A} but not \textit{KLHL22} (Fig~\ref{glaucoma_bma}E). Expression of \textit{ANGPTL7} is upregulated in glaucome and has been proposed to regulate intra-ocular pressure and glaucoma risk \cite{Comes:2011ex, Kuchtey:2008ek}. \textit{KLHL22} has not been previously associated with glaucoma though a suggestive association was reported for retinopathy in individuals without diabetes \cite{10.1371/journal.pone.0054232}. The GWAS summary statistics for the rare variants in \textit{ANGPTL7} suggest that two missense variants, rs28991002 and rs28991009, appear to drive the association with glaucoma (Fig~\ref{glaucoma_bma}F). These results illustrate that applying model comparison to multiple traits simultaneously can prioritize the discovery of protective modifiers of disease. 
+We also applied MRP to missense variants and PTVs for glaucoma, intra-ocular pressure, and corneal resistance factor as well as performing joint analyses. Intra-ocular pressure is a measure of the fluid pressure in the eye, is associated with glaucoma risk, and has been linked to genetic variants associated with glaucoma \cite{doi:10.1001/jama.2014.3192}. Corneal resistance factor is a measure of the cornea's ability to resist mechanical stress and has been associated with glaucoma presence and severity \cite{CXO:CXO414, MANSOURI2012419, GriseDulac:2012bo}. While the individual glaucoma analysis did not yield any associations with $\log_{10}$ BF greater than three, the joint analysis identified rare coding variants in both \textit{ANGPTL7}, \textit{WNT10A}, and \textit{KLHL22} as associated with glaucoma (Fig~\ref{glaucoma_bma}A-D). Applying the MRP model to identify protective effects also identified \textit{ANGPTL7} and \textit{WNT10A} but not \textit{KLHL22} (Fig~\ref{glaucoma_bma}E). We obtained similar results using the independent effects (\nameref{glaucoma_independent}) or similar effects models (\nameref{glaucoma_similar}). 
+
+Expression of \textit{ANGPTL7} is upregulated in glaucoma and has been proposed to regulate intra-ocular pressure and glaucoma risk \cite{Comes:2011ex, Kuchtey:2008ek}. \textit{KLHL22} has not been previously associated with glaucoma though a suggestive association was reported for retinopathy in individuals without diabetes \cite{10.1371/journal.pone.0054232}. The GWAS summary statistics for the rare variants in \textit{ANGPTL7} suggest that two missense variants, rs28991002 and rs28991009, appear to drive the association with glaucoma (Fig~\ref{glaucoma_bma}F). These results illustrate that applying model comparison to multiple traits simultaneously can prioritize the discovery of protective modifiers of disease. 
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{../figures/Figure_04.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_04.pdf}
 \caption{{\bf Results for glaucoma application.}
 $\log_{10}$ Bayes Factors from applying MRP and Bayesian model averaging to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted. F: $-\log_{10}$ $p$-values (left panel) and estimated effect sizes with 95\% confidence intervals (right panel) for missense variants and PTVs in \textit{ANGPTL7} for all three phenotypes.}
 \label{glaucoma_bma}
@@ -491,7 +497,7 @@ As genetic data linked to high-dimensional phenotype data continues to be made a
 {\bf MRP model details.} Specification of the MRP model including the likelihood function, priors, and Bayes factor calculation.
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{../figures/Figure_S01.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_S01.pdf}
 \end{figure}
 \paragraph*{S1 Fig.}
 \label{hdf5_fig}
@@ -499,7 +505,7 @@ As genetic data linked to high-dimensional phenotype data continues to be made a
 
 %% FIGURE: ASTHMA MANHATTAN AND FOREST FOR INDEPENDENT EFFECTS
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{../figures/Figure_S02.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_S02.pdf}
 \end{figure}
 \paragraph*{S2 Fig.}
 \label{asthma_independent}
@@ -507,25 +513,25 @@ As genetic data linked to high-dimensional phenotype data continues to be made a
 
 %% FIGURE: ASTHMA MANHATTAN AND FOREST FOR SIMILAR EFFECTS
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{../figures/Figure_S03.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_S03.pdf}
 \end{figure}
 \paragraph*{S3 Fig.}
 \label{asthma_similar}
 {\bf Results for similar effects model applied to asthma, eosinophil counts, FEV$_1$, and FVC.} $\log_{10}$ Bayes Factors from applying MRP similar effects model to summary statistics for missense and protein-truncating variants from (A) asthma (HC382), (B) eosinophil counts (INI30150), (C) forced vital capacity (FVC, INI3062), (D) forced expiratory volume in 1-second (FEV$_1$, INI3063), (E) all four traits jointly, and (F) all four traits jointly with focus on protective effects. The four genes outside of chromosome 6 with the largest Bayes Factors greater than three are labeled in each plot. Only $\log_{10}$ Bayes Factors greater than -5 are plotted.
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{../figures/Figure_S04.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_S04.pdf}
 \end{figure}
 \paragraph*{S4 Fig.}
-\label{glaucoma_similar}
-{\bf Results for independent effects model applied to glaucoma intra-ocular pressure, and corneal resistance factor.} $\log_{10}$ Bayes Factors from applying MRP similar effects model to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted.
+\label{glaucoma_independent}
+{\bf Results for independent effects model applied to glaucoma intra-ocular pressure, and corneal resistance factor.} $\log_{10}$ Bayes Factors from applying MRP independent effects model to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted.
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{../figures/Figure_S05.pdf}
+\includegraphics[width=\textwidth]{../figures/final/Figure_S05.pdf}
 \end{figure}
 \paragraph*{S5 Fig.}
-\label{glaucoma_independent}
-{\bf Results for similar effects model applied to glaucoma intra-ocular pressure, and corneal resistance factor.} $\log_{10}$ Bayes Factors from applying MRP independent effects model to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted.
+\label{glaucoma_similar}
+{\bf Results for similar effects model applied to glaucoma intra-ocular pressure, and corneal resistance factor.} $\log_{10}$ Bayes Factors from applying MRP similar effects model to summary statistics for missense and protein-truncating variants from (A) glaucoma (HC276), (B) intra-ocular pressure (INI5263), (C) corneal resistance factor (INI5265), and (D) all three traits jointly. (E) shows the results of a joint analysis focused on finding rare variants that protect against glaucoma. The genes outside of chromosome 6 with with Bayes Factor greater than three are indicated by arrows. Only $\log_{10}$ Bayes Factors greater than zero are plotted.
 
 % \paragraph*{S2 Fig.}
 % \label{S2_Fig}
