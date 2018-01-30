@@ -173,6 +173,12 @@ DeBoever C, Rivas MA.
   diseases.
 \newblock Submitted. 2017;.
 
+\bibitem{Fishilevich:2016hx}
+Fishilevich S, Zimmerman S, Kohn A, Iny~Stein T, Olender T, Kolker E, et~al.
+\newblock {Genic insights from integrated human proteomics in GeneCards.}
+\newblock Database : the journal of biological databases and curation.
+  2016;2016.
+
 \bibitem{apoc3}
 Pollin TI, Damcott CM, Shen H, Ott SH, Shelton J, Horenstein RB, et~al.
 \newblock A null mutation in human {{\it APOC3}} confers a favorable plasma
@@ -202,6 +208,20 @@ Swanney MP, Ruppel G, Enright PL, Pedersen OF, Crapo RO, Miller MR, et~al.
 Hoeting JA, Madigan D, Raftery AE, Volinsky CT.
 \newblock Bayesian Model Averaging: A Tutorial.
 \newblock Statistical Science. 1999;14(4):382--401.
+
+\bibitem{Neighbour:2014jw}
+Neighbour H, Boulet LP, Lemiere C, Sehmi R, Leigh R, Sousa AR, et~al.
+\newblock {Safety and efficacy of an oral CCR3 antagonist in patients with
+  asthma and eosinophilic bronchitis: a randomized, placebo-controlled clinical
+  trial.}
+\newblock Clinical and experimental allergy : journal of the British Society
+  for Allergy and Clinical Immunology. 2014;44(4):508--516.
+
+\bibitem{Pease:2014em}
+Pease JE, Horuk R.
+\newblock {Recent progress in the development of antagonists to the chemokine
+  receptors CCR3 and CCR4.}
+\newblock Expert opinion on drug discovery. 2014;9(5):467--483.
 
 \bibitem{Ferreira:2017ba}
 Ferreira MA, Vonk JM, Baurecht H, Marenholz I, Tian C, Hoffman JD, et~al.
