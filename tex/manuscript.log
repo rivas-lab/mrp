@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  30 JAN 2018 10:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  30 JAN 2018 10:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -746,7 +746,7 @@ Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 304.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [4]
-<../figures/final/Figure_02.pdf, id=1001, 523.9575pt x 401.5pt>
+<../figures/final/Figure_02.pdf, id=1002, 523.9575pt x 401.5pt>
 File: ../figures/final/Figure_02.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_02.pdf>
@@ -823,7 +823,7 @@ Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 355.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [8]
-<../figures/final/Figure_03.pdf, id=1102, 505.89pt x 505.89pt>
+<../figures/final/Figure_03.pdf, id=1103, 505.89pt x 505.89pt>
 File: ../figures/final/Figure_03.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_03.pdf>
@@ -866,7 +866,7 @@ File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 375.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [10 <../figures/final/Figure_03.pdf>] <../figures/final/Figure_04.pdf, id=1330
+ [10 <../figures/final/Figure_03.pdf>] <../figures/final/Figure_04.pdf, id=1331
 , 505.89pt x 505.89pt>
 File: ../figures/final/Figure_04.pdf Graphic file (type pdf)
 
@@ -891,7 +891,7 @@ Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 423.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [11 <../figures/final/Figure_04.pdf>] <../figures/final/Figure_S01.pdf, id=150
-5, 504.88625pt x 358.33875pt>
+6, 504.88625pt x 358.33875pt>
 File: ../figures/final/Figure_S01.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_S01.pdf>
@@ -915,7 +915,7 @@ Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 442.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [12]
-<../figures/final/Figure_S02.pdf, id=1513, 867.24pt x 505.89pt>
+<../figures/final/Figure_S02.pdf, id=1514, 867.24pt x 505.89pt>
 File: ../figures/final/Figure_S02.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_S02.pdf>
@@ -939,7 +939,7 @@ Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 449.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [13 <../figures/final/Figure_S01.pdf>] <../figures/final/Figure_S03.pdf, id=15
-53, 505.89pt x 361.35pt>
+54, 505.89pt x 361.35pt>
 File: ../figures/final/Figure_S03.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_S03.pdf>
@@ -966,7 +966,7 @@ e 460.
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../figures/final/Figure_S03.
 pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] <../figures/final/Figure_S04.pdf, id=1798, 505.89pt x 361.35pt>
+>] <../figures/final/Figure_S04.pdf, id=1799, 505.89pt x 361.35pt>
 File: ../figures/final/Figure_S04.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_S04.pdf>
@@ -974,7 +974,7 @@ Package pdftex.def Info: ../figures/final/Figure_S04.pdf used on input line 463
 .
 (pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
 
-<../figures/final/Figure_S05.pdf, id=1799, 505.89pt x 361.35pt>
+<../figures/final/Figure_S05.pdf, id=1800, 505.89pt x 361.35pt>
 File: ../figures/final/Figure_S05.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_S05.pdf>
@@ -998,7 +998,7 @@ Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 472.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [15 <../figures/final/Figure_S04.pdf>] <../figures/final/Figure_S06.pdf, id=19
-77, 505.89pt x 361.35pt>
+78, 505.89pt x 361.35pt>
 File: ../figures/final/Figure_S06.pdf Graphic file (type pdf)
 
 <use ../figures/final/Figure_S06.pdf>
@@ -1148,7 +1148,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 631.
 Here is how much of TeX's memory you used:
  11312 strings out of 492995
  172742 string characters out of 6132704
- 322419 words of memory out of 5000000
+ 321419 words of memory out of 5000000
  14488 multiletter control sequences out of 15000+600000
  13475 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1168,10 +1168,10 @@ exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/tex
 live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
 ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texli
 ve/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on manuscript.pdf (22 pages, 3426257 bytes).
+Output written on manuscript.pdf (22 pages, 3426887 bytes).
 PDF statistics:
- 2408 PDF objects out of 2487 (max. 8388607)
- 1060 compressed objects within 11 object streams
+ 2409 PDF objects out of 2487 (max. 8388607)
+ 1061 compressed objects within 11 object streams
  114 named destinations out of 1000 (max. 500000)
  14904 words of extra memory for PDF output out of 17280 (max. 10000000)
 
