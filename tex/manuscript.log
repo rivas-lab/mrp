@@ -1,8 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 JAN 2018 22:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  29 JAN 2018 10:23
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**manuscript
+**manuscript.tex
 (./manuscript.tex
 LaTeX2e <2016/03/31>
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
@@ -649,14 +650,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 255.
+(epstopdf)             \includegraphics on input line 258.
 Package epstopdf Info: Output file is already uptodate.
 
 <PLOS-submission-eps-converted-to.pdf, id=4, 216.81pt x 35.13126pt>
@@ -664,7 +665,7 @@ File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 255.
+e 258.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmss' (encoding: OT1).
@@ -674,21 +675,22 @@ Package microtype Info: Loading generic settings for font family
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./PLOS-
 submission-eps-converted-to.pdf>]
-<../figures/Figure_01.pdf, id=29, 534.99875pt x 357.335pt>
-File: ../figures/Figure_01.pdf Graphic file (type pdf)
+<../figures/final/Figure_01.pdf, id=29, 534.99875pt x 357.335pt>
+File: ../figures/final/Figure_01.pdf Graphic file (type pdf)
 
-<use ../figures/Figure_01.pdf>
-Package pdftex.def Info: ../figures/Figure_01.pdf used on input line 271.
+<use ../figures/final/Figure_01.pdf>
+Package pdftex.def Info: ../figures/final/Figure_01.pdf used on input line 274.
+
 (pdftex.def)             Requested size: 379.4175pt x 253.43153pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
@@ -700,15 +702,11 @@ Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 282.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [2]
-Package microtype Info: Loading generic settings for font family
-(microtype)             `cmtt' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
@@ -720,318 +718,341 @@ File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 288.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [3 <../figures/Figure_01.pdf>]
+ [3 <../figures/final/Figure_01.pdf>]
+Package microtype Info: Loading generic settings for font family
+(microtype)             `cmtt' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 303.
+(epstopdf)             \includegraphics on input line 304.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
-
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 303.
+e 304.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [4]
-<../figures/Figure_02.pdf, id=1001, 523.9575pt x 401.5pt>
-File: ../figures/Figure_02.pdf Graphic file (type pdf)
+<../figures/final/Figure_02.pdf, id=1001, 523.9575pt x 401.5pt>
+File: ../figures/final/Figure_02.pdf Graphic file (type pdf)
 
-<use ../figures/Figure_02.pdf>
-Package pdftex.def Info: ../figures/Figure_02.pdf used on input line 309.
+<use ../figures/final/Figure_02.pdf>
+Package pdftex.def Info: ../figures/final/Figure_02.pdf used on input line 312.
+
 (pdftex.def)             Requested size: 379.4175pt x 290.74614pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 321.
+(epstopdf)             \includegraphics on input line 324.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 321.
+e 324.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [5]
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 326.
+(epstopdf)             \includegraphics on input line 329.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 326.
+e 329.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [6 <../figures/Figure_02.pdf>]
+ [6 <../figures/final/Figure_02.pdf>]
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 343.
+(epstopdf)             \includegraphics on input line 346.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
-
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 343.
+e 346.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [7]
-<../figures/Figure_03.pdf, id=1077, 505.89pt x 505.89pt>
-File: ../figures/Figure_03.pdf Graphic file (type pdf)
-
-<use ../figures/Figure_03.pdf>
-Package pdftex.def Info: ../figures/Figure_03.pdf used on input line 356.
-(pdftex.def)             Requested size: 379.4175pt x 379.42427pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 402.
+(epstopdf)             \includegraphics on input line 358.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
+
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 402.
+e 358.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
  [8]
+<../figures/final/Figure_03.pdf, id=1093, 505.89pt x 505.89pt>
+File: ../figures/final/Figure_03.pdf Graphic file (type pdf)
+
+<use ../figures/final/Figure_03.pdf>
+Package pdftex.def Info: ../figures/final/Figure_03.pdf used on input line 363.
+
+(pdftex.def)             Requested size: 379.4175pt x 379.42427pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 404.
+(epstopdf)             \includegraphics on input line 413.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
-
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 404.
+e 413.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [9 <../figures/Figure_03.pdf>]
-<../figures/Figure_04.pdf, id=1299, 505.89pt x 505.89pt>
-File: ../figures/Figure_04.pdf Graphic file (type pdf)
+ [9]
+<../figures/final/Figure_04.pdf, id=1123, 505.89pt x 505.89pt>
+File: ../figures/final/Figure_04.pdf Graphic file (type pdf)
 
-<use ../figures/Figure_04.pdf>
-Package pdftex.def Info: ../figures/Figure_04.pdf used on input line 406.
+<use ../figures/final/Figure_04.pdf>
+Package pdftex.def Info: ../figures/final/Figure_04.pdf used on input line 415.
+
 (pdftex.def)             Requested size: 379.4175pt x 379.42427pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (4.7251pt too wide) in paragraph at lines 420--420
+Overfull \hbox (4.7251pt too wide) in paragraph at lines 429--429
 []|\OT1/cmr/bx/n/10 Glaucoma| 
  []
 
 
-Underfull \hbox (badness 1348) in paragraph at lines 420--421
+Underfull \hbox (badness 1348) in paragraph at lines 429--430
 []|\OT1/cmr/bx/n/10 Corneal re-sis-tance
  []
 
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 477.
+(epstopdf)             \includegraphics on input line 486.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 477.
+e 486.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [10]
+ [10 <../figures/final/Figure_03.pdf>]
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 479.
+(epstopdf)             \includegraphics on input line 486.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
-
-<use PLOS-submission-eps-converted-to.pdf>
+ <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 479.
+e 486.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [11 <../figures/Figure_04.pdf>]
-<../figures/Figure_S01.pdf, id=1475, 504.88625pt x 358.33875pt>
-File: ../figures/Figure_S01.pdf Graphic file (type pdf)
+ [11 <../figures/final/Figure_04.pdf>] <../figures/final/Figure_S01.pdf, id=148
+1, 504.88625pt x 358.33875pt>
+File: ../figures/final/Figure_S01.pdf Graphic file (type pdf)
 
-<use ../figures/Figure_S01.pdf>
-Package pdftex.def Info: ../figures/Figure_S01.pdf used on input line 494.
+<use ../figures/final/Figure_S01.pdf>
+Package pdftex.def Info: ../figures/final/Figure_S01.pdf used on input line 503
+.
 (pdftex.def)             Requested size: 379.4175pt x 269.28925pt.
+Package epstopdf Info: Source file: <PLOS-submission.eps>
+(epstopdf)                    date: 2016-12-21 14:45:06
+(epstopdf)                    size: 283246 bytes
+(epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-01-22 14:44:54
+(epstopdf)                    size: 15452 bytes
+(epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
+ted-to.pdf PLOS-submission.eps>
+(epstopdf)             \includegraphics on input line 505.
+Package epstopdf Info: Output file is already uptodate.
+File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 
-<../figures/Figure_S02.pdf, id=1476, 505.89pt x 361.35pt>
-File: ../figures/Figure_S02.pdf Graphic file (type pdf)
+<use PLOS-submission-eps-converted-to.pdf>
+Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
+e 505.
+(pdftex.def)             Requested size: 144.54pt x 23.42201pt.
+ [12]
+<../figures/final/Figure_S02.pdf, id=1489, 505.89pt x 361.35pt>
+File: ../figures/final/Figure_S02.pdf Graphic file (type pdf)
 
-<use ../figures/Figure_S02.pdf>
-Package pdftex.def Info: ../figures/Figure_S02.pdf used on input line 502.
+<use ../figures/final/Figure_S02.pdf>
+Package pdftex.def Info: ../figures/final/Figure_S02.pdf used on input line 511
+.
 (pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 504.
+(epstopdf)             \includegraphics on input line 513.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
- <use PLOS-submission-eps-converted-to.pdf>
+
+<use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 504.
+e 513.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
+ [13 <../figures/final/Figure_S01.pdf>] <../figures/final/Figure_S03.pdf, id=15
+29, 505.89pt x 361.35pt>
+File: ../figures/final/Figure_S03.pdf Graphic file (type pdf)
 
-[12 <../figures/Figure_S01.pdf>]
-<../figures/Figure_S03.pdf, id=1516, 505.89pt x 361.35pt>
-File: ../figures/Figure_S03.pdf Graphic file (type pdf)
-
-<use ../figures/Figure_S03.pdf>
-Package pdftex.def Info: ../figures/Figure_S03.pdf used on input line 510.
+<use ../figures/final/Figure_S03.pdf>
+Package pdftex.def Info: ../figures/final/Figure_S03.pdf used on input line 519
+.
 (pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 512.
+(epstopdf)             \includegraphics on input line 521.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
- <use PLOS-submission-eps-converted-to.pdf>
+
+<use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 512.
+e 521.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
+ [14 <../figures/final/Figure_S02.pdf>] <../figures/final/Figure_S04.pdf, id=17
+09, 505.89pt x 361.35pt>
+File: ../figures/final/Figure_S04.pdf Graphic file (type pdf)
 
-[13 <../figures/Figure_S02.pdf>]
-<../figures/Figure_S04.pdf, id=1697, 505.89pt x 361.35pt>
-File: ../figures/Figure_S04.pdf Graphic file (type pdf)
-
-<use ../figures/Figure_S04.pdf>
-Package pdftex.def Info: ../figures/Figure_S04.pdf used on input line 517.
+<use ../figures/final/Figure_S04.pdf>
+Package pdftex.def Info: ../figures/final/Figure_S04.pdf used on input line 526
+.
 (pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 519.
+(epstopdf)             \includegraphics on input line 528.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
- <use PLOS-submission-eps-converted-to.pdf>
+
+<use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 519.
+e 528.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
+ [15 <../figures/final/Figure_S03.pdf>] <../figures/final/Figure_S05.pdf, id=18
+87, 505.89pt x 361.35pt>
+File: ../figures/final/Figure_S05.pdf Graphic file (type pdf)
 
-[14 <../figures/Figure_S03.pdf>]
-<../figures/Figure_S05.pdf, id=1875, 505.89pt x 361.35pt>
-File: ../figures/Figure_S05.pdf Graphic file (type pdf)
-
-<use ../figures/Figure_S05.pdf>
-Package pdftex.def Info: ../figures/Figure_S05.pdf used on input line 524.
+<use ../figures/final/Figure_S05.pdf>
+Package pdftex.def Info: ../figures/final/Figure_S05.pdf used on input line 533
+.
 (pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 526.
+(epstopdf)             \includegraphics on input line 535.
+Package epstopdf Info: Output file is already uptodate.
+File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
+
+<use PLOS-submission-eps-converted-to.pdf>
+Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
+e 535.
+(pdftex.def)             Requested size: 144.54pt x 23.42201pt.
+ [16 <../figures/final/Figure_S04.pdf>]
+Package epstopdf Info: Source file: <PLOS-submission.eps>
+(epstopdf)                    date: 2016-12-21 14:45:06
+(epstopdf)                    size: 283246 bytes
+(epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-01-22 14:44:54
+(epstopdf)                    size: 15452 bytes
+(epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
+ted-to.pdf PLOS-submission.eps>
+(epstopdf)             \includegraphics on input line 565.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
  <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 526.
+e 565.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
-
-[15 <../figures/Figure_S04.pdf>]
+ [17 <../figures/final/Figure_S05.pdf>] (./manuscript.bbl
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
-(epstopdf)                    size: 15452 bytes
-(epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
-ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 556.
-Package epstopdf Info: Output file is already uptodate.
-File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
- <use PLOS-submission-eps-converted-to.pdf>
-Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 556.
-(pdftex.def)             Requested size: 144.54pt x 23.42201pt.
-
-[16 <../figures/Figure_S05.pdf>] (./manuscript.bbl
-Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
-(epstopdf)                    size: 283246 bytes
-(epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
-
-<use PLOS-submission-eps-converted-to.pdf>
+ <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 73.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [17]
+ [18]
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
@@ -1043,12 +1064,12 @@ File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 157.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [18]
+ [19]
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
@@ -1060,42 +1081,42 @@ File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
 e 253.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [19])
+ [20])
 
 AED: lastpage setting LastPage
 Package epstopdf Info: Source file: <PLOS-submission.eps>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2016-12-21 14:45:06
 (epstopdf)                    size: 283246 bytes
 (epstopdf)             Output file: <PLOS-submission-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-01-27 14:21:26
+(epstopdf)                    date: 2018-01-22 14:44:54
 (epstopdf)                    size: 15452 bytes
 (epstopdf)             Command: <repstopdf --outfile=PLOS-submission-eps-conver
 ted-to.pdf PLOS-submission.eps>
-(epstopdf)             \includegraphics on input line 605.
+(epstopdf)             \includegraphics on input line 614.
 Package epstopdf Info: Output file is already uptodate.
 File: PLOS-submission-eps-converted-to.pdf Graphic file (type pdf)
 <use PLOS-submission-eps-converted-to.pdf>
 Package pdftex.def Info: PLOS-submission-eps-converted-to.pdf used on input lin
-e 605.
+e 614.
 (pdftex.def)             Requested size: 144.54pt x 23.42201pt.
- [20]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 605.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 605.
+ [21]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 614.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 614.
  (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 605.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 605.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 614.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 614.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 605.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 614.
  ) 
 Here is how much of TeX's memory you used:
- 11252 strings out of 493014
- 171495 string characters out of 6133351
- 323818 words of memory out of 5000000
- 14438 multiletter control sequences out of 15000+600000
- 12707 words of font info for 71 fonts, out of 8000000 for 9000
+ 11262 strings out of 493014
+ 171850 string characters out of 6133351
+ 320819 words of memory out of 5000000
+ 14443 multiletter control sequences out of 15000+600000
+ 13151 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,46p,1839b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,15n,46p,1843b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
@@ -1107,13 +1128,14 @@ local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
 al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/
 texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/te
-xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/tex
-live/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on manuscript.pdf (20 pages, 3289834 bytes).
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texli
+ve/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on manuscript.pdf (21 pages, 3300134 bytes).
 PDF statistics:
- 2283 PDF objects out of 2487 (max. 8388607)
- 1005 compressed objects within 11 object streams
- 104 named destinations out of 1000 (max. 500000)
- 13875 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 2296 PDF objects out of 2487 (max. 8388607)
+ 1016 compressed objects within 11 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 14899 words of extra memory for PDF output out of 17280 (max. 10000000)
 
