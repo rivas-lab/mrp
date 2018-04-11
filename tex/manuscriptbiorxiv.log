@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  16 MAR 2018 00:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  21 MAR 2018 11:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -530,11 +530,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks31
 \@floatcapt=\box30
 )
-(./manuscriptbiorxiv.aux
-
-LaTeX Warning: Label `asthma_table' multiply defined.
-
-)
+No file manuscriptbiorxiv.aux.
 \openout1 = `manuscriptbiorxiv.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 204.
@@ -552,7 +548,7 @@ LaTeX Font Info:    ... okay on input line 204.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 204.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 204.
 
- (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 204.
@@ -601,8 +597,6 @@ Package hyperref Info: Link coloring OFF on input line 204.
 LaTeX Info: Redefining \ref on input line 204.
 LaTeX Info: Redefining \pageref on input line 204.
 LaTeX Info: Redefining \nameref on input line 204.
-
-(./manuscriptbiorxiv.out) (./manuscriptbiorxiv.out)
 \@outlinefile=\write3
 \openout3 = `manuscriptbiorxiv.out'.
 
@@ -655,7 +649,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [1
+)
+
+LaTeX Warning: Reference `LastPage' on page 1 undefined on input line 261.
+
+[1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Package microtype Info: Loading generic settings for font family
@@ -663,140 +661,438 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<../figures/final/Figure_01.pdf, id=23, 534.99875pt x 357.335pt>
-File: ../figures/final/Figure_01.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_01.pdf>
-Package pdftex.def Info: ../figures/final/Figure_01.pdf used on input line 277.
-
-(pdftex.def)             Requested size: 379.4175pt x 253.43153pt.
+LaTeX Warning: Citation `ifih1' on page 2 undefined on input line 267.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Citation `altshuler2010map' on page 2 undefined on input line 26
+7.
 
-[2] [3 <../figures/final/Figure_01.pdf>]
+
+LaTeX Warning: Citation `rivas2011deep' on page 2 undefined on input line 267.
+
+
+LaTeX Warning: Citation `10002012integrated' on page 2 undefined on input line 
+267.
+
+
+LaTeX Warning: Citation `majithia2014rare' on page 2 undefined on input line 27
+0.
+
+
+LaTeX Warning: Citation `lee2014rare' on page 2 undefined on input line 270.
+
+
+LaTeX Warning: Reference `overview' on page 2 undefined on input line 273.
+
+
+LaTeX Warning: Citation `liu2014meta' on page 2 undefined on input line 278.
+
+
+LaTeX Warning: Citation `cichonska2016metacca' on page 2 undefined on input lin
+e 278.
+
+
+LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 279.
+
+[2]
+
+LaTeX Warning: Citation `rivas2013assessing' on page 3 undefined on input line 
+281.
+
+
+LaTeX Warning: Citation `rivas2015effect' on page 3 undefined on input line 281
+.
+
+
+LaTeX Warning: Citation `pcsk9' on page 3 undefined on input line 281.
+
+
+LaTeX Warning: Citation `cohen2006sequence' on page 3 undefined on input line 2
+81.
+
+
+LaTeX Warning: Citation `sullivan2012effect' on page 3 undefined on input line 
+281.
+
+
+LaTeX Warning: Citation `skat' on page 3 undefined on input line 284.
+
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [4]
-<../figures/final/Figure_02.pdf, id=996, 523.9575pt x 401.5pt>
-File: ../figures/final/Figure_02.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_02.pdf>
-Package pdftex.def Info: ../figures/final/Figure_02.pdf used on input line 315.
-
-(pdftex.def)             Requested size: 379.4175pt x 290.74614pt.
+LaTeX Warning: Citation `DeBoever179762' on page 3 undefined on input line 287.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[5] [6 <../figures/final/Figure_02.pdf>] [7] [8]
-<../figures/final/Figure_03.pdf, id=1100, 505.89pt x 505.89pt>
-File: ../figures/final/Figure_03.pdf Graphic file (type pdf)
-
-<use ../figures/final/Figure_03.pdf>
-Package pdftex.def Info: ../figures/final/Figure_03.pdf used on input line 368.
-
-(pdftex.def)             Requested size: 379.4175pt x 379.42427pt.
+LaTeX Warning: Citation `10.1371/journal.pgen.1006659' on page 3 undefined on i
+nput line 287.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Reference `S1_Appendix' on page 3 undefined on input line 292.
 
-[9] [10 <../figures/final/Figure_03.pdf>]
-<../figures/final/Figure_04.pdf, id=1328, 505.89pt x 505.89pt>
-File: ../figures/final/Figure_04.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_04.pdf>
-Package pdftex.def Info: ../figures/final/Figure_04.pdf used on input line 382.
+LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 295.
 
-(pdftex.def)             Requested size: 379.4175pt x 379.42427pt.
- [11 <../figures/final/Figure_04.pdf>]
-<../figures/final/Figure_S01.pdf, id=1503, 504.88625pt x 358.33875pt>
-File: ../figures/final/Figure_S01.pdf Graphic file (type pdf)
+[3]
 
-<use ../figures/final/Figure_S01.pdf>
-Package pdftex.def Info: ../figures/final/Figure_S01.pdf used on input line 443
+LaTeX Warning: Citation `band2013imputation' on page 4 undefined on input line 
+296.
+
+
+LaTeX Warning: Citation `macarthur' on page 4 undefined on input line 297.
+
+
+LaTeX Warning: Citation `rivas2013assessing' on page 4 undefined on input line 
+297.
+
+
+LaTeX Warning: Citation `rivas2015effect' on page 4 undefined on input line 297
 .
-(pdftex.def)             Requested size: 379.4175pt x 269.28925pt.
- [12]
-<../figures/final/Figure_S02.pdf, id=1511, 867.24pt x 505.89pt>
-File: ../figures/final/Figure_S02.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_S02.pdf>
-Package pdftex.def Info: ../figures/final/Figure_S02.pdf used on input line 450
+
+LaTeX Warning: Citation `majithia2014rare' on page 4 undefined on input line 29
+7.
+
+
+LaTeX Warning: Citation `findlay2014saturation' on page 4 undefined on input li
+ne 297.
+
+
+LaTeX Warning: Citation `calpha' on page 4 undefined on input line 297.
+
+
+LaTeX Warning: Citation `clarke2013flexible' on page 4 undefined on input line 
+297.
+
+
+LaTeX Warning: Citation `skat' on page 4 undefined on input line 297.
+
+
+LaTeX Warning: Citation `cotsapas2011pervasive' on page 4 undefined on input li
+ne 298.
+
+
+LaTeX Warning: Citation `solovieff2013pleiotropy' on page 4 undefined on input 
+line 298.
+
+
+LaTeX Warning: Citation `gencorr2015' on page 4 undefined on input line 298.
+
+
+LaTeX Warning: Reference `S1_Appendix' on page 4 undefined on input line 300.
+
+
+LaTeX Warning: Citation `do2015exome' on page 4 undefined on input line 302.
+
+
+LaTeX Warning: Reference `S1_Appendix' on page 4 undefined on input line 302.
+
+
+LaTeX Warning: Reference `S1_Appendix' on page 4 undefined on input line 304.
+
+
+LaTeX Warning: Citation `cohen2005low' on page 4 undefined on input line 304.
+
+
+LaTeX Warning: Citation `pcsk9' on page 4 undefined on input line 304.
+
+
+LaTeX Warning: Citation `do2013common' on page 4 undefined on input line 304.
+
+
+LaTeX Warning: Citation `cohorts2014loss' on page 4 undefined on input line 304
 .
-(pdftex.def)             Requested size: 379.4175pt x 221.32632pt.
- [13 <../figures/final/Figure_S01.pdf>]
-<../figures/final/Figure_S03.pdf, id=1551, 505.89pt x 361.35pt>
-File: ../figures/final/Figure_S03.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_S03.pdf>
-Package pdftex.def Info: ../figures/final/Figure_S03.pdf used on input line 458
+
+LaTeX Warning: Reference `S1_Appendix' on page 4 undefined on input line 306.
+
+
+LaTeX Warning: Reference `simresults' on page 4 undefined on input line 306.
+
+
+LaTeX Warning: Reference `LastPage' on page 4 undefined on input line 307.
+
+[4]
+
+LaTeX Warning: Reference `hdf5_fig' on page 5 undefined on input line 309.
+
+
+LaTeX Warning: Citation `DeBoever179762' on page 5 undefined on input line 313.
+
+
+
+LaTeX Warning: Citation `hill2017stepwise' on page 5 undefined on input line 31
+3.
+
+
+LaTeX Warning: Citation `DeBoever2017' on page 5 undefined on input line 318.
+
+
+LaTeX Warning: Reference `gcorr_fig' on page 5 undefined on input line 318.
+
+
+LaTeX Warning: Citation `gencorr2015' on page 5 undefined on input line 318.
+
+
+LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 319.
+
+[5]
+
+LaTeX Warning: Citation `Fishilevich:2016hx' on page 6 undefined on input line 
+321.
+
+
+LaTeX Warning: Citation `DeBoever179762' on page 6 undefined on input line 324.
+
+
+
+LaTeX Warning: Reference `S1_Appendix' on page 6 undefined on input line 335.
+
+
+LaTeX Warning: Reference `simresults' on page 6 undefined on input line 335.
+
+
+LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 337.
+
+[6]
+
+LaTeX Warning: Citation `liu2014meta' on page 7 undefined on input line 338.
+
+
+LaTeX Warning: Reference `simresults' on page 7 undefined on input line 338.
+
+
+LaTeX Warning: Citation `apoc3' on page 7 undefined on input line 341.
+
+
+LaTeX Warning: Citation `apoc32' on page 7 undefined on input line 341.
+
+
+LaTeX Warning: Citation `jorgensen2014loss' on page 7 undefined on input line 3
+41.
+
+
+LaTeX Warning: Citation `cohorts2014loss' on page 7 undefined on input line 341
 .
-(pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
- [14 <../figures/final/Figure_S02.pdf> <../figures/final/Figure_S03.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../figures/final/Figure_S03.
-pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] <../figures/final/Figure_S04.pdf, id=1796, 505.89pt x 361.35pt>
-File: ../figures/final/Figure_S04.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_S04.pdf>
-Package pdftex.def Info: ../figures/final/Figure_S04.pdf used on input line 466
+LaTeX Warning: Reference `simresults' on page 7 undefined on input line 341.
+
+
+LaTeX Warning: Reference `simresults' on page 7 undefined on input line 341.
+
+
+LaTeX Warning: Citation `DeBoever179762' on page 7 undefined on input line 347.
+
+
+
+LaTeX Warning: Citation `10.1371/journal.pgen.1006659' on page 7 undefined on i
+nput line 347.
+
+
+LaTeX Warning: Citation `Swanney1046' on page 7 undefined on input line 347.
+
+
+LaTeX Warning: Reference `asthma_bma' on page 7 undefined on input line 347.
+
+
+LaTeX Warning: Reference `asthma_bma' on page 7 undefined on input line 347.
+
+
+LaTeX Warning: Citation `10.2307/2676803' on page 7 undefined on input line 347
 .
-(pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
 
-<../figures/final/Figure_S05.pdf, id=1797, 505.89pt x 361.35pt>
-File: ../figures/final/Figure_S05.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_S05.pdf>
-Package pdftex.def Info: ../figures/final/Figure_S05.pdf used on input line 473
+LaTeX Warning: Reference `asthma_table' on page 7 undefined on input line 347.
+
+
+LaTeX Warning: Citation `DeBoever179762' on page 7 undefined on input line 347.
+
+
+
+LaTeX Warning: Citation `10.1371/journal.pgen.1006659' on page 7 undefined on i
+nput line 347.
+
+
+LaTeX Warning: Reference `asthma_bma' on page 7 undefined on input line 347.
+
+
+LaTeX Warning: Reference `asthma_independent' on page 7 undefined on input line
+ 347.
+
+
+LaTeX Warning: Reference `asthma_similar' on page 7 undefined on input line 347
 .
-(pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
- [15 <../figures/final/Figure_S04.pdf>]
-<../figures/final/Figure_S06.pdf, id=1975, 505.89pt x 361.35pt>
-File: ../figures/final/Figure_S06.pdf Graphic file (type pdf)
 
-<use ../figures/final/Figure_S06.pdf>
-Package pdftex.def Info: ../figures/final/Figure_S06.pdf used on input line 480
+
+LaTeX Warning: Reference `asthma_bma' on page 7 undefined on input line 347.
+
+
+LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 348.
+
+[7]
+
+LaTeX Warning: Reference `asthma_bma' on page 8 undefined on input line 349.
+
+
+LaTeX Warning: Reference `asthma_table' on page 8 undefined on input line 349.
+
+
+LaTeX Warning: Citation `Neighbour:2014jw' on page 8 undefined on input line 34
+9.
+
+
+LaTeX Warning: Citation `Pease:2014em' on page 8 undefined on input line 349.
+
+
+LaTeX Warning: Citation `Ferreira:2017ba' on page 8 undefined on input line 349
 .
-(pdftex.def)             Requested size: 379.4175pt x 271.01735pt.
- [16 <../figures/final/Figure_S05.pdf>]
-Overfull \hbox (4.7251pt too wide) in paragraph at lines 538--538
+
+
+LaTeX Warning: Citation `Ober:2011jk' on page 8 undefined on input line 349.
+
+
+LaTeX Warning: Citation `doi:10.1001/jama.2014.3192' on page 8 undefined on inp
+ut line 354.
+
+
+LaTeX Warning: Citation `CXO:CXO414' on page 8 undefined on input line 354.
+
+
+LaTeX Warning: Citation `MANSOURI2012419' on page 8 undefined on input line 354
+.
+
+
+LaTeX Warning: Citation `GriseDulac:2012bo' on page 8 undefined on input line 3
+54.
+
+
+LaTeX Warning: Reference `glaucoma_bma' on page 8 undefined on input line 354.
+
+
+LaTeX Warning: Reference `glaucoma_table' on page 8 undefined on input line 354
+.
+
+
+LaTeX Warning: Reference `glaucoma_bma' on page 8 undefined on input line 354.
+
+
+LaTeX Warning: Reference `glaucoma_independent' on page 8 undefined on input li
+ne 354.
+
+
+LaTeX Warning: Reference `glaucoma_similar' on page 8 undefined on input line 3
+54.
+
+
+LaTeX Warning: Citation `Comes:2011ex' on page 8 undefined on input line 356.
+
+
+LaTeX Warning: Citation `Kuchtey:2008ek' on page 8 undefined on input line 356.
+
+
+
+LaTeX Warning: Reference `glaucoma_bma' on page 8 undefined on input line 356.
+
+
+LaTeX Warning: Citation `Fishilevich:2016hx' on page 8 undefined on input line 
+356.
+
+
+LaTeX Warning: Citation `CuellarPartida:2015hb' on page 8 undefined on input li
+ne 356.
+
+
+LaTeX Warning: Citation `DeBoever179762' on page 8 undefined on input line 397.
+
+
+
+LaTeX Warning: Citation `10.1371/journal.pgen.1006659' on page 8 undefined on i
+nput line 397.
+
+
+LaTeX Warning: Citation `Comes:2011ex' on page 8 undefined on input line 397.
+
+
+LaTeX Warning: Citation `Kuchtey:2008ek' on page 8 undefined on input line 397.
+
+
+
+LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 398.
+
+[8]
+
+LaTeX Warning: Reference `LastPage' on page 9 undefined on input line 433.
+
+[9]
+No file manuscriptbiorxiv.bbl.
+
+LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 523.
+
+[10]
+
+LaTeX Warning: Reference `LastPage' on page 11 undefined on input line 567.
+
+[11]
+
+LaTeX Warning: Reference `asthma_bma' on page 12 undefined on input line 612.
+
+
+Overfull \hbox (4.7251pt too wide) in paragraph at lines 623--623
 []|\OT1/cmr/bx/n/10 Glaucoma| 
  []
 
 
-Underfull \hbox (badness 1348) in paragraph at lines 538--539
+Underfull \hbox (badness 1348) in paragraph at lines 623--624
 []|\OT1/cmr/bx/n/10 Corneal re-sis-tance
  []
 
-[17 <../figures/final/Figure_S06.pdf>] (./manuscriptbiorxiv.bbl [18] [19]
-[20] [21]) 
+
+LaTeX Warning: Reference `glaucoma_bma' on page 12 undefined on input line 644.
+
+
+
+Package lastpage Warning: Rerun to get the references right on input line 647.
+
+
 AED: lastpage setting LastPage
-[22]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 634.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 634.
+
+LaTeX Warning: Reference `LastPage' on page 12 undefined on input line 647.
+
+[12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 647.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 647.
  (./manuscriptbiorxiv.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 634.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 634.
-Package rerunfilecheck Info: File `manuscriptbiorxiv.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 647.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 647.
 
 
-LaTeX Warning: There were multiply-defined labels.
+Package rerunfilecheck Warning: File `manuscriptbiorxiv.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 634.
+Package rerunfilecheck Info: Checksums for `manuscriptbiorxiv.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 647.
  ) 
 Here is how much of TeX's memory you used:
- 11301 strings out of 492995
- 172574 string characters out of 6132704
- 321387 words of memory out of 5000000
- 14482 multiletter control sequences out of 15000+600000
- 13148 words of font info for 75 fonts, out of 8000000 for 9000
+ 11171 strings out of 492995
+ 169675 string characters out of 6132704
+ 316768 words of memory out of 5000000
+ 14436 multiletter control sequences out of 15000+600000
+ 12932 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,11n,46p,1868b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,12n,43p,2003b,406s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
@@ -811,10 +1107,10 @@ texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/tex
 live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texl
 ive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on manuscriptbiorxiv.pdf (22 pages, 3406337 bytes).
+Output written on manuscriptbiorxiv.pdf (12 pages, 203169 bytes).
 PDF statistics:
- 2402 PDF objects out of 2487 (max. 8388607)
- 1057 compressed objects within 11 object streams
- 114 named destinations out of 1000 (max. 500000)
- 12851 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 12801 words of extra memory for PDF output out of 14400 (max. 10000000)
 
