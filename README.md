@@ -105,10 +105,12 @@ optional arguments:
                                  phenotypes).
 ```
 
-## MRP: Variant groupings
+## Variant groupings
 
-The following groups are how we assign priors (`sigma_m`) to variants. All others are filtered out:
+The following groups are how we assign priors (`sigma_m`) to variants within the script. All others are filtered out:
 
 `ptv = ['frameshift_variant', 'splice_acceptor_variant', 'splice_donor_variant', 'stop_gained', 'start_lost', 'stop_lost']`
+
 `pav = ['protein_altering_variant', 'inframe_deletion', 'inframe_insertion', 'splice_region_variant', 'start_retained_variant', 'stop_retained_variant', 'missense_variant']`
+
 `proximal_coding = ['synonymous_variant', '5_prime_UTR_variant', '3_prime_UTR_variant', 'coding_sequence_variant', 'incomplete_terminal_codon_variant', 'TF_binding_site_variant']`
