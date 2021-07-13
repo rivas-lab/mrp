@@ -138,13 +138,13 @@ White British:
 |       Trait     |     Array     |     Exome    |
 | --------------  | ------------- | ------------ |
 | LDL Cholesterol | https://biobankengine.stanford.edu/static/wb_ldl_array.glm.linear.gz  | https://biobankengine.stanford.edu/static/wb_ldl_exome.glm.linear.gz |
-| Triglycerides  | https://biobankengine.stanford.edu/static/wb_tg_array.glm.linear.gz | https://biobankengine.stanford.edu/static/static/wb_tg_exome.glm.linear.gz |
+| Triglycerides  | https://biobankengine.stanford.edu/static/wb_tg_array.glm.linear.gz | https://biobankengine.stanford.edu/static/wb_tg_exome.glm.linear.gz |
 
 non-British white:
 |       Trait     |     Array     |     Exome    |
 | --------------  | ------------- | ------------ |
 | LDL Cholesterol | https://biobankengine.stanford.edu/static/nbw_ldl_array.glm.linear.gz  | https://biobankengine.stanford.edu/static/nbw_ldl_exome.glm.linear.gz |
-| Triglycerides  | https://biobankengine.stanford.edu/static/nbw_tg_array.glm.linear.gz | https://biobankengine.stanford.edu/static/static/nbw_tg_exome.glm.linear.gz |
+| Triglycerides  | https://biobankengine.stanford.edu/static/nbw_tg_array.glm.linear.gz | https://biobankengine.stanford.edu/static/nbw_tg_exome.glm.linear.gz |
 
 ### Single-trait, single-population gene-based analysis
 
