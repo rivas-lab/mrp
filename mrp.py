@@ -12,9 +12,12 @@ def is_pos_def_and_full_rank(X, tol=0.99):
   
     Parameters: 
     X: Matrix to verify.
+    tol: A tolerance factor for continual multiplication until the matrix is
+        singular (Default: 0.99).
   
     Returns: 
     X: Verified (and, if applicable, adjusted) matrix.
+    converged: bool for whether or not the matrix is singular.
   
     """
     i = 0
@@ -55,15 +58,7 @@ def safe_inv(X, matrix_name, block, agg_type):
         try:
             X_inv = np.linalg.inv(X)
         except LinAlgError:
-            print(
-                "Could not invert "
-                + matrix_name
-                + " for "
-                + agg_type
-                + " "
-                + block
-                + "."
-            )
+            print("Could not invert " + matrix_name + " for " + agg_type + " " + block+ ".")
             return np.nan
     return X_inv
 
@@ -141,32 +136,29 @@ def initialize_r_objects():
     """
 
     robjects.r(
-        """
+    """
     require(MASS)
     require(CompQuadForm)
     farebrother.method <- function(quadT, d, h = rep(1, length(d)), delta = rep(0, length(d)), maxiter = 100000, epsilon = 10^-16, type = 1) {
         return(farebrother(quadT, d, h, delta, maxit = as.numeric(maxiter), eps = as.numeric(epsilon), mode = as.numeric(type))$Qq)
     }
-    """
-    )
+    """)
     robjects.r(
-        """
+    """
     require(MASS)
     require(CompQuadForm)
     imhof.method <- function(quadT, d, h = rep(1, length(d)), delta = rep(0, length(d)), epsilon = 10^-16, lim = 10000) {
         return(imhof(quadT, d, h, delta, epsabs = as.numeric(epsilon), epsrel = as.numeric(epsilon), limit=as.numeric(lim))$Qq)
     }
-    """
-    )
+    """)
     robjects.r(
-        """
+    """
     require(MASS)
     require(CompQuadForm)
     davies.method <- function(quadT, d, h = rep(1, length(d)), delta = rep(0, length(d)), sig = 0, limit = 10000, accuracy = 0.0001) {
         return(davies(quadT, d, h, delta, sigma=as.numeric(sig), lim = as.numeric(limit), acc = as.numeric(accuracy))$Qq)
     }
-    """
-    )
+    """)
     fb = robjects.globalenv["farebrother.method"]
     fb = robjects.r["farebrother.method"]
     im = robjects.globalenv["imhof.method"]
@@ -191,7 +183,7 @@ def return_BF_pvals(beta, U, v_beta, v_beta_inv, fb, dm, im, methods):
     fb: Farebrother R method (rpy2 object).
     dm: Davies R method (rpy2 object).
     im: Imhof R method (rpy2 object).
-    methods: List of method(s) to apply to our data.
+    methods: List of p-value generating method(s) to apply to our data.
   
     Returns: 
     p_values: List of p-values corresponding to each method specified as input.
@@ -279,6 +271,7 @@ def return_BF(
     posterior_probs: List of posterior probabilities corresponding to each prior odds
          in prior_odds_list.
     p_values: List of p-values corresponding to each method in p_value_methods.
+    converged: whether or not v_beta_inv and U_inv are defined.
   
     """
     v_beta_inv = safe_inv(v_beta, "v_beta", block, agg_type)
@@ -405,6 +398,7 @@ def calculate_all_params(
     agg_type,
     M,
     err_corr,
+    mean,
 ):
 
     """ 
@@ -425,6 +419,7 @@ def calculate_all_params(
     M: Number of variants within the gene block if agg_type is "gene"; if "variant", 1.
     err_corr: A (S*K x S*K) matrix of correlation of errors across studies 
         and phenotypes. Used to calculate v_beta.
+    mean: Prior mean of genetic effects to use (from command line).
   
     Returns: 
     U: Kronecker product of the three matrices (S*M*K x S*M*K)
@@ -433,6 +428,9 @@ def calculate_all_params(
     v_beta: A (S*M*K x S*M*K) matrix of variances of effect sizes.
     mu: A mean of genetic effects, size of beta
         (NOTE: default is 0, can change in the code below).
+    converged: whether or not U is pos-def/full-rank.
+    num_variants_mpc: the nummber of MPC-augmented variants in the gene.
+    num_variants_pli: the number of pLI-augmented variants in the gene.
   
     """
 
@@ -465,7 +463,7 @@ def calculate_all_params(
     diag_se = np.diag(se)
     v_beta = np.dot(np.dot(diag_se, omega), diag_se)
     v_beta, _ = is_pos_def_and_full_rank(v_beta)
-    mu = np.zeros(beta.shape)
+    mu = np.ones(beta.shape) * mean
     return U, beta, v_beta, mu, converged, num_variants_mpc, num_variants_pli
 
 
@@ -495,33 +493,9 @@ def output_file(
         print(Fore.RED + "Folder " + out_folder + " created." + Style.RESET_ALL)
         print("")
     if not out_filename:
-        out_file = os.path.join(
-            out_folder,
-            "_".join(pops)
-            + "_"
-            + "_".join(phenos)
-            + "_"
-            + agg_type
-            + "_maf_"
-            + str(maf_thresh)
-            + "_se_"
-            + str(se_thresh)
-            + ".tsv.gz",
-        )
+        out_file = os.path.join(out_folder, "_".join(pops) + "_" + "_".join(phenos) + "_" + agg_type + "_maf_" + str(maf_thresh) + "_se_" + str(se_thresh) + ".tsv.gz")
     else:
-        out_file = os.path.join(
-            out_folder,
-            "_".join(pops)
-            + "_"
-            + out_filename
-            + "_"
-            + agg_type
-            + "_maf_"
-            + str(maf_thresh)
-            + "_se_"
-            + str(se_thresh)
-            + ".tsv.gz",
-        )
+        out_file = os.path.join(out_folder, "_".join(pops) + "_" + out_filename + "_" + agg_type + "_maf_" + str(maf_thresh) + "_se_" + str(se_thresh) + ".tsv.gz")
     sort_col = [col for col in out_df.columns if "log_10_BF" in col][0]
     out_df = out_df.sort_values(by=sort_col, ascending=False)
     out_df.to_csv(out_file, sep="\t", index=False, compression="gzip")
@@ -544,7 +518,7 @@ def get_output_file_columns(
     Sets up the columns that must be enumerated in the output dataframe from MRP.
 
     Parameters:
-    agg_type:
+    agg_type: One of "gene"/"variant". Dictates block of aggregation.
     R_study_model: String ("independent"/"similar") corresponding to R_study.
     R_var_model: String ("independent"/"similar") corresponding to R_var matrices to 
         use for analysis.
@@ -638,6 +612,7 @@ def run_mrp(
     agg_type,
     prior_odds_list,
     p_value_methods,
+    mean,
 ):
 
     """ 
@@ -664,9 +639,10 @@ def run_mrp(
         probabilities of Bayes Factors.
     p_value_methods: List of p-value methods used to calculate p-values from Bayes 
         Factors.
+    mean: Prior mean of genetic effects to use (from command line).
 
     Returns: 
-    bf_df: Dataframe with two columns: agg_type and log_10 Bayes Factor. 
+    bf_df: Dataframe with log_10 Bayes Factor, posterior odds, and p-value (if applicable).
   
     """
     m_dict = (
@@ -701,6 +677,7 @@ def run_mrp(
             agg_type,
             M,
             err_corr,
+            mean,
         )
         bf, posterior_probs, p_values, converged = return_BF(
             U,
@@ -748,6 +725,7 @@ def print_params(
     se_thresh,
     prior_odds_list,
     p_value_methods,
+    mean,
 ):
 
     """ 
@@ -778,20 +756,11 @@ def print_params(
     print(Fore.YELLOW + "Variant weighting factor: " + Style.RESET_ALL + sigma_m_type)
     print(Fore.YELLOW + "MAF threshold: " + Style.RESET_ALL + str(maf_thresh))
     print(Fore.YELLOW + "SE threshold: " + Style.RESET_ALL + str(se_thresh))
+    print(Fore.YELLOW + "Prior mean: " + Style.RESET_ALL + str(mean))
     if prior_odds_list:
-        print(
-            Fore.YELLOW
-            + "Prior odds: "
-            + Style.RESET_ALL
-            + ", ".join([str(prior_odd) for prior_odd in prior_odds_list])
-        )
+        print(Fore.YELLOW + "Prior odds: " + Style.RESET_ALL + ", ".join([str(prior_odd) for prior_odd in prior_odds_list]))
     if p_value_methods:
-        print(
-            Fore.YELLOW
-            + "Methods for p-value generation: "
-            + Style.RESET_ALL
-            + ", ".join(p_value_methods)
-        )
+        print(Fore.YELLOW + "Methods for p-value generation: " + Style.RESET_ALL + ", ".join(p_value_methods))
     print("")
 
 
@@ -817,9 +786,7 @@ def filter_category(df, variant_filter):
     elif variant_filter == "pav":
         df = df[(df.category == "ptv") | (df.category == "pav")]
     elif variant_filter == "pcv":
-        df = df[
-            (df.category == "ptv") | (df.category == "pav") | (df.category == "pcv")
-        ]
+        df = df[(df.category == "ptv") | (df.category == "pav") | (df.category == "pcv")]
     return df
 
 
@@ -843,6 +810,7 @@ def loop_through_parameters(
     p_value_methods,
     out_folder,
     out_filename,
+    mean,
 ):
 
     """ 
@@ -850,7 +818,7 @@ def loop_through_parameters(
 
     Parameters: 
     df: Merged dataframe containing all summary statistics.
-    se_thresh: Upper threshold for SE for thiss run.
+    se_thresh: Upper threshold for SE for this run.
     maf_threshes: List of maximum MAFs of variants in your runs.
     agg: Unique list of aggregation units ("gene"/"variant") to use for analysis.
     variant_filters: Unique list of variant filters ("ptv"/"pav"/"pcv","all") to use 
@@ -873,38 +841,23 @@ def loop_through_parameters(
     p_value_methods: List of p-value methods used to calculate p-values from Bayes 
         Factors.
     out_folder: Folder where output will be placed.
+    out_filename: Optional prefix for file output.
   
     """
 
     if (S == 1) and (len(R_study_models) > 1):
-        print(
-            Fore.YELLOW
-            + "Since we are not meta-analyzing, R_study is just [1]."
-            + Style.RESET_ALL
-        )
+        print(Fore.YELLOW + "Since we are not meta-analyzing, R_study is just [1]." + Style.RESET_ALL)
         print("")
         R_study_models = ["similar"]
         R_study_list = [R_study_list[0]]
     for maf_thresh in maf_threshes:
-        print(
-            Fore.YELLOW
-            + "Running MRP across parameters for MAF threshold "
-            + str(maf_thresh)
-            + " and SE threshold "
-            + str(se_thresh)
-            + "..."
-            + Style.RESET_ALL
-        )
+        print(Fore.YELLOW + "Running MRP across parameters for MAF threshold " + str(maf_thresh) + " and SE threshold " + str(se_thresh) + "..." + Style.RESET_ALL)
         maf_df = df[(df.maf <= maf_thresh) & (df.maf >= 0)]
         for agg_type in agg:
             bf_dfs = []
             # If not aggregating, then R_var choice does not affect BF
             if (agg_type == "variant") and (len(R_var_models) > 1):
-                print(
-                    Fore.YELLOW
-                    + "Since we are not aggregating, R_var is just [1]."
-                    + Style.RESET_ALL
-                )
+                print(Fore.YELLOW + "Since we are not aggregating, R_var is just [1]." + Style.RESET_ALL) 
                 R_var_models = ["independent"]
             for analysis in variant_filters:
                 analysis_df = filter_category(maf_df, analysis)
@@ -923,6 +876,7 @@ def loop_through_parameters(
                                 se_thresh,
                                 prior_odds_list,
                                 p_value_methods,
+                                mean,
                             )
                             bf_df = run_mrp(
                                 analysis_df,
@@ -940,6 +894,7 @@ def loop_through_parameters(
                                 agg_type,
                                 prior_odds_list,
                                 p_value_methods,
+                                mean,
                             )
                             sigma_m_type_bf_dfs.append(bf_df)
                     if sigma_m_type == "sigma_m_mpc_pli":
@@ -987,13 +942,13 @@ def set_sigmas(df, sigma_m_types):
     Assigns appropriate sigmas to appropriate variants by annotation.
   
     Sets sigmas based on user input: functional annotation (var); uniform 
-        sigma (1 and 0.05), or those using MPC/pLI.
+        sigma (1 and 0.05), or those incorporating MPC/pLI.
   
     Parameters: 
     df: Merged dataframe containing all variants across all studies and phenotypes.
   
     Returns: 
-    df: Merged dataframe with four additional columns:
+    df: Merged dataframe with a subset of four additional columns:
         sigma_m_mpc_pli: Column of sigma values (mapped to functional annotation via the 
             lists inside this method + adding pLI and MPC effects).
         sigma_m_var: Column of sigma values (mapped to functional annotation via the 
@@ -1117,10 +1072,8 @@ def get_betas(df, pop1, pheno1, pop2, pheno2, mode):
         ]
     elif mode == "sig":
         df = df[
-            (
-                (df["P_" + pop1 + "_" + pheno1].astype(float) <= 1e-5)
-                | (df["P_" + pop2 + "_" + pheno2].astype(float) <= 1e-5)
-            )
+            (df["P_" + pop1 + "_" + pheno1].astype(float) <= 1e-5)
+            | (df["P_" + pop2 + "_" + pheno2].astype(float) <= 1e-5)
         ]
     beta1 = list(df["BETA_" + pop1 + "_" + pheno1])
     beta2 = list(df["BETA_" + pop2 + "_" + pheno2])
@@ -1133,6 +1086,7 @@ def calculate_phen(a, b, pop1, pheno1, pop2, pheno2, df, pop_pheno_tuples):
     Calculates a single entry in the phen_corr matrix.
     
     Parameters:
+    a, b: Positional parameters within the phen_corr matrix.
     pop1: Name of first population.
     pheno1: Name of first phenotype.
     pop2: Name of second population.
@@ -1205,6 +1159,7 @@ def filter_for_phen_corr(df, map_file):
 
     Returns:
     df: Filtered dataframe that contains significant, common, LD-independent variants.
+    pop_pheno_tuples: Distinct coupled pop/pheno combinations.
 
     """
 
@@ -1312,6 +1267,7 @@ def filter_for_err_corr(df, map_file):
 
     Parameters:
     df: Merged dataframe containing all summary statistics.
+    map_file: Input file containing summary statistic paths + pop and pheno data.
 
     Returns:
     df: Filtered dataframe that contains null, common, LD-independent variants.
@@ -1319,11 +1275,7 @@ def filter_for_err_corr(df, map_file):
     """
 
     print("")
-    print(
-        Fore.MAGENTA
-        + "Building R_phen and matrix of correlations of errors..."
-        + Style.RESET_ALL
-    )
+    print(Fore.MAGENTA + "Building R_phen and matrix of correlations of errors..." + Style.RESET_ALL) 
     print("")
     pop_pheno_tuples = zip(list(map_file["study"]), list(map_file["pheno"]))
     cols_to_keep = ["V", "maf", "ld_indep", "most_severe_consequence"]
@@ -1369,6 +1321,7 @@ def build_err_corr(S, K, pops, phenos, df, map_file):
     pops: Unique set of populations (studies) to use for analysis.
     phenos: Unique set of phenotypes to use for analysis.
     df: Merged dataframe containing all relevant summary statistics.
+    map_file: Input file containing summary statistic paths + pop and pheno data.
 
     Returns:
     err_corr: (S*K x S*K) matrix of correlation of errors across studies and phenotypes 
@@ -1438,7 +1391,7 @@ def se_filter(df, se_thresh, pops, phenos):
     df: Input dataframe (from summary statistics).
     se_thresh: Upper threshsold for SE for this run.
     pops: List of studies from which the current summary statistic dataframe comes from.
-    pheno: List of phenotypes from which the current summary statistic dataframe comes from.
+    phenos: List of phenotypes from which the current summary statistic dataframe comes from.
   
     Returns: 
     se_df: Dataframe filtered for SE.
@@ -1490,6 +1443,8 @@ def check_map_file(map_file):
     if map_file.isnull().values.sum() > 0:
         raise ValueError("NaNs in map file.")
     file_paths = np.unique(list(map_file["path"]))
+    booleans = np.unique(list(map_file["R_phen"]))
+    valid_booleans = ["TRUE", "FALSE"]
     if len(file_paths) < len(map_file):
         raise ValueError("File specified in map file contains duplicate path entries.")
     for file_path in file_paths:
@@ -1499,6 +1454,11 @@ def check_map_file(map_file):
         raise ValueError(
             "Multiple summary statistic files specified for a (study, phenotype) tuple."
         )
+    for boolean in booleans:
+        if boolean.upper() not in valid_booleans:
+            raise ValueError(
+                "One or more booleans provided in the R_phen column of the map file is not a case-insensitive TRUE/FALSE."
+            )
     pops = sorted(list(set(map_file["study"])))
     phenos = sorted(list(set(map_file["pheno"])))
     S = len(pops)
@@ -1515,6 +1475,8 @@ def merge_dfs(sumstat_files, metadata_path, sigma_m_types):
     Parameters:
     sumstat_files: List of dataframes that contain summary statistics.
     metadata_path: Path to metadata file containing MAF, Gene symbol, etc.
+    sigma_m_types: Unique list of sigma_m types ("sigma_m_mpc_pli"/"sigma_m_var"/"sigma_m_1"/"sigma_m_005")
+        to use for analysis.
 
     Returns:
     df: Dataframe that is ready for err_corr/R_phen generation and for running MRP.
@@ -1556,7 +1518,7 @@ def merge_dfs(sumstat_files, metadata_path, sigma_m_types):
     return df
 
 
-def read_in_summary_stat(subset_df, pop, pheno):
+def read_in_summary_stat(subset_df, pop, pheno, build):
 
     """
     Reads in one summary statistics file.
@@ -1607,7 +1569,10 @@ def read_in_summary_stat(subset_df, pop, pheno):
         .str.cat(df["ALT"], sep=":"),
     )
     # Filter out HLA region
-    df = df[~((df["#CHROM"] == 6) & (df["POS"].between(25477797, 36448354)))]
+    if build == "hg38":
+        df = df[~((df["#CHROM"] == 6) & (df["POS"].between(25477569, 36480577)))]
+    elif build == "hg19":
+        df = df[~((df["#CHROM"] == 6) & (df["POS"].between(25477797, 36448354)))]
     df = df[["V", "BETA", "SE", "P"]]
     # Filter for SE as you read it in
     df = rename_columns(df, pop, pheno)
@@ -1616,7 +1581,7 @@ def read_in_summary_stat(subset_df, pop, pheno):
     return df
 
 
-def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types):
+def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types, build):
 
     """ 
     Reads in summary statistics.
@@ -1629,6 +1594,9 @@ def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types):
     Parameters: 
     map_file: Input file containing summary statistic paths + pop and pheno data.
     metadata_path: Path to metadata file containing MAF, Gene symbol, etc.
+    exclude_path: Path to file containing list of variants to exclude from analysis.
+    sigma_m_types: Unique list of sigma_m types ("sigma_m_mpc_pli"/"sigma_m_var"/"sigma_m_1"/"sigma_m_005")
+        to use for analysis.
   
     Returns: 
     df: Merged summary statistics.
@@ -1652,7 +1620,7 @@ def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types):
         for pheno in phenos:
             subset_df = map_file[(map_file.study == pop) & (map_file.pheno == pheno)]
             if len(subset_df) == 1:
-                df = read_in_summary_stat(subset_df, pop, pheno)
+                df = read_in_summary_stat(subset_df, pop, pheno, build)
                 sumstat_files.append(df)
             else:
                 print(
@@ -1715,11 +1683,12 @@ def return_input_args(args):
   
     Returns: 
     df: Merged summary statistics.
-    pops: Unique set of populations (studies) to use for analysis.
-    phenos: Unique set of phenotypes to use for analysis.
+    map_file: Input file containing summary statistic paths + pop and pheno data.
     S: Number of populations/studies.
     K: Number of phenotypes. 
-    R_study_list: Unique list of R_study matrices to use for analysis.
+    pops: Unique set of populations (studies) to use for analysis.
+    phenos: Unique set of phenotypes to use for analysis.
+    R_study: Unique list of R_study matrices to use for analysis.
   
     """
 
@@ -1732,10 +1701,10 @@ def return_input_args(args):
     except:
         raise IOError("File specified in --file does not exist.")
     df, pops, phenos, S, K = read_in_summary_stats(
-        map_file, args.metadata_path, args.exclude, args.sigma_m_types
+        map_file, args.metadata_path, args.exclude, args.sigma_m_types, args.build
     )
     for arg in vars(args):
-        if arg != "filter_ld_indep":
+        if (arg != "filter_ld_indep") and (arg != "mean"):
             setattr(args, arg, sorted(list(set(getattr(args, arg)))))
     R_study = [
         np.diag(np.ones(S)) if x == "independent" else np.ones((S, S))
@@ -1751,6 +1720,9 @@ def range_limited_float_type(arg):
     
     Parameters:
     arg: Putative float.
+
+    Returns:
+    f: The same float, if a valid floating point number between 0 and 1.
 
     """
 
@@ -1770,6 +1742,9 @@ def positive_float_type(arg):
     
     Parameters:
     arg: Putative float.
+
+    Returns:
+    f: The same float, if positive.
 
     """
 
@@ -1830,6 +1805,22 @@ def initialize_parser():
         """,
     )
     parser.add_argument(
+        "--build",
+        choices=["hg19", "hg38"],
+        type=str,
+        required=True,
+        dest="build",
+        help="""genome build (hg19 or hg3. Required.""",
+    )
+    parser.add_argument(
+        "--mean",
+        type=float,
+        nargs=1,
+        dest="mean",
+        default=0,
+        help="""prior mean of genetic effects (Default: 0).""",
+    )
+    parser.add_argument(
         "--R_study",
         choices=["independent", "similar"],
         type=str,
@@ -1864,11 +1855,11 @@ def initialize_parser():
         choices=["sigma_m_mpc_pli", "sigma_m_var", "sigma_m_1", "sigma_m_005"],
         type=str,
         nargs="+",
-        default=["sigma_m_var"],
+        default=["sigma_m_mpc_pli"],
         dest="sigma_m_types",
         help="""scaling factor(s) for variants.
          options: var (i.e. 0.2 for ptvs, 0.05 for pavs/pcvs), 
-         1, 0.05 (default: var). can run multiple.""",
+         1, 0.05 (default: mpc_pli). can run multiple.""",
     )
     parser.add_argument(
         "--variants",
@@ -1900,7 +1891,9 @@ def initialize_parser():
         default=[0.2],
         dest="se_threshes",
         help="""which SE threshold(s) to use. must be valid floats between 0 and 1 
-         (default: 0.2).""",
+         (default: 0.2). NOTE: This strict default threshold is best suited for binary
+         summary statistics. For quantitative traits, we suggest the use of a higher
+         threshold.""",
     )
     parser.add_argument(
         "--prior_odds",
@@ -2057,4 +2050,5 @@ if __name__ == "__main__":
             args.p_value_methods,
             out_folder,
             out_filename,
+            args.mean,
         )
