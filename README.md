@@ -1,13 +1,13 @@
 # Multiple Rare-variants and Phenotypes
 
-This directory contains code and documentation for the [Multiple Rare-variants and Phenotypes method](https://www.biorxiv.org/content/10.1101/257162v5) by Venkataraman *et. al.*. The repository is maintained by Guhan Ram Venkataraman (GitHub: guhanrv).
+This directory contains code and documentation for the [Multiple Rare-variants and Phenotypes method](https://www.biorxiv.org/content/10.1101/257162v7) by Venkataraman *et. al.*. The repository is maintained by Guhan Ram Venkataraman (GitHub: guhanrv).
 
 ## Script details and options
 
-A full list of options can be obtained by running `python mrp_production.py -h`, and the output is replicated here for reference:
+A full list of options can be obtained by running `python3 mrp_production.py -h`, and the output is replicated here for reference:
 
 ```{bash}
-(base) user$ python mrp_production.py -h
+(base) user$ python3 mrp_production.py -h
 usage: mrp_production.py [-h] --file MAP_FILE --metadata_path METADATA_PATH
                          --build {hg19,hg38} [--mean MEAN]
                          [--R_study {independent,similar} [{independent,similar} ...]]
@@ -128,7 +128,7 @@ These groupings and their sigma values can be changed in the `set_sigmas` method
 
 ## Downloading variant metadata files
 
-We provide variant metadata files for both UK Biobank [array](https://biobankengine.stanford.edu/static/ukb_cal-consequence_wb_maf_gene_ld_indep_mpc_pli.tsv.gz) and [exome](https://biobankengine.stanford.edu/static/ukb_exm_oqfe-consequence_wb_maf_gene_ld_indep_mpc_pli.tsv.gz) for direct download. We generated these files as described in [Venkataraman et. al.](https://www.biorxiv.org/content/10.1101/257162v5).
+We provide variant metadata files for both UK Biobank [array](https://biobankengine.stanford.edu/static/ukb_cal-consequence_wb_maf_gene_ld_indep_mpc_pli.tsv.gz) and [exome](https://biobankengine.stanford.edu/static/ukb_exm_oqfe-consequence_wb_maf_gene_ld_indep_mpc_pli.tsv.gz) for direct download. We generated these files as described in [Venkataraman et. al.](https://www.biorxiv.org/content/10.1101/257162v7).
 
 ## Example use cases
 
