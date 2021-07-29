@@ -199,3 +199,7 @@ path    study   pheno   R_phen
 ### Other optionalities
 
 As mentioned in the `-h` command, MRP can do many things, like incorporate a prior genetic mean of effects, do variant-based analysis (as opposed to gene-based), use independent- or similar-effects assumptions across studies and variants in a block, use different variant scaling factors, exclude variants, and even generate p-values, though this last functionality is currently slow.
+
+### Results set
+
+The full set of significant (log_{10} BF >= 5) results can be found at [the Global Biobank Engine's 'Exomes' tab](https://biobankengine.stanford.edu/RIVAS_HG38/mrpgene/all).
