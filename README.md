@@ -8,24 +8,25 @@ A full list of options can be obtained by running `python3 mrp_production.py -h`
 
 ```{bash}
 (base) user$ python3 mrp_production.py -h
-usage: mrp_production.py [-h] --file MAP_FILE --metadata_path METADATA_PATH
-                         --build {hg19,hg38} [--mean MEAN]
-                         [--R_study {independent,similar} [{independent,similar} ...]]
-                         [--R_var {independent,similar} [{independent,similar} ...]]
-                         [--M {variant,gene} [{variant,gene} ...]]
-                         [--sigma_m_types {sigma_m_mpc_pli,sigma_m_var,sigma_m_1,sigma_m_005} [{sigma_m_mpc_pli,sigma_m_var,sigma_m_1,sigma_m_005} ...]]
-                         [--variants {pcv,pav,ptv,all} [{pcv,pav,ptv,all} ...]]
-                         [--maf_thresh MAF_THRESHES [MAF_THRESHES ...]]
-                         [--se_thresh SE_THRESHES [SE_THRESHES ...]]
-                         [--prior_odds PRIOR_ODDS_LIST [PRIOR_ODDS_LIST ...]]
-                         [--p_value {farebrother,davies,imhof} [{farebrother,davies,imhof} ...]]
-                         [--exclude EXCLUDE] [--filter_ld_indep]
-                         [--out_folder OUT_FOLDER]
-                         [--out_filename OUT_FILENAME]
+usage: mrp.py [-h] --file MAP_FILE --metadata_path METADATA_PATH --build
+              {hg19,hg38}
+              [--chrom {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y} [{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y} ...]]
+              [--mean MEAN]
+              [--R_study {independent,similar} [{independent,similar} ...]]
+              [--R_var {independent,similar} [{independent,similar} ...]]
+              [--M {variant,gene} [{variant,gene} ...]]
+              [--sigma_m_types {sigma_m_mpc_pli,sigma_m_var,sigma_m_1,sigma_m_005} [{sigma_m_mpc_pli,sigma_m_var,sigma_m_1,sigma_m_005} ...]]
+              [--variants {pcv,pav,ptv,all} [{pcv,pav,ptv,all} ...]]
+              [--maf_thresh MAF_THRESHES [MAF_THRESHES ...]]
+              [--se_thresh SE_THRESHES [SE_THRESHES ...]]
+              [--prior_odds PRIOR_ODDS_LIST [PRIOR_ODDS_LIST ...]]
+              [--p_value {farebrother,davies,imhof} [{farebrother,davies,imhof} ...]]
+              [--exclude EXCLUDE] [--filter_ld_indep]
+              [--out_folder OUT_FOLDER] [--out_filename OUT_FILENAME]
 
 MRP takes in several variables that affect how it runs.
 
-arguments:
+optional arguments:
   -h, --help            show this help message and exit
   --file MAP_FILE       path to tab-separated file containing list of: 
                                  summary statistic file paths,
@@ -53,6 +54,8 @@ arguments:
                                  1:69081:G:C     OR4F5   5_prime_UTR_variant     0.000189471     False
                                 
   --build {hg19,hg38}   genome build (hg19 or hg3. Required.
+  --chrom {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y} [{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y} ...]
+                        chromosome filter. options include 1-22, X, and Y
   --mean MEAN           prior mean of genetic effects (Default: 0).
   --R_study {independent,similar} [{independent,similar} ...]
                         type of model across studies. 
