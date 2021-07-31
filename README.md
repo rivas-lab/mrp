@@ -205,4 +205,4 @@ As mentioned in the `-h` command, MRP can do many things, like incorporate a pri
 
 ### Results set
 
-The full set of significant (log_{10} BF >= 5) results can be found at [the Global Biobank Engine's 'Exomes' tab](https://biobankengine.stanford.edu/RIVAS_HG38/mrpgene/all).
+The full set of significant (log<sub>10</sub> BF >= 5) results can be found at [the Global Biobank Engine's 'Exomes' tab](https://biobankengine.stanford.edu/RIVAS_HG38/mrpgene/all).
