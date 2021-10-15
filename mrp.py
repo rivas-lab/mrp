@@ -1,6 +1,17 @@
+#!/usr/bin/env python3
+
 from __future__ import division
-import argparse
-import gc
+import argparse, os, gc
+from functools import partial, reduce
+
+
+import pandas as pd
+import numpy as np
+import scipy
+from colorama import Fore, Back, Style
+
+
+pd.options.mode.chained_assignment = None
 
 
 def is_pos_def_and_full_rank(X, tol=0.99):
@@ -53,11 +64,11 @@ def safe_inv(X, matrix_name, block, agg_type):
 
     try:
         X_inv = np.linalg.inv(X)
-    except LinAlgError:
+    except np.linalg.LinAlgError:
         X = is_pos_def_and_full_rank(X)
         try:
             X_inv = np.linalg.inv(X)
-        except LinAlgError:
+        except np.linalg.LinAlgError:
             print("Could not invert " + matrix_name + " for " + agg_type + " " + block+ ".")
             return np.nan
     return X_inv
@@ -198,7 +209,7 @@ def return_BF_pvals(beta, U, v_beta, v_beta_inv, fb, dm, im, methods):
     A_inv = np.linalg.inv(A)
     quad_T = np.asmatrix(beta.T) * np.asmatrix((v_beta_inv - A_inv)) * np.asmatrix(beta)
     B, _ = is_pos_def_and_full_rank(
-        npm.eye(n) - np.asmatrix(A_inv) * np.asmatrix(v_beta)
+        np.matlib.eye(n) - np.asmatrix(A_inv) * np.asmatrix(v_beta)
     )
     if np.any(np.isnan(B)):
         return [np.nan] * len(methods)
@@ -282,7 +293,7 @@ def return_BF(
             np.nan, [], [], False
         fat_middle = v_beta_inv - (v_beta_inv.dot(sum_inv)).dot(v_beta_inv)
         logBF = (
-            -0.5 * np.linalg.slogdet(npm.eye(beta.shape[0]) + v_beta_inv * U)[1]
+            -0.5 * np.linalg.slogdet(np.matlib.eye(beta.shape[0]) + v_beta_inv * U)[1]
             + 0.5 * beta.T.dot(v_beta_inv.dot(beta))
             - 0.5 * (((beta - mu).T).dot(fat_middle)).dot(beta - mu)
         )
@@ -1125,7 +1136,7 @@ def calculate_phen(a, b, pop1, pheno1, pop2, pheno2, df, pop_pheno_tuples):
         ):
             phen_beta1, phen_beta2 = get_betas(df, pop1, pheno1, pop2, pheno2, "sig")
             if phen_beta1 is not None:
-                corr, p = pearsonr(phen_beta1, phen_beta2)
+                corr, p = scipy.stats.pearsonr(phen_beta1, phen_beta2)
                 return corr if (p <= 0.01) else np.nan
             return np.nan
         return np.nan
@@ -1273,7 +1284,7 @@ def calculate_err(a, b, pop1, pheno1, pop2, pheno2, err_corr, err_df):
         err_df = err_df.dropna()
         err_beta1, err_beta2 = get_betas(err_df, pop1, pheno1, pop2, pheno2, "null")
         if err_beta1:
-            corr, p = pearsonr(err_beta1, err_beta2)
+            corr, p = scipy.stats.pearsonr(err_beta1, err_beta2)
             return corr if (p <= 0.01) else 0
         return 0
 
@@ -2004,24 +2015,12 @@ if __name__ == "__main__":
 
     """
 
-    import os
-
     parser = initialize_parser()
     args = parser.parse_args()
     print_banner()
     print("")
     print("Valid command line arguments. Importing required packages...")
     print("")
-    import pandas as pd
-    from functools import partial, reduce
-
-    pd.options.mode.chained_assignment = None
-    import numpy as np
-    import numpy.matlib as npm
-    from numpy.linalg import LinAlgError
-    from scipy.stats.stats import pearsonr
-    import subprocess
-    from colorama import Fore, Back, Style
 
     if args.p_value_methods:
         print("")
