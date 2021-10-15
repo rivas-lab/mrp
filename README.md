@@ -28,18 +28,18 @@ MRP takes in several variables that affect how it runs.
 
 optional arguments:
   -h, --help            show this help message and exit
-  --file MAP_FILE       path to tab-separated file containing list of: 
+  --file MAP_FILE       path to tab-separated file containing list of:
                                  summary statistic file paths,
                                  corresponding studies,
                                  phenotypes, and
                                  whether or not to use the file in R_phen generation.
-                               
+
                                  format:
-                                 
+
                                  path        study        pheno        R_phen
                                  /path/to/file1   study1    pheno1     TRUE
                                  /path/to/file2   study2    pheno1     FALSE
-                                 
+
   --metadata_path METADATA_PATH
                         path to tab-separated file containing:
                                  variants,
@@ -47,62 +47,62 @@ optional arguments:
                                  consequences,
                                  MAFs,
                                  and LD independence info.
-                               
+
                                  format:
-                                 
+
                                  V       gene_symbol     most_severe_consequence maf  ld_indep
                                  1:69081:G:C     OR4F5   5_prime_UTR_variant     0.000189471     False
-                                
+
   --build {hg19,hg38}   genome build (hg19 or hg3. Required.
   --chrom {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y} [{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y} ...]
                         chromosome filter. options include 1-22, X, and Y
   --mean MEAN           prior mean of genetic effects (Default: 0).
   --R_study {independent,similar} [{independent,similar} ...]
-                        type of model across studies. 
+                        type of model across studies.
                                  options: independent, similar (default: similar). can run both.
   --R_var {independent,similar} [{independent,similar} ...]
-                        type(s) of model across variants. 
+                        type(s) of model across variants.
                                  options: independent, similar (default: independent). can run both.
   --M {variant,gene} [{variant,gene} ...]
-                        unit(s) of aggregation. 
+                        unit(s) of aggregation.
                                  options: variant, gene (default: gene). can run both.
   --sigma_m_types {sigma_m_mpc_pli,sigma_m_var,sigma_m_1,sigma_m_005} [{sigma_m_mpc_pli,sigma_m_var,sigma_m_1,sigma_m_005} ...]
                         scaling factor(s) for variants.
-                                 options: var (i.e. 0.2 for ptvs, 0.05 for pavs/pcvs), 
+                                 options: var (i.e. 0.2 for ptvs, 0.05 for pavs/pcvs),
                                  1, 0.05 (default: mpc_pli). can run multiple.
   --variants {pcv,pav,ptv,all} [{pcv,pav,ptv,all} ...]
-                        variant set(s) to consider. 
-                                 options: proximal coding [pcv], 
-                                          protein-altering [pav], 
+                        variant set(s) to consider.
+                                 options: proximal coding [pcv],
+                                          protein-altering [pav],
                                           protein truncating [ptv],
                                           all variants [all]
                                           (default: ptv). can run multiple.
   --maf_thresh MAF_THRESHES [MAF_THRESHES ...]
-                        which MAF threshold(s) to use. must be valid floats between 0 and 1 
+                        which MAF threshold(s) to use. must be valid floats between 0 and 1
                                  (default: 0.01).
   --se_thresh SE_THRESHES [SE_THRESHES ...]
-                        which SE threshold(s) to use. must be valid floats between 0 and 1 
+                        which SE threshold(s) to use. must be valid floats between 0 and 1
                                  (default: 0.2). NOTE: This strict default threshold is best suited for binary
                                  summary statistics. For quantitative traits, we suggest the use of a higher
                                  threshold.
   --prior_odds PRIOR_ODDS_LIST [PRIOR_ODDS_LIST ...]
-                        which prior odds (can be multiple) to use in calculating posterior 
-                                 probabilities. must be valid floats between 0 and 1 (default: 0.0005, expect 
+                        which prior odds (can be multiple) to use in calculating posterior
+                                 probabilities. must be valid floats between 0 and 1 (default: 0.0005, expect
                                  1 in 2000 genes to be a discovery).
   --p_value {farebrother,davies,imhof} [{farebrother,davies,imhof} ...]
-                        which method(s) to use to convert Bayes Factors to p-values. if command 
-                                 line argument is invoked but method is not specified, will throw an error 
-                                 (i.e., specify a method when it is invoked). if not invoked, p-values will not 
-                                 be calculated. options: farebrother, davies, imhof. NOTE: --p_value imports R 
-                                 objects and methods, which slows down MRP. farebrother is fastest and 
+                        which method(s) to use to convert Bayes Factors to p-values. if command
+                                 line argument is invoked but method is not specified, will throw an error
+                                 (i.e., specify a method when it is invoked). if not invoked, p-values will not
+                                 be calculated. options: farebrother, davies, imhof. NOTE: --p_value imports R
+                                 objects and methods, which slows down MRP. farebrother is fastest and
                                  recommended if p-values are a must.
   --exclude EXCLUDE     path to file containing list of variants to exclude from analysis.
-                        
+
                                  format of file:
-                        
+
                                  1:69081:G:C
                                  1:70001:G:A
-                                
+
   --filter_ld_indep     whether or not only ld-independent variants should be kept (default: False;
                                  i.e., use everything).
   --out_folder OUT_FOLDER
@@ -115,15 +115,19 @@ optional arguments:
 
 ## Variant groupings
 
-The following groups are how we assign priors (`sigma_m`) to variants: Protein-truncating variants (PTVs), Protein-altering variants (PAVs), proximal coding variants (PCVs), and intronic variants ("all" setting above).
+The following groups are how we assign priors (`sigma_m`) to variants: Protein-truncating variants (PTVs), Protein-altering variants (PAVs), proximal coding variants (PCVs), intronic variants (intron), UTR variants (utr), and the other variants ("all" setting above).
 
-`ptv = ['frameshift_variant', 'splice_acceptor_variant', 'splice_donor_variant', 'stop_gained', 'start_lost', 'stop_lost']`. By default, PTVs are assigned a spread (sigma) of 0.2.
+`ptv = ["splice_acceptor_variant", "splice_donor_variant", "stop_lost", "stop_gained", "frameshift_variant", "transcript_ablation", "start_lost"]`. By default, PTVs are assigned a spread (sigma) of 0.2.
 
-`pav = ['protein_altering_variant', 'inframe_deletion', 'inframe_insertion', 'splice_region_variant', 'start_retained_variant', 'stop_retained_variant', 'missense_variant']`. By default, PAVs are assigned a spread (sigma) of 0.05.
+`pav = ["missense_variant", "splice_region_variant", "protein_altering_variant", "inframe_insertion","inframe_deletion"]`. By default, PAVs are assigned a spread (sigma) of 0.05.
 
-`proximal_coding = ['synonymous_variant', '5_prime_UTR_variant', '3_prime_UTR_variant', 'coding_sequence_variant', 'incomplete_terminal_codon_variant', 'TF_binding_site_variant']`. By default, PCVs are assigned a spread (sigma) of 0.03.
+`pcv = ["stop_retained_variant", "coding_sequence_variant", "incomplete_terminal_codon_variant", "synonymous_variant", "start_retained_variant"]`. By default, PCVs are assigned a spread (sigma) of 0.03.
 
-`intron = ['regulatory_region_variant', 'intron_variant', 'intergenic_variant', 'downstream_gene_variant', 'mature_miRNA_variant', 'non_coding_transcript_exon_variant', 'upstream_gene_variant', 'NA', 'NMD_transcript_variant']`. By default, intronic variants are assigned a spread (sigma) of 0.02.
+`intron = ["intron_variant"]`. By default, intronic variants are assigned a spread (sigma) of 0.03.
+
+`utr = ["5_prime_UTR_variant", "3_prime_UTR_variant"]`. By default, UTR variants are assigned a spread (sigma) of 0.03.
+
+`others = ["regulatory_region_variant", "non_coding_transcript_variant", "mature_miRNA_variant", "NMD_transcript_variant", "intergenic_variant", "upstream_gene_variant", "downstream_gene_variant", "TF_binding_site_variant", "non_coding_transcript_exon_variant", "regulatory_region_ablation", "TFBS_ablation", "NA"]`. By default, the other variants are assigned a spread (sigma) of 0.02.
 
 These groupings and their sigma values can be changed in the `set_sigmas` method within [`mrp.py`](https://github.com/rivas-lab/mrp/blob/master/mrp.py).
 
