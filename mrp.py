@@ -1688,7 +1688,7 @@ def print_banner():
     print(Fore.GREEN + "Contact:" + Style.RESET_ALL)
     print("Email: guhan@stanford.edu")
     print(
-        "URL: https://github.com/rivas-lab/ukbb-tools/blob/master/13_mrp/mrp_production.py"
+        "URL: https://github.com/rivas-lab/mrp"
     )
     print("")
     print(Fore.GREEN + "Methods Developers:" + Style.RESET_ALL)
@@ -2008,6 +2008,7 @@ if __name__ == "__main__":
 
     parser = initialize_parser()
     args = parser.parse_args()
+    print_banner()
     print("")
     print("Valid command line arguments. Importing required packages...")
     print("")
@@ -2055,7 +2056,6 @@ if __name__ == "__main__":
         se_df = se_filter(df, se_thresh, pops, phenos)
         out_folder = args.out_folder[0] if args.out_folder else os.getcwd()
         out_filename = args.out_filename[0] if args.out_filename else []
-        print_banner()
         err_corr, R_phen = return_err_and_R_phen(
             se_df, pops, phenos, len(pops), len(phenos), map_file
         )
