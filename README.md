@@ -171,8 +171,8 @@ Note the use of a non-default higher SE threshold for a quantitative trait. The 
 If we wanted to do the same for the exome data, we would create a map file like:
 
 ```
-path    study   pheno   R_phen
-/path/to/wb_ldl_exome.glm.linear.gz     wb      ldl     TRUE
+path	study	pheno	R_phen
+/path/to/wb_ldl_exome.glm.linear.gz	wb	ldl	TRUE
 ```
 
 Then run:
@@ -186,9 +186,9 @@ The substantive differences here are the different build, metadata file, and the
 Let's say that we want to meta-analyze white British and non-British white cohorts together. Functionally, from the command line, this looks no different, but the map files would include an extra line. For example, for array data:
 
 ```
-path    study   pheno   R_phen
-/path/to/wb_ldl_array.glm.linear.gz     wb      ldl     TRUE
-/path/to/nbw_ldl_array.glm.linear.gz     nbw      ldl     TRUE
+path	study	pheno	R_phen
+/path/to/wb_ldl_array.glm.linear.gz	wb	ldl	TRUE
+/path/to/nbw_ldl_array.glm.linear.gz	nbw	ldl	TRUE
 ```
 
 MRP takes care of the rest. The same would apply for exome data, with the caveats as in the single-trait gene-based analysis in one population.
@@ -198,9 +198,9 @@ MRP takes care of the rest. The same would apply for exome data, with the caveat
 Finally, MRP can also handle multi-trait gene-based analysis. Again, the analysis looks no different, except for changes in the map file:
 
 ```
-path    study   pheno   R_phen
-/path/to/wb_ldl_array.glm.linear.gz     wb      ldl     TRUE
-/path/to/wb_tg_array.glm.linear.gz     tg      ldl     TRUE
+path	study	pheno	R_phen
+/path/to/wb_ldl_array.glm.linear.gz	wb	ldl	TRUE
+/path/to/wb_tg_array.glm.linear.gz	wb	tg	TRUE
 ```
 
 ### Other optionalities
