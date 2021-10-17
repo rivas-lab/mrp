@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from __future__ import division
-import argparse, os, gc
+import argparse, os, itertools, gc
 from functools import partial, reduce
 
 
@@ -953,6 +953,104 @@ def loop_through_parameters(
             )
 
 
+def get_sigma_and_consequence_categories():
+    """
+    Here we define two constants: consequence category and sigma_m value for each consequence category
+    """
+    sigma_m = {
+        'ptv':    0.2,
+        'pav':    0.05,
+        'pcv':    0.03,
+        'intron': 0.03,
+        'utr':    0.03,
+        'others': 0.02,
+    }
+    consequence_categories = {
+        'ptv': [
+            "splice_acceptor_variant",
+            "splice_donor_variant",
+            "stop_lost",
+            "stop_gained",
+            "frameshift_variant",
+            "transcript_ablation",
+            "start_lost",
+        ],
+        'pav': [
+            "missense_variant",
+            "splice_region_variant",
+            "protein_altering_variant",
+            "inframe_insertion",
+            "inframe_deletion",
+        ],
+        'pcv': [
+            "stop_retained_variant",
+            "coding_sequence_variant",
+            "incomplete_terminal_codon_variant",
+            "synonymous_variant",
+            "start_retained_variant",
+        ],
+        'intron': [
+            "intron_variant",
+        ],
+        'utr': [
+            "5_prime_UTR_variant",
+            "3_prime_UTR_variant",
+        ],
+        'others': [
+            "regulatory_region_variant",
+            "non_coding_transcript_variant",
+            "mature_miRNA_variant",
+            "NMD_transcript_variant",
+            "intergenic_variant",
+            "upstream_gene_variant",
+            "downstream_gene_variant",
+            "TF_binding_site_variant",
+            "non_coding_transcript_exon_variant",
+            "regulatory_region_ablation",
+            "TFBS_ablation",
+            "NA",
+        ]
+    }
+    return(sigma_m, consequence_categories)
+
+
+def get_sigma_m_var_df():
+
+    """
+    Prepare a pandas dataframe with the following three columns:
+    category, most_severe_consequence, sigma_m_var
+    """
+
+    sigma_m, consequence_categories = get_sigma_and_consequence_categories()
+
+    return(pd.DataFrame(
+        list(itertools.chain(*[
+            [(category, csq) for csq in csqs] for category, csqs in consequence_categories.items()
+        ])),
+        columns=['category', 'most_severe_consequence']
+    ).merge(
+        pd.DataFrame(
+            sigma_m.items(),
+            columns=['category', 'sigma_m_var']
+        )
+    ))
+
+
+def compute_sigma_m_mpc_pli(sigma_m_var, category, pLI, MPC):
+
+    """
+    Computes sigma_m_mpc_pli value
+    """
+    if(sigma_m_var is None):
+        return None
+    elif((category == 'ptv') and (pLI == 'True')):
+        return(2 * sigma_m_var)
+    elif((category == 'pav') and (MPC >= 1)):
+        return(MPC * sigma_m_var)
+    else:
+        return(sigma_m_var)
+
+
 def set_sigmas(df, sigma_m_types):
 
     """
@@ -971,100 +1069,27 @@ def set_sigmas(df, sigma_m_types):
         sigma_m_var: Column of sigma values (mapped to functional annotation via the
             lists inside this method).
             NOTE: One can change the sigmas associated with each type of variant by
-                adjusting the values within this method.
-        sigma_m_1: Uniform column of 1.
-        sigma_m_005: Uniform column of 0.05.
+                adjusting the values in get_sigma_and_consequence_categories() method.
+        sigma_m_1: Constant column of 1.
+        sigma_m_005: Constant column of 0.05.
 
     """
 
-    ptv = [
-        "splice_acceptor_variant",
-        "splice_donor_variant",
-        "stop_lost",
-        "stop_gained",
-        "frameshift_variant",
-        "transcript_ablation",
-        "start_lost",
-    ]
-    pav = [
-        "missense_variant",
-        "splice_region_variant",
-        "protein_altering_variant",
-        "inframe_insertion",
-        "inframe_deletion",
-    ]
-    pcv = [
-        "stop_retained_variant",
-        "coding_sequence_variant",
-        "incomplete_terminal_codon_variant",
-        "synonymous_variant",
-        "start_retained_variant",
-    ]
-    intron = [
-        "intron_variant",
-    ]
-    utr = [
-        "5_prime_UTR_variant",
-        "3_prime_UTR_variant",
-    ]
-    others = [
-        "regulatory_region_variant",
-        "non_coding_transcript_variant",
-        "mature_miRNA_variant",
-        "NMD_transcript_variant",
-        "intergenic_variant",
-        "upstream_gene_variant",
-        "downstream_gene_variant",
-        "TF_binding_site_variant",
-        "non_coding_transcript_exon_variant",
-        "regulatory_region_ablation",
-        "TFBS_ablation",
-        "NA",
-    ]
     if "sigma_m_1" in sigma_m_types:
         df = df.assign(sigma_m_1=1)
+
     if "sigma_m_005" in sigma_m_types:
         df = df.assign(sigma_m_005=0.05)
+
     if ("sigma_m_var" in sigma_m_types) or ("sigma_m_mpc_pli" in sigma_m_types):
-        sigma_m_ptv    = 0.2
-        sigma_m_pav    = 0.05
-        sigma_m_pcv    = 0.03
-        sigma_m_intron = 0.03
-        sigma_m_utr    = 0.03
-        sigma_m_others = 0.02
-        sigma_m = dict(
-            [(variant, sigma_m_ptv) for variant in ptv]
-            + [(variant, sigma_m_pav) for variant in pav]
-            + [(variant, sigma_m_pcv) for variant in pcv]
-            + [(variant, sigma_m_intron) for variant in intron]
-            + [(variant, sigma_m_utr) for variant in utr]
-            + [(variant, sigma_m_others) for variant in others]
-        )
-        category_dict = dict(
-            [(variant, "ptv") for variant in ptv]
-            + [(variant, "pav") for variant in pav]
-            + [(variant, "pcv") for variant in pcv]
-            + [(variant, "intron") for variant in intron]
-            + [(variant, "utr") for variant in utr]
-            + [(variant, "all") for variant in others]
-        )
-        sigma_m_list = list(map(sigma_m.get, df.most_severe_consequence.tolist()))
-        df["sigma_m_var"] = sigma_m_list
-        category_list = list(
-            map(category_dict.get, df.most_severe_consequence.tolist())
-        )
-        df["category"] = category_list
+        df = df.merge(get_sigma_m_var_df(), how = 'left', on = 'most_severe_consequence')
+
     if "sigma_m_mpc_pli" in sigma_m_types:
-        sigma_m_mpc_pli = list(df["sigma_m_var"])
-        row_count = 0
-        for i, row in df.iterrows():
-            if sigma_m_mpc_pli[row_count] is not None:
-                if (row["category"] == "ptv") and (row["pLI"] == "True"):
-                    sigma_m_mpc_pli[row_count] = 2 * sigma_m_mpc_pli[row_count]
-                elif (row["category"] == "pav") and (row["MPC"] >= 1):
-                    sigma_m_mpc_pli[row_count] = row["MPC"] * sigma_m_mpc_pli[row_count]
-            row_count += 1
-        df["sigma_m_mpc_pli"] = sigma_m_mpc_pli
+        df['sigma_m_mpc_pli'] = df.apply(
+            lambda x: compute_sigma_m_mpc_pli(x.sigma_m_var, x.category, x.pLI, x.MPC),
+            axis=1
+        )
+
     return df
 
 
@@ -1517,7 +1542,7 @@ def merge_dfs(sumstat_files, metadata_path, sigma_m_types):
     """
 
     print("")
-    print(Fore.CYAN + "Merging summary statistics together...")
+    print(Fore.CYAN + "Merging summary statistics together..." +  Style.RESET_ALL)
     outer_merge = partial(pd.merge, on=["V"], how="outer")
     df = reduce(outer_merge, sumstat_files)
     dtypes = {
@@ -1536,9 +1561,10 @@ def merge_dfs(sumstat_files, metadata_path, sigma_m_types):
         dtype=dtypes,
     )
     metadata = metadata[metadata["V"].isin(list(df["V"]))]
-    print("Merging with metadata..." +  Style.RESET_ALL)
+    print(Fore.CYAN + "Merging with metadata..." +  Style.RESET_ALL)
     df = df.merge(metadata)
     del metadata
+    print(Fore.CYAN + "Setting sigmas..." +  Style.RESET_ALL)
     df = set_sigmas(df, sigma_m_types)
     gc.collect()
     return df
@@ -1576,15 +1602,12 @@ def read_in_summary_stat(file_path, build, chrom):
         se_col: float,
         "P": str,
     }
+    if('ERRCODE' in df_top.columns):
+        dtypes.update({'ERRCODE': str})
     cols = list(dtypes.keys())
 
     df = pd.read_csv(
-        file_path,
-        sep="\t",
-        usecols=(
-            cols + ["ERRCODE"] if 'ERRCODE' in df_top.columns else cols
-        ),
-        dtype=dtypes,
+        file_path, sep="\t", usecols=cols, dtype=dtypes,
     )
     df.rename(columns={"#CHROM": "CHROM"}, inplace=True)
     if('ERRCODE' in df.columns):
