@@ -3,6 +3,7 @@
 from __future__ import division
 import argparse, os, itertools, gc
 from functools import partial, reduce
+import time
 
 
 import pandas as pd
@@ -2131,4 +2132,7 @@ def mrp_main():
 
 
 if __name__ == "__main__":
+    start = time.time()
     mrp_main()
+    end = time.time()
+    print(end - start) # Time in seconds
