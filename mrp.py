@@ -7,7 +7,8 @@ from functools import partial, reduce
 
 import pandas as pd
 import numpy as np
-import scipy
+import numpy.matlib
+import scipy.stats
 from colorama import Fore, Back, Style
 
 
@@ -676,6 +677,7 @@ def run_mrp(
     for i, (key, value) in enumerate(m_dict.items()):
         if i % 1000 == 0:
             print("Done " + str(i) + " " + agg_type + "s out of " + str(len(m_dict)))
+            gc.collect()
         M = value
         U, beta, v_beta, mu, converged, num_variants_mpc, num_variants_pli = calculate_all_params(
             df,
@@ -1518,30 +1520,23 @@ def merge_dfs(sumstat_files, metadata_path, sigma_m_types):
     print(Fore.CYAN + "Merging summary statistics together...")
     outer_merge = partial(pd.merge, on=["V"], how="outer")
     df = reduce(outer_merge, sumstat_files)
+    dtypes = {
+        "V": str,
+        "most_severe_consequence": str,
+        "maf": float,
+        "gene_symbol": str,
+        "MPC": float,
+        "pLI": str,
+        "ld_indep": str,
+    }
     metadata = pd.read_csv(
         metadata_path,
         sep="\t",
-        usecols=[
-            "V",
-            "most_severe_consequence",
-            "maf",
-            "gene_symbol",
-            "MPC",
-            "pLI",
-            "ld_indep",
-        ],
-        dtype={
-            "V": str,
-            "most_severe_consequence": str,
-            "maf": float,
-            "gene_symbol": str,
-            "MPC": float,
-            "pLI": str,
-            "ld_indep": str,
-        },
+        usecols=list(dtypes.keys()),
+        dtype=dtypes,
     )
     metadata = metadata[metadata["V"].isin(list(df["V"]))]
-    print("Merging with metadata...")
+    print("Merging with metadata..." +  Style.RESET_ALL)
     df = df.merge(metadata)
     del metadata
     df = set_sigmas(df, sigma_m_types)
@@ -1549,15 +1544,15 @@ def merge_dfs(sumstat_files, metadata_path, sigma_m_types):
     return df
 
 
-def read_in_summary_stat(subset_df, pop, pheno, build, chrom):
+def read_in_summary_stat(file_path, build, chrom):
 
     """
     Reads in one summary statistics file.
 
-    Additionally: adds a variant identifier ("V"), renames columns, filters out MHC.
+    Additionally: apply filters (look at ERRCODE column if available, removal of the MHC region, remove variants with null SE, focus on the specified chromosomes), adds a variant identifier ("V")
 
     Parameters:
-    subset_df: Subset of the map file where study == pop and phenotype == pheno.
+    file_path: Path to the summary statistics file.
     pop: Population of interest.
     pheno: Phenotype of interest.
     build: Genome build (hg19 or hg38).
@@ -1567,51 +1562,63 @@ def read_in_summary_stat(subset_df, pop, pheno, build, chrom):
     df: Dataframe with renamed columns, ready for merge.
 
     """
-
-    file_path = list(subset_df["path"])[0]
     print(file_path)
-    df_top = pd.read_csv(file_path, sep="\t", nrows=1)
+    df_top = pd.read_csv(file_path, sep="\t", nrows=0)
     se_col = "LOG(OR)_SE" if "LOG(OR)_SE" in df_top.columns else "SE"
     beta_col = "BETA" if "BETA" in df_top.columns else "OR"
+
+    dtypes = {
+        "#CHROM": str,
+        "POS": np.int32,
+        "REF": str,
+        "ALT": str,
+        beta_col: float,
+        se_col: float,
+        "P": str,
+    }
+    cols = list(dtypes.keys())
+
     df = pd.read_csv(
         file_path,
         sep="\t",
-        usecols=["#CHROM", "POS", "REF", "ALT", beta_col, se_col, "P"],
-        dtype={
-            "#CHROM": str,
-            "POS": np.int32,
-            "REF": str,
-            "ALT": str,
-            beta_col: float,
-            se_col: float,
-            "P": str,
-        },
+        usecols=(
+            cols + ["ERRCODE"] if 'ERRCODE' in df_top.columns else cols
+        ),
+        dtype=dtypes,
     )
-    if chrom:
-        df = df[df['#CHROM'].isin(chrom)]
-    df["P"] = df["P"].astype(float)
+    df.rename(columns={"#CHROM": "CHROM"}, inplace=True)
+    if('ERRCODE' in df.columns):
+        df = df[df["ERRCODE"] == "."]
+        df = df.drop(columns=["ERRCODE"])
     if se_col == "LOG(OR)_SE":
         df.rename(columns={"LOG(OR)_SE": "SE"}, inplace=True)
     if beta_col == "OR":
         df["BETA"] = np.log(df["OR"].astype("float64"))
+        df = df.drop(columns=["OR"])
+    if chrom:
+        df = df[df['#CHROM'].isin(chrom)]
+    # Filter for SE as you read it in
+    df = df[df['SE'].notnull()]
+    # Filter out HLA region
+    HLA_region = {
+        'hg19': (25477797, 36448354),
+        'hg38': (25477569, 36480577)
+    }
+    df = df[~(
+        (df["CHROM"] == '6') &
+        (df["POS"].between( HLA_region[build][0], HLA_region[build][1] ))
+    )]
+    df["P"] = df["P"].astype(float)
     df.insert(
         loc=0,
         column="V",
-        value=df["#CHROM"]
+        value=df["CHROM"]
         .astype(str)
         .str.cat(df["POS"].astype(str), sep=":")
         .str.cat(df["REF"], sep=":")
         .str.cat(df["ALT"], sep=":"),
     )
-    # Filter out HLA region
-    if build == "hg38":
-        df = df[~((df["#CHROM"] == 6) & (df["POS"].between(25477569, 36480577)))]
-    elif build == "hg19":
-        df = df[~((df["#CHROM"] == 6) & (df["POS"].between(25477797, 36448354)))]
     df = df[["V", "BETA", "SE", "P"]]
-    # Filter for SE as you read it in
-    df = rename_columns(df, pop, pheno)
-    df = df[df["SE" + "_" + pop + "_" + pheno].notnull()]
     gc.collect()
     return df
 
@@ -1657,8 +1664,8 @@ def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types, 
         for pheno in phenos:
             subset_df = map_file[(map_file.study == pop) & (map_file.pheno == pheno)]
             if len(subset_df) == 1:
-                df = read_in_summary_stat(subset_df, pop, pheno, build, chrom)
-                sumstat_files.append(df)
+                df = read_in_summary_stat(list(subset_df["path"])[0], build, chrom)
+                sumstat_files.append(rename_columns(df, pop, pheno))
             else:
                 print(
                     Fore.RED
@@ -1673,8 +1680,10 @@ def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types, 
     except:
         raise IOError("Could not open exclusions file (--exclude).")
     df = merge_dfs(sumstat_files, metadata_path, sigma_m_types)
+    del(sumstat_files)
     if exclude_path:
         df = df[~df["V"].isin(variants_to_exclude)]
+    gc.collect()
     return df, pops, phenos, S, K
 
 
@@ -2007,8 +2016,7 @@ def initialize_parser():
     return parser
 
 
-if __name__ == "__main__":
-
+def mrp_main():
     """
     Runs MRP analysis on summary statistics with the parameters specified
         by the command line.
@@ -2087,3 +2095,7 @@ if __name__ == "__main__":
             args.mean,
             args.chrom,
         )
+
+
+if __name__ == "__main__":
+    mrp_main()
