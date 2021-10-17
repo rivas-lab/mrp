@@ -1588,7 +1588,6 @@ def read_in_summary_stat(file_path, build, chrom):
     df: Dataframe with renamed columns, ready for merge.
 
     """
-    print(file_path)
     df_top = pd.read_csv(file_path, sep="\t", nrows=0)
     se_col = "LOG(OR)_SE" if "LOG(OR)_SE" in df_top.columns else "SE"
     beta_col = "BETA" if "BETA" in df_top.columns else "OR"
@@ -1687,7 +1686,13 @@ def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types, 
         for pheno in phenos:
             subset_df = map_file[(map_file.study == pop) & (map_file.pheno == pheno)]
             if len(subset_df) == 1:
-                df = read_in_summary_stat(list(subset_df["path"])[0], build, chrom)
+                file_path = list(subset_df["path"])[0]
+                df = read_in_summary_stat(file_path, build, chrom)
+                print(
+                    '{pop} {pheno} {nrow}x{ncol} {path}'.format(
+                        pop=pop, pheno=pheno, nrow = df.shape[0], ncol = df.shape[1], path = file_path
+                    )
+                )
                 sumstat_files.append(rename_columns(df, pop, pheno))
             else:
                 print(
@@ -1707,6 +1712,11 @@ def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types, 
     if exclude_path:
         df = df[~df["V"].isin(variants_to_exclude)]
     gc.collect()
+    print(
+        'summary statistics df: {nrow}x{ncol}'.format(
+            nrow = df.shape[0], ncol = df.shape[1]
+        )
+    )
     return df, pops, phenos, S, K
 
 
