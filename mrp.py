@@ -17,6 +17,7 @@ from numba import jit
 pd.options.mode.chained_assignment = None
 
 
+@jit
 def is_pos_def_and_full_rank(X, tol=0.99):
 
     """
@@ -47,6 +48,7 @@ def is_pos_def_and_full_rank(X, tol=0.99):
         return X, True
 
 
+@jit
 def safe_inv(X, matrix_name, block, agg_type):
 
     """
@@ -182,6 +184,7 @@ def initialize_r_objects():
     return fb, dm, im
 
 
+@jit
 def return_BF_pvals(beta, U, v_beta, v_beta_inv, fb, dm, im, methods):
 
     """
@@ -231,6 +234,7 @@ def return_BF_pvals(beta, U, v_beta, v_beta_inv, fb, dm, im, methods):
     return p_values
 
 
+@jit
 def compute_posterior_probs(log10BF, prior_odds_list):
 
     """
@@ -255,6 +259,7 @@ def compute_posterior_probs(log10BF, prior_odds_list):
     return posterior_probs
 
 
+@jit
 def return_BF(
     U, beta, v_beta, mu, block, agg_type, prior_odds_list, p_value_methods, fb, dm, im
 ):
@@ -400,6 +405,7 @@ def generate_beta_se(subset_df, pops, phenos):
     return beta_list, se_list
 
 
+@jit
 def calculate_all_params(
     df,
     pops,
@@ -611,6 +617,7 @@ def get_output_file_columns(
     return bf_df_columns, fb, dm, im
 
 
+@jit
 def run_mrp(
     df,
     S,
