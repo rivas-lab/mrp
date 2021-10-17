@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from __future__ import division
-import argparse, os, itertools, gc
+import argparse, os, itertools, collections, gc
 from functools import partial, reduce
 import time
 
@@ -11,6 +11,8 @@ import numpy as np
 import numpy.matlib
 import scipy.stats
 from colorama import Fore, Back, Style
+from numba import jit
+
 
 
 pd.options.mode.chained_assignment = None
@@ -217,7 +219,7 @@ def return_BF_pvals(beta, U, v_beta, v_beta_inv, fb, dm, im, methods):
         return [np.nan] * len(methods)
     d = np.linalg.eig(B)[0]
     d = [i for i in d if i > 0.01]
-    p_values = []
+    p_values = collections.deque([])
     for method in methods:
         if method == "farebrother":
             p_value = farebrother(quad_T, d, fb)
@@ -673,7 +675,7 @@ def run_mrp(
         prior_odds_list,
         p_value_methods,
     )
-    data = []
+    data = collections.deque([])
     num_converged = 0
     for i, (key, value) in enumerate(m_dict.items()):
         if i % 1000 == 0:
@@ -871,16 +873,16 @@ def loop_through_parameters(
         print(Fore.YELLOW + "Running MRP across parameters for MAF threshold " + str(maf_thresh) + " and SE threshold " + str(se_thresh) + "..." + Style.RESET_ALL)
         maf_df = df[(df.maf <= maf_thresh) & (df.maf >= 0)]
         for agg_type in agg:
-            bf_dfs = []
+            bf_dfs = collections.deque([])
             # If not aggregating, then R_var choice does not affect BF
             if (agg_type == "variant") and (len(R_var_models) > 1):
                 print(Fore.YELLOW + "Since we are not aggregating, R_var is just [1]." + Style.RESET_ALL)
                 R_var_models = ["independent"]
             for analysis in variant_filters:
                 analysis_df = filter_category(maf_df, analysis)
-                analysis_bf_dfs = []
+                analysis_bf_dfs = collections.deque([])
                 for sigma_m_type in sigma_m_types:
-                    sigma_m_type_bf_dfs = []
+                    sigma_m_type_bf_dfs = collections.deque([])
                     for R_study, R_study_model in zip(R_study_list, R_study_models):
                         for R_var_model in R_var_models:
                             print_params(
@@ -1682,7 +1684,7 @@ def read_in_summary_stats(map_file, metadata_path, exclude_path, sigma_m_types, 
     print("Populations: " + Style.RESET_ALL + ", ".join(pops))
     print(Fore.CYAN + "Phenotypes: " + Style.RESET_ALL + ", ".join(phenos))
     print("")
-    sumstat_files = []
+    sumstat_files = collections.deque([])
     for pop in pops:
         for pheno in phenos:
             subset_df = map_file[(map_file.study == pop) & (map_file.pheno == pheno)]
