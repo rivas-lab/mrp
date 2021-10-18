@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 from __future__ import division
-import argparse, os, itertools, collections, gc
+import argparse, os, itertools, collections, gc, time
 from functools import partial, reduce
-import time
 
 
 import pandas as pd
@@ -11,14 +10,11 @@ import numpy as np
 import numpy.matlib
 import scipy.stats
 from colorama import Fore, Back, Style
-from numba import jit
-
 
 
 pd.options.mode.chained_assignment = None
 
 
-@jit
 def is_pos_def_and_full_rank(X, tol=0.99):
 
     """
@@ -36,11 +32,11 @@ def is_pos_def_and_full_rank(X, tol=0.99):
     converged: bool for whether or not the matrix is singular.
 
     """
-    i = 0
     X = np.matrix(X)
     if np.all(np.linalg.eigvals(X) > 0):
         return X, True
     else:
+        i = 0
         while not np.all(np.linalg.eigvals(X) > 0):
             X = np.diag(np.diag(X)) + tol * X - tol * np.diag(np.diag(X))
             i += 1
@@ -49,7 +45,6 @@ def is_pos_def_and_full_rank(X, tol=0.99):
         return X, True
 
 
-@jit
 def safe_inv(X, matrix_name, block, agg_type):
 
     """
@@ -185,7 +180,6 @@ def initialize_r_objects():
     return fb, dm, im
 
 
-@jit
 def return_BF_pvals(beta, U, v_beta, v_beta_inv, fb, dm, im, methods):
 
     """
@@ -235,7 +229,6 @@ def return_BF_pvals(beta, U, v_beta, v_beta_inv, fb, dm, im, methods):
     return p_values
 
 
-@jit
 def compute_posterior_probs(log10BF, prior_odds_list):
 
     """
@@ -260,7 +253,6 @@ def compute_posterior_probs(log10BF, prior_odds_list):
     return posterior_probs
 
 
-@jit
 def return_BF(
     U, beta, v_beta, mu, block, agg_type, prior_odds_list, p_value_methods, fb, dm, im
 ):
@@ -393,8 +385,8 @@ def generate_beta_se(subset_df, pops, phenos):
 
     """
 
-    beta_list = []
-    se_list = []
+    beta_list = collections.deque([])
+    se_list = collections.deque([])
     for pop in pops:
         for pheno in phenos:
             if ("BETA_" + pop + "_" + pheno) in subset_df.columns:
@@ -406,7 +398,6 @@ def generate_beta_se(subset_df, pops, phenos):
     return beta_list, se_list
 
 
-@jit
 def calculate_all_params(
     df,
     pops,
@@ -454,21 +445,21 @@ def calculate_all_params(
     num_variants_pli: the number of pLI-augmented variants in the gene.
 
     """
-
-    subset_df = (
-        df[df["gene_symbol"] == key] if agg_type == "gene" else df[df["V"] == key]
-    )
+    subset_filter_col = "gene_symbol" if agg_type == "gene" else "V"
+    subset_df = df.loc[np.in1d(df[subset_filter_col], [key]), ]
     if sigma_m_type == "sigma_m_mpc_pli":
-        num_variants_pli = len(
-            subset_df[(subset_df["category"] == "ptv") & (subset_df["pLI"] == "True")]
-        )
-        num_variants_mpc = len(
-            subset_df[(subset_df["category"] == "pav") & (subset_df["MPC"] >= 1)]
-        )
+        num_variants_pli = np.sum(np.logical_and(
+            np.in1d(subset_df['category'], ['ptv']),
+            np.in1d(subset_df['pLI'], ['True'])
+        ))
+        num_variants_mpc = np.sum(np.logical_and(
+            np.in1d(subset_df['category'], ['pav']),
+            (subset_df['MPC'] >= 1)
+        ))
     else:
         num_variants_mpc, num_variants_pli = None, None
-    sigma_m = subset_df[sigma_m_type].tolist()
-    diag_sigma_m = np.diag(np.atleast_1d(np.array(sigma_m)))
+    sigma_m = np.array(subset_df[sigma_m_type])
+    diag_sigma_m = np.diag(np.atleast_1d(sigma_m))
     R_var = np.diag(np.ones(M)) if R_var_model == "independent" else np.ones((M, M))
     R_var, _ = is_pos_def_and_full_rank(R_var)
     R_study, _ = is_pos_def_and_full_rank(R_study)
@@ -560,7 +551,7 @@ def get_output_file_columns(
 
     """
 
-    bf_df_columns = [agg_type]
+    bf_df_columns = collections.deque([agg_type])
     if agg_type == "gene":
         bf_df_columns.extend(["num_variants_" + analysis])
         if sigma_m_type == "sigma_m_mpc_pli":
@@ -618,7 +609,6 @@ def get_output_file_columns(
     return bf_df_columns, fb, dm, im
 
 
-@jit
 def run_mrp(
     df,
     S,
@@ -1233,7 +1223,7 @@ def filter_for_phen_corr(df, map_file):
     if len(files_to_use) == 0:
         return [], []
     pop_pheno_tuples = zip(list(files_to_use["study"]), list(files_to_use["pheno"]))
-    cols_to_keep = ["V", "maf", "ld_indep"]
+    cols_to_keep = collections.deque(["V", "maf", "ld_indep"])
     for col_type in "BETA_", "P_":
         cols_to_keep.extend(
             [col_type + pop + "_" + pheno for pop, pheno in pop_pheno_tuples]
@@ -1282,7 +1272,7 @@ def build_R_phen(S, K, pops, phenos, df, map_file):
                 R_phen[k1, k2] = R_phen[k2, k1]
             else:
                 phenos_to_remove = list(set(range(K)) - set([k1, k2]))
-                indices_to_remove = []
+                indices_to_remove = collections.deque([])
                 for pheno_to_remove in phenos_to_remove:
                     indices_to_remove.extend(
                         [pheno_to_remove + K * x for x in range(S)]
@@ -1344,7 +1334,7 @@ def filter_for_err_corr(df, map_file):
     print(Fore.MAGENTA + "Building R_phen and matrix of correlations of errors..." + Style.RESET_ALL)
     print("")
     pop_pheno_tuples = zip(list(map_file["study"]), list(map_file["pheno"]))
-    cols_to_keep = ["V", "maf", "ld_indep", "most_severe_consequence"]
+    cols_to_keep = collections.deque(["V", "maf", "ld_indep", "most_severe_consequence"])
     for col_type in "BETA_", "P_":
         cols_to_keep.extend(
             [col_type + pop + "_" + pheno for pop, pheno in pop_pheno_tuples]
@@ -1468,7 +1458,8 @@ def se_filter(df, se_thresh, pops, phenos):
 
     se_cols = ["SE_" + pop + "_" + pheno for pop in pops for pheno in phenos]
     df["min_SE"] = df[se_cols].apply(np.nanmin, axis=1)
-    return df[df["min_SE"] <= se_thresh]
+    return df.loc[(df["min_SE"] <= se_thresh), ]
+    # return df[df["min_SE"] <= se_thresh]
 
 
 def rename_columns(df, pop, pheno):
@@ -2144,4 +2135,9 @@ if __name__ == "__main__":
     start = time.time()
     mrp_main()
     end = time.time()
-    print(end - start) # Time in seconds
+    print(
+        Fore.CYAN +
+        'MRP analysis finished. Total elapsed time: {:.2f} [s]'.format(
+            end - start
+        ) + Style.RESET_ALL
+    )
