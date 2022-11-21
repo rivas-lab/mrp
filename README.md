@@ -196,7 +196,7 @@ Finally, MRP can also handle multi-trait gene-based analysis. Again, the analysi
 ```
 path    study   pheno   R_phen
 /path/to/wb_ldl_array.glm.linear.gz     wb      ldl     TRUE
-/path/to/wb_tg_array.glm.linear.gz     tg      ldl     TRUE
+/path/to/wb_tg_array.glm.linear.gz     wb      tg     TRUE
 ```
 
 ### Other optionalities
