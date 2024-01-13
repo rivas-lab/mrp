@@ -974,6 +974,7 @@ def get_sigma_and_consequence_categories():
             "frameshift_variant",
             "transcript_ablation",
             "start_lost",
+            "pLoF",
         ],
         'pav': [
             "missense_variant",
@@ -981,6 +982,7 @@ def get_sigma_and_consequence_categories():
             "protein_altering_variant",
             "inframe_insertion",
             "inframe_deletion",
+            "missense",
         ],
         'pcv': [
             "stop_retained_variant",
