@@ -983,6 +983,7 @@ def get_sigma_and_consequence_categories():
             "inframe_insertion",
             "inframe_deletion",
             "missense",
+            "LC",
         ],
         'pcv': [
             "stop_retained_variant",
