@@ -81,3 +81,42 @@ Replace `[gb_path]` with the path to the genebass data file and `[typeofanalysis
 ### Notes
 - Ensure the paths and filenames in the script match the structure and format of your data and directory.
 - The script might require customization for different datasets or specific analytical requirements.
+
+## submit_jobs3.sh Script
+
+### Overview
+`submit_jobs3.sh` is a bash script designed to automate the submission of jobs for processing genebass data files with different types of analysis. It is particularly useful for batch processing in a high-performance computing environment.
+
+### Prerequisites
+- Bash environment with access to the required directories and files.
+- The `load_mrp.py` Python script should be present and correctly configured.
+- Access to a job submission system, such as SLURM (`sbatch` command).
+
+### Script Functionality
+1. **Directories and Analysis Types:**
+   - The script defines directories for the input files and output files.
+   - It also specifies an array of analysis types (e.g., 'ultrarare', 'pav', 'missenseonly').
+
+2. **Iterating Over Files and Analysis Types:**
+   - The script iterates over each genebass data file in the specified directory.
+   - For each file, it iterates over the defined types of analysis.
+
+3. **Job Submission:**
+   - The script constructs the expected output file name based on the file and analysis type.
+   - If the output file does not already exist, it submits a job using `sbatch`.
+   - The job executes the `load_mrp.py` script with the current file and analysis type as arguments.
+
+4. **Output and Logging:**
+   - Outputs messages to the console indicating the status of each job (whether it's being submitted or skipped).
+   - The submitted jobs will process the data and generate output in the specified output directory.
+
+### Usage
+Execute the script in a bash environment where you have the necessary permissions and access to the job submission system:
+
+```bash
+bash submit_jobs3.sh
+```
+
+### Notes
+- The script assumes a specific naming convention for the files and directories. Ensure these match your project's structure.
+- You might need to adjust the script's parameters, such as job time, memory allocation, and partition, based on your computing environment's configuration.
