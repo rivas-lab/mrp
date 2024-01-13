@@ -114,7 +114,7 @@ Replace `[gb_path]` with the path to the genebass data file and `[typeofanalysis
 Execute the script in a bash environment where you have the necessary permissions and access to the job submission system:
 
 ```bash
-bash submit_jobs3.sh
+bash submit_jobs.sh
 ```
 
 ### Notes
