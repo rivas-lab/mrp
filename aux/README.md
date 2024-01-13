@@ -42,3 +42,42 @@ Replace `[start_index]` and `[end_index]` with integer values representing the r
 ## Notes
 - Ensure you have sufficient permissions to read the input data and write to the output directory.
 - The script is intended for batch processing of phenotype data and might require modifications for different datasets or specific use cases.
+
+## load_mrp.py Script
+
+### Overview
+`load_mrp.py` is a Python script for loading and processing genotype-phenotype data. It integrates with external scripts and performs customized data analysis based on user-defined criteria.
+
+### Prerequisites
+- Python environment with necessary libraries installed (`pandas`, `subprocess`, `os`, etc.).
+- The required data files and the `mrp.py` script must be accessible in the specified paths.
+
+### Usage
+Execute the script from the command line by providing the genebass file path and the type of analysis to be performed:
+
+```bash
+python load_mrp.py [gb_path] [typeofanalysis]
+```
+
+Replace `[gb_path]` with the path to the genebass data file and `[typeofanalysis]` with the type of analysis (e.g., 'ultrarare', 'pav', 'missenseonly', 'alphamissense', etc.).
+
+### Script Functionality
+1. **`perform_analysis` Function:**
+   - Processes the genebass data file (`gb_path`) and performs analysis based on the type specified in `typeofanalysis`.
+   - The script applies various filters to the data, processes it, and generates summary statistics and metadata files.
+
+2. **`run_mrp_script` Function:**
+   - Constructs and executes a command to run the `mrp.py` script with the appropriate parameters.
+   - The parameters include file paths, genetic variants, thresholds, and output settings.
+
+3. **Data Processing:**
+   - The script reads and filters data based on annotations, allele frequency, and other criteria specific to the analysis type.
+   - Merges data from different sources and prepares it for further analysis.
+
+4. **Output:**
+   - Generates summary statistics and metadata files in the specified output directory.
+   - The output includes various genetic and phenotypic data points, like chromosome, position, reference and alternate alleles, etc.
+
+### Notes
+- Ensure the paths and filenames in the script match the structure and format of your data and directory.
+- The script might require customization for different datasets or specific analytical requirements.
