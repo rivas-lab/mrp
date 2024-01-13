@@ -82,10 +82,10 @@ Replace `[gb_path]` with the path to the genebass data file and `[typeofanalysis
 - Ensure the paths and filenames in the script match the structure and format of your data and directory.
 - The script might require customization for different datasets or specific analytical requirements.
 
-## submit_jobs3.sh Script
+## submit_jobs.sh Script
 
 ### Overview
-`submit_jobs3.sh` is a bash script designed to automate the submission of jobs for processing genebass data files with different types of analysis. It is particularly useful for batch processing in a high-performance computing environment.
+`submit_jobs.sh` is a bash script designed to automate the submission of jobs for processing genebass data files with different types of analysis. It is particularly useful for batch processing in a high-performance computing environment.
 
 ### Prerequisites
 - Bash environment with access to the required directories and files.
