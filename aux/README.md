@@ -47,6 +47,7 @@ Replace `[start_index]` and `[end_index]` with integer values representing the r
 - The script is intended for batch processing of phenotype data and might require modifications for different datasets or specific use cases.
 
 ## To process single variant results file
+```
 # Initialize Hail
 hl.init()
 
@@ -69,7 +70,7 @@ for phenotype in phenotypes:
 
 # Stop Hail
 hl.stop()
-
+```
 ## load_mrp.py Script
 
 ### Overview
