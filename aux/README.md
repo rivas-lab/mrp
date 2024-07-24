@@ -52,7 +52,7 @@ Replace `[start_index]` and `[end_index]` with integer values representing the r
 hl.init()
 
 # Load the MatrixTable
-mt = hl.read_matrix_table('single_variant_results.mt')
+mt = hl.read_matrix_table('variant_results.mt')
 
 # Get the list of phenotypes
 phenotypes = mt.aggregate_cols(hl.agg.collect_as_set(mt.phenotype))
