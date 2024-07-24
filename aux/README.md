@@ -1,6 +1,9 @@
 
 # README for process_phenotypes.py
+```
+(chem) (job 50379466) $ ml load java/18.0.2
 
+```
 ## Overview
 The `process_phenotypes.py` script is designed to read and process phenotype data stored in a Hail MatrixTable format. This script is specifically tailored for use with data from genebass.org.
 
@@ -42,6 +45,30 @@ Replace `[start_index]` and `[end_index]` with integer values representing the r
 ## Notes
 - Ensure you have sufficient permissions to read the input data and write to the output directory.
 - The script is intended for batch processing of phenotype data and might require modifications for different datasets or specific use cases.
+
+## To process single variant results file
+# Initialize Hail
+hl.init()
+
+# Load the MatrixTable
+mt = hl.read_matrix_table('single_variant_results.mt')
+
+# Get the list of phenotypes
+phenotypes = mt.aggregate_cols(hl.agg.collect_as_set(mt.phenotype))
+
+# Export each phenotype to a separate TSV file
+for phenotype in phenotypes:
+    # Filter MatrixTable for the current phenotype
+    phenotype_mt = mt.filter_cols(mt.phenotype == phenotype)
+    
+    # Flatten the MatrixTable to a Table to make it easier to export
+    phenotype_ht = phenotype_mt.entries()
+    
+    # Export the Table to a TSV file
+    phenotype_ht.export(f'output/{phenotype}.tsv', delimiter='\t')
+
+# Stop Hail
+hl.stop()
 
 ## load_mrp.py Script
 
